@@ -12,6 +12,7 @@
     <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="user_type" Type="Int32" />
     <Property Name="user_status" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityContainer Name="EcommEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="user_details" EntityType="Self.user_details" />

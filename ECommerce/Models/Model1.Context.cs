@@ -26,5 +26,7 @@ namespace AutobuyDirectApi.Models
         }
     
         public virtual DbSet<user_details> user_details { get; set; }
+        public virtual DbSet<category> categories { get; set; }
+        public virtual DbSet<product> products { get; set; }
     }
 }

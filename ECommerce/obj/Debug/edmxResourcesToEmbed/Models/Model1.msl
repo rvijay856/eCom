@@ -4,6 +4,7 @@
     <EntitySetMapping Name="user_details">
       <EntityTypeMapping TypeName="EcommModel.user_details">
         <MappingFragment StoreEntitySet="user_details">
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="fname" ColumnName="fname" />
           <ScalarProperty Name="lname" ColumnName="lname" />

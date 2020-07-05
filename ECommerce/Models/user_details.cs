@@ -20,7 +20,9 @@ namespace AutobuyDirectApi.Models
         public string email { get; set; }
         public string password { get; set; }
         public string address { get; set; }
-        public Nullable<int> user_type { get; set; }
-        public Nullable<int> user_status { get; set; }
+        public int user_type { get; set; }
+        public int user_status { get; set; }
+        public System.DateTime created_date { get; set; }
+        public Nullable<System.DateTime> last_login { get; set; }
     }
 }
