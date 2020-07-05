@@ -1,0 +1,232 @@
+E:\New folder\AutobuyDirectApi\ECommerce\bin\AutobuyDirectApi.dll.config
+E:\New folder\AutobuyDirectApi\ECommerce\bin\AutobuyDirectApi.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\AutobuyDirectApi.pdb
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\csc.exe
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\csc.exe.config
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\csc.rsp
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\csi.exe
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\csi.exe.config
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\csi.rsp
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.Managed.Core.targets
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.AppContext.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Collections.Immutable.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Console.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.IO.Compression.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.IO.FileSystem.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.IO.Pipes.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Reflection.Metadata.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Security.AccessControl.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Security.Claims.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Security.Principal.Windows.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.ValueTuple.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Xml.XmlDocument.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Xml.XPath.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\vbc.exe
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\vbc.exe.config
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\vbc.rsp
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\VBCSCompiler.exe
+E:\New folder\AutobuyDirectApi\ECommerce\bin\roslyn\VBCSCompiler.exe.config
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Antlr3.Runtime.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\EntityFramework.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\EntityFramework.SqlServer.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.AspNet.Identity.Core.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.Cookies.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.Facebook.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.Google.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.OAuth.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.Twitter.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Web.Infrastructure.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Newtonsoft.Json.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Owin.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Net.Http.Formatting.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Cors.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Helpers.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Http.Cors.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Http.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Http.Owin.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Http.WebHost.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Mvc.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Optimization.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Razor.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.WebPages.Deployment.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.WebPages.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.WebPages.Razor.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\WebGrease.dll
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Net.Http.Formatting.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Http.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Http.Cors.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Newtonsoft.Json.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Helpers.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Http.WebHost.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Mvc.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Optimization.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Razor.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.WebPages.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.WebPages.Deployment.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.WebPages.Razor.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Antlr3.Runtime.pdb
+E:\New folder\AutobuyDirectApi\ECommerce\bin\EntityFramework.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\EntityFramework.SqlServer.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.AspNet.Identity.Core.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.Facebook.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.Cookies.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.Google.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.Twitter.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.Owin.Security.OAuth.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\System.Web.Http.Owin.xml
+E:\New folder\AutobuyDirectApi\ECommerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\New folder\AutobuyDirectApi\ECommerce\obj\Debug\ECommerce.csprojAssemblyReference.cache
+E:\New folder\AutobuyDirectApi\ECommerce\obj\Debug\ECommerce.csproj.CoreCompileInputs.cache
+E:\New folder\AutobuyDirectApi\ECommerce\obj\Debug\ECommerce.csproj.CopyComplete
+E:\New folder\AutobuyDirectApi\ECommerce\obj\Debug\AutobuyDirectApi.dll
+E:\New folder\AutobuyDirectApi\ECommerce\obj\Debug\AutobuyDirectApi.pdb
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\AutobuyDirectApi.dll.config
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\AutobuyDirectApi.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\AutobuyDirectApi.pdb
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\csc.exe
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\csc.exe.config
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\csc.rsp
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\csi.exe
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\csi.exe.config
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\csi.rsp
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.AppContext.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Console.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.IO.Compression.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Security.Claims.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.ValueTuple.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\vbc.exe
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\vbc.exe.config
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\vbc.rsp
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\VBCSCompiler.exe
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Antlr3.Runtime.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\EntityFramework.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\EntityFramework.SqlServer.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Newtonsoft.Json.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Owin.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Net.Http.Formatting.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Cors.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Helpers.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Http.Cors.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Http.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Http.Owin.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Http.WebHost.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Mvc.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Optimization.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Razor.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.WebPages.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.WebPages.Razor.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\WebGrease.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Net.Http.Formatting.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Http.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Http.Cors.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Newtonsoft.Json.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Helpers.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Http.WebHost.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Mvc.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Optimization.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Razor.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.WebPages.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.WebPages.Razor.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Antlr3.Runtime.pdb
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\EntityFramework.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\EntityFramework.SqlServer.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\System.Web.Http.Owin.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\obj\Debug\ECommerce.csprojAssemblyReference.cache
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\obj\Debug\ECommerce.csproj.CoreCompileInputs.cache
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\obj\Debug\ECommerce.csproj.CopyComplete
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\obj\Debug\AutobuyDirectApi.dll
+C:\Users\Vijay\Desktop\ECommerceAPI\ECommerce\obj\Debug\AutobuyDirectApi.pdb

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AUTOBUYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dealer_offer">
+    <Key>
+      <PropertyRef Name="OfferId" />
+    </Key>
+    <Property Name="OfferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MainDealerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DealerId" Type="Int32" />
+    <Property Name="LeadId" Type="Int32" />
+    <Property Name="Accepted" Type="Int32" />
+    <Property Name="OfferAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="OfferFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="dealer_userdetails">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DealerId" Type="Int32" />
+    <Property Name="fname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LicTIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="zip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="userlgn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DealerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DealerSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="logourl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="paging_rights" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="primaryContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Precision="3" />
+    <Property Name="modifieddate" Type="DateTime" Precision="3" />
+    <Property Name="type" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="delete_status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="AutoBuyDriectDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dealer_offer" EntityType="Self.dealer_offer" />
+    <EntitySet Name="dealer_userdetails" EntityType="Self.dealer_userdetails" />
+    <FunctionImport Name="Autobuy_direct_register_table" ReturnType="Collection(AUTOBUYModel.Autobuy_direct_register_table_Result)">
+      <Parameter Name="dealername" Mode="In" Type="String" />
+      <Parameter Name="personname" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="city" Mode="In" Type="String" />
+      <Parameter Name="state" Mode="In" Type="String" />
+      <Parameter Name="ph" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="loginid" Mode="In" Type="String" />
+      <Parameter Name="psw" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="login_dealer_app" ReturnType="Collection(AUTOBUYModel.login_dealer_app_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Autobuy_direct_register_table_Result">
+    <Property Type="String" Name="result" Nullable="false" MaxLength="29" />
+    <Property Type="String" Name="userid" Nullable="false" MaxLength="6" />
+  </ComplexType>
+  <ComplexType Name="login_dealer_app_Result">
+    <Property Type="String" Name="result" Nullable="false" MaxLength="7" />
+    <Property Type="String" Name="username" Nullable="true" />
+    <Property Type="Int32" Name="userid" Nullable="false" />
+    <Property Type="String" Name="logourl" Nullable="true" />
+    <Property Type="String" Name="userrole" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="DealerName" Nullable="true" />
+    <Property Type="String" Name="Dealership" Nullable="true" />
+    <Property Type="Int32" Name="AutorefId" Nullable="false" />
+    <Property Type="String" Name="email" Nullable="true" />
+    <Property Type="Int32" Name="InventoryCount" Nullable="true" />
+    <Property Type="Int32" Name="ReferalCount" Nullable="true" />
+    <Property Type="String" Name="paging_rights" Nullable="true" />
+    <Property Type="String" Name="messg" Nullable="false" MaxLength="139" />
+    <Property Type="Int32" Name="dealerid" Nullable="true" />
+  </ComplexType>
+</Schema>

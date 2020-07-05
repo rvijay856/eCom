@@ -1,0 +1,232 @@
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\AutobuyDirectApi.dll.config
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\AutobuyDirectApi.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\AutobuyDirectApi.pdb
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csc.exe
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csc.exe.config
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csc.rsp
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csi.exe
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csi.exe.config
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csi.rsp
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.AppContext.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Collections.Immutable.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Console.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.Compression.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.FileSystem.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.Pipes.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Reflection.Metadata.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.AccessControl.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Claims.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.ValueTuple.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Xml.XPath.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\vbc.exe
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\vbc.exe.config
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\vbc.rsp
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\VBCSCompiler.exe
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\VBCSCompiler.exe.config
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Antlr3.Runtime.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\EntityFramework.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\EntityFramework.SqlServer.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Google.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Web.Infrastructure.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Newtonsoft.Json.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Owin.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Net.Http.Formatting.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Cors.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Helpers.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.Cors.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.Owin.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.WebHost.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Mvc.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Optimization.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Razor.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.Deployment.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.Razor.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\WebGrease.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Net.Http.Formatting.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.Cors.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Newtonsoft.Json.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Helpers.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.WebHost.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Mvc.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Optimization.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Razor.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.Deployment.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.Razor.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Antlr3.Runtime.pdb
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\EntityFramework.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\EntityFramework.SqlServer.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Google.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.Owin.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.csproj.CoreCompileInputs.cache
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.csproj.CopyComplete
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.dll
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.pdb
+D:\Aishu\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.csprojAssemblyReference.cache
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\AutobuyDirectApi.dll.config
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\AutobuyDirectApi.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\AutobuyDirectApi.pdb
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csc.exe
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csc.exe.config
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csc.rsp
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csi.exe
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csi.exe.config
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\csi.rsp
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.Managed.Core.targets
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.AppContext.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Collections.Immutable.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Console.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.Compression.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.FileSystem.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.IO.Pipes.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Reflection.Metadata.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.AccessControl.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Claims.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Security.Principal.Windows.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.ValueTuple.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Xml.XmlDocument.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Xml.XPath.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\vbc.exe
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\vbc.exe.config
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\vbc.rsp
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\VBCSCompiler.exe
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\roslyn\VBCSCompiler.exe.config
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Antlr3.Runtime.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\EntityFramework.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\EntityFramework.SqlServer.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Cookies.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Facebook.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Google.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.OAuth.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Twitter.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Web.Infrastructure.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Newtonsoft.Json.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Owin.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Net.Http.Formatting.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Cors.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Helpers.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.Cors.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.Owin.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.WebHost.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Mvc.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Optimization.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Razor.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.Deployment.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.Razor.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\WebGrease.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Net.Http.Formatting.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.Cors.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Newtonsoft.Json.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Helpers.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.WebHost.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Mvc.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Optimization.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Razor.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.Deployment.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.WebPages.Razor.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Antlr3.Runtime.pdb
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\EntityFramework.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\EntityFramework.SqlServer.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Facebook.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Cookies.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Google.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.Twitter.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.Owin.Security.OAuth.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\System.Web.Http.Owin.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.csproj.CoreCompileInputs.cache
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.csproj.CopyComplete
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.dll
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.pdb
+E:\Sahul Files\Project\AutobuyDirectApi\AutobuyDirectApi\obj\Release\AutobuyDirectApi.csprojAssemblyReference.cache

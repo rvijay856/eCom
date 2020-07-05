@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AUTOBUYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AUTOBUY.dbo.dealer_offer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="dealer_offer">
+    <Key>
+      <PropertyRef Name="OfferId" />
+    </Key>
+    <Property Name="OfferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MainDealerId" Type="nvarchar(max)" />
+    <Property Name="DealerId" Type="int" />
+    <Property Name="LeadId" Type="int" />
+    <Property Name="Accepted" Type="int" />
+    <Property Name="OfferAmount" Type="varchar" MaxLength="100" />
+    <Property Name="OfferFrom" Type="varchar(max)" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AUTOBUY.dbo.dealer_userdetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="dealer_userdetails">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DealerId" Type="int" />
+    <Property Name="fname" Type="nvarchar(max)" />
+    <Property Name="lname" Type="nvarchar(max)" />
+    <Property Name="CompanyName" Type="nvarchar(max)" />
+    <Property Name="LicTIN" Type="nvarchar(max)" />
+    <Property Name="username" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="city" Type="nvarchar(max)" />
+    <Property Name="state" Type="nvarchar(max)" />
+    <Property Name="zip" Type="nvarchar(max)" />
+    <Property Name="phone" Type="nvarchar(max)" />
+    <Property Name="email" Type="nvarchar(max)" />
+    <Property Name="userlgn" Type="nvarchar(max)" />
+    <Property Name="password" Type="nvarchar(max)" />
+    <Property Name="DealerName" Type="nvarchar(max)" />
+    <Property Name="DealerSite" Type="nvarchar(max)" />
+    <Property Name="logourl" Type="nvarchar(max)" />
+    <Property Name="paging_rights" Type="nvarchar(max)" />
+    <Property Name="primaryContact" Type="varchar" MaxLength="20" />
+    <Property Name="createddate" Type="datetime" />
+    <Property Name="modifieddate" Type="datetime" />
+    <Property Name="type" Type="int" />
+    <Property Name="status" Type="nvarchar(max)" />
+    <Property Name="delete_status" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <Function Name="Autobuy_direct_register_table" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dealername" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="personname" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="address" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="city" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="state" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="ph" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="email" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="loginid" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="psw" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="login_dealer_app" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="AUTOBUYModelStoreContainer">
+    <EntitySet Name="dealer_offer" EntityType="Self.dealer_offer" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [dealer_offer].[OfferId] AS [OfferId], 
+    [dealer_offer].[MainDealerId] AS [MainDealerId], 
+    [dealer_offer].[DealerId] AS [DealerId], 
+    [dealer_offer].[LeadId] AS [LeadId], 
+    [dealer_offer].[Accepted] AS [Accepted], 
+    [dealer_offer].[OfferAmount] AS [OfferAmount], 
+    [dealer_offer].[OfferFrom] AS [OfferFrom], 
+    [dealer_offer].[ModifyDate] AS [ModifyDate], 
+    [dealer_offer].[CreatedDate] AS [CreatedDate]
+    FROM [dbo].[dealer_offer] AS [dealer_offer]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="dealer_userdetails" EntityType="Self.dealer_userdetails" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [dealer_userdetails].[userid] AS [userid], 
+    [dealer_userdetails].[DealerId] AS [DealerId], 
+    [dealer_userdetails].[fname] AS [fname], 
+    [dealer_userdetails].[lname] AS [lname], 
+    [dealer_userdetails].[CompanyName] AS [CompanyName], 
+    [dealer_userdetails].[LicTIN] AS [LicTIN], 
+    [dealer_userdetails].[username] AS [username], 
+    [dealer_userdetails].[Address] AS [Address], 
+    [dealer_userdetails].[city] AS [city], 
+    [dealer_userdetails].[state] AS [state], 
+    [dealer_userdetails].[zip] AS [zip], 
+    [dealer_userdetails].[phone] AS [phone], 
+    [dealer_userdetails].[email] AS [email], 
+    [dealer_userdetails].[userlgn] AS [userlgn], 
+    [dealer_userdetails].[password] AS [password], 
+    [dealer_userdetails].[DealerName] AS [DealerName], 
+    [dealer_userdetails].[DealerSite] AS [DealerSite], 
+    [dealer_userdetails].[logourl] AS [logourl], 
+    [dealer_userdetails].[paging_rights] AS [paging_rights], 
+    [dealer_userdetails].[primaryContact] AS [primaryContact], 
+    [dealer_userdetails].[createddate] AS [createddate], 
+    [dealer_userdetails].[modifieddate] AS [modifieddate], 
+    [dealer_userdetails].[type] AS [type], 
+    [dealer_userdetails].[status] AS [status], 
+    [dealer_userdetails].[delete_status] AS [delete_status]
+    FROM [dbo].[dealer_userdetails] AS [dealer_userdetails]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

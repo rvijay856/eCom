@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AUTOBUYModelStoreContainer" CdmEntityContainer="AutoBuyDriectDB">
+    <EntitySetMapping Name="dealer_offer">
+      <EntityTypeMapping TypeName="AUTOBUYModel.dealer_offer">
+        <MappingFragment StoreEntitySet="dealer_offer">
+          <ScalarProperty Name="OfferId" ColumnName="OfferId" />
+          <ScalarProperty Name="MainDealerId" ColumnName="MainDealerId" />
+          <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+          <ScalarProperty Name="LeadId" ColumnName="LeadId" />
+          <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+          <ScalarProperty Name="OfferAmount" ColumnName="OfferAmount" />
+          <ScalarProperty Name="OfferFrom" ColumnName="OfferFrom" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dealer_userdetails">
+      <EntityTypeMapping TypeName="AUTOBUYModel.dealer_userdetails">
+        <MappingFragment StoreEntitySet="dealer_userdetails">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="LicTIN" ColumnName="LicTIN" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="userlgn" ColumnName="userlgn" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="DealerName" ColumnName="DealerName" />
+          <ScalarProperty Name="DealerSite" ColumnName="DealerSite" />
+          <ScalarProperty Name="logourl" ColumnName="logourl" />
+          <ScalarProperty Name="paging_rights" ColumnName="paging_rights" />
+          <ScalarProperty Name="primaryContact" ColumnName="primaryContact" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="delete_status" ColumnName="delete_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Autobuy_direct_register_table" FunctionName="AUTOBUYModel.Store.Autobuy_direct_register_table">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AUTOBUYModel.Autobuy_direct_register_table_Result">
+          <ScalarProperty Name="result" ColumnName="result" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="login_dealer_app" FunctionName="AUTOBUYModel.Store.login_dealer_app">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AUTOBUYModel.login_dealer_app_Result">
+          <ScalarProperty Name="result" ColumnName="result" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="logourl" ColumnName="logourl" />
+          <ScalarProperty Name="userrole" ColumnName="userrole" />
+          <ScalarProperty Name="DealerName" ColumnName="DealerName" />
+          <ScalarProperty Name="Dealership" ColumnName="Dealership" />
+          <ScalarProperty Name="AutorefId" ColumnName="AutorefId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="InventoryCount" ColumnName="InventoryCount" />
+          <ScalarProperty Name="ReferalCount" ColumnName="ReferalCount" />
+          <ScalarProperty Name="paging_rights" ColumnName="paging_rights" />
+          <ScalarProperty Name="messg" ColumnName="messg" />
+          <ScalarProperty Name="dealerid" ColumnName="dealerid" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
