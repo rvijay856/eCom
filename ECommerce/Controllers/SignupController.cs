@@ -16,7 +16,7 @@ namespace AutobuyDirectApi.Controllers
         EcommEntities context = new EcommEntities();
 
         [System.Web.Http.HttpPost]
-        public int signup(JObject param)
+        public int signupsite(JObject param)
         {
 
             int status = 0;

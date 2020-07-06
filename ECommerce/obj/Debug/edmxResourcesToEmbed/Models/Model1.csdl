@@ -10,11 +10,36 @@
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="user_type" Type="Int32" />
-    <Property Name="user_status" Type="Int32" />
-    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="user_type" Type="Int32" Nullable="false" />
+    <Property Name="user_status" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="last_login" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityContainer Name="EcommEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="user_details" EntityType="Self.user_details" />
+    <EntitySet Name="categories" EntityType="EcommModel.category" />
+    <EntitySet Name="products" EntityType="EcommModel.product" />
   </EntityContainer>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="category_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="product_category" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="product_unit_qty" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="product_unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>
