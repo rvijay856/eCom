@@ -7,7 +7,7 @@ using System.Configuration;
 using System.Globalization;
 using System.Diagnostics;
 using System.Text;
-namespace TokenAuthentication
+namespace EcomErrorLog
 {
     public class Logdetails
     {
