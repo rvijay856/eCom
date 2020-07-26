@@ -8,6 +8,9 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
 using EcomErrorLog;
+using System.Security.Cryptography;
+using System.Text;
+using System.IO;
 
 namespace AutobuyDirectApi.Controllers
 {
@@ -106,6 +109,50 @@ namespace AutobuyDirectApi.Controllers
             context.SaveChanges();
 
             return ud;
+        }
+
+        //////Encrypt Card details
+        public string Encryptdata(string password)
+        {
+            if (password != "")
+            {
+                string EncrptKey = "Administrator";
+                byte[] byKey = { };
+                byte[] IV = { 18, 52, 86, 120, 144, 171, 205, 239 };
+                byKey = System.Text.Encoding.UTF8.GetBytes(EncrptKey.Substring(0, 8));
+                DESCryptoServiceProvider des = new DESCryptoServiceProvider();
+                byte[] inputByteArray = Encoding.UTF8.GetBytes(password);
+                MemoryStream ms = new MemoryStream();
+                CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(byKey, IV), CryptoStreamMode.Write);
+                cs.Write(inputByteArray, 0, inputByteArray.Length);
+                cs.FlushFinalBlock();
+                password = Convert.ToBase64String(ms.ToArray());
+            }
+            return password;
+        }
+
+        //////Decrypt Card details
+        public string Decryptdata(string encryptpwd)
+        {
+            if (encryptpwd != "")
+            {
+                encryptpwd = encryptpwd.Replace(" ", "+");
+                string DecryptKey = "Administrator";
+                byte[] byKey = { };
+                byte[] IV = { 18, 52, 86, 120, 144, 171, 205, 239 };
+                byte[] inputByteArray = new byte[encryptpwd.Length];
+
+                byKey = System.Text.Encoding.UTF8.GetBytes(DecryptKey.Substring(0, 8));
+                DESCryptoServiceProvider des = new DESCryptoServiceProvider();
+                inputByteArray = Convert.FromBase64String(encryptpwd.Replace(" ", "+"));
+                MemoryStream ms = new MemoryStream();
+                CryptoStream cs = new CryptoStream(ms, des.CreateDecryptor(byKey, IV), CryptoStreamMode.Write);
+                cs.Write(inputByteArray, 0, inputByteArray.Length);
+                cs.FlushFinalBlock();
+                System.Text.Encoding encoding = System.Text.Encoding.UTF8;
+                encryptpwd = encoding.GetString(ms.ToArray());
+            }
+            return encryptpwd;
         }
     }
 }
