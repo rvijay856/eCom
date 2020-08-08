@@ -20,5 +20,10 @@ namespace AutobuyDirectApi.Models
         public decimal product_unit_qty { get; set; }
         public string product_unit { get; set; }
         public int status { get; set; }
+        public decimal orignal_price { get; set; }
+        public string product_description { get; set; }
+        public decimal sale_price { get; set; }
+        public string shipping_class { get; set; }
+        public string stock { get; set; }
     }
 }

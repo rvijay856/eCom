@@ -75,8 +75,8 @@ namespace AutobuyDirectApi.Controllers
             
             try
             {
-                category_name = (string)param.GetValue("catname");
-                category_type = (string)param.GetValue("cattype");
+                category_name = (string)param.GetValue("categoryname");
+                category_type = (string)param.GetValue("categorytype");
                 
 
                 category cat = new category();
@@ -105,21 +105,44 @@ namespace AutobuyDirectApi.Controllers
             string product_category = "";
             int product_unit_qty = 0;
             string product_unit = "";
-
+            decimal org_price=0;
+            decimal saleprice = 0;
+            string product_des = "";
+            string shippingclass = "";
+            string status_str = "";
+            string stocks = "";
             try
             {
-                product_name = (string)param.GetValue("proname");
-                product_category = (string)param.GetValue("procat");
-                product_unit_qty = (int)param.GetValue("prounitqty");
-                product_unit = (string)param.GetValue("prounit");
+                product_name = (string)param.GetValue("product_title");
+                product_category = (string)param.GetValue("category");
+                product_unit_qty = (int)param.GetValue("quantity");
+                product_unit = (string)param.GetValue("Weight");
+                org_price = (decimal)param.GetValue("price");
+                product_des = (string)param.GetValue("product_description");
+                saleprice = (decimal)param.GetValue("sale_price");
+                shippingclass = (string)param.GetValue("shipping_class");
+                status_str = (string)param.GetValue("status");
+                stocks = (string)param.GetValue("stock");
 
-
+                
                 product pro = new product();
                 pro.product_name = product_name;
                 pro.product_category =product_category;
                 pro.product_unit_qty = product_unit_qty;
                 pro.product_unit = product_unit;
-                pro.status = 1;
+                pro.orignal_price = org_price;
+                pro.product_description = product_des;
+                pro.sale_price = saleprice;
+                pro.shipping_class = shippingclass;
+                if (status_str == "Active")
+                {
+                    pro.status = 1;
+                }
+                else
+                {
+                    pro.status = 0;
+                }
+                pro.stock = stocks;
                 context.products.Add(pro);
                 context.SaveChanges();
                 status = 1;

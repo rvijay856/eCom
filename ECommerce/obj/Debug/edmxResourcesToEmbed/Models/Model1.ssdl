@@ -11,6 +11,38 @@
     <Property Name="created_date" Type="datetime" Nullable="false" />
     <Property Name="modify_date" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="customer_address">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="customer_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="customer_address" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="customer_city" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="customer_area" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="customer_country" Type="varchar" MaxLength="50" />
+    <Property Name="customer_pincode" Type="int" />
+    <Property Name="customer_mobile" Type="int" Nullable="false" />
+    <Property Name="address_status" Type="int" Nullable="false" />
+    <Property Name="created_date" Type="datetime" Nullable="false" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="customer_payment">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="payment_id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="Card_no" Type="varchar" MaxLength="50" />
+    <Property Name="Card_type" Type="varchar" MaxLength="50" />
+    <Property Name="Expiration_date" Type="varchar" MaxLength="50" />
+    <Property Name="Security_code" Type="varchar" MaxLength="50" />
+    <Property Name="CardHolderName" Type="varchar" MaxLength="150" />
+    <Property Name="payment_status" Type="int" Nullable="false" />
+    <Property Name="created_date" Type="datetime" Nullable="false" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
   <EntityType Name="product">
     <Key>
       <PropertyRef Name="product_id" />
@@ -21,6 +53,11 @@
     <Property Name="product_unit_qty" Type="numeric" Precision="18" Scale="0" Nullable="false" />
     <Property Name="product_unit" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="orignal_price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="product_description" Type="nvarchar(max)" />
+    <Property Name="sale_price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="shipping_class" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="stock" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="user_details">
     <Key>
@@ -39,6 +76,8 @@
   </EntityType>
   <EntityContainer Name="EcommModelStoreContainer">
     <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customer_address" EntityType="Self.customer_address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customer_payment" EntityType="Self.customer_payment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user_details" EntityType="Self.user_details" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
