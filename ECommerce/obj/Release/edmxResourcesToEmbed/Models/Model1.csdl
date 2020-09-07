@@ -17,38 +17,16 @@
   </EntityType>
   <EntityContainer Name="EcommEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="user_details" EntityType="Self.user_details" />
-    <EntitySet Name="categories" EntityType="EcommModel.category" />
-    <EntitySet Name="products" EntityType="EcommModel.product" />
     <EntitySet Name="customer_address" EntityType="EcommModel.customer_address" />
     <EntitySet Name="customer_payment" EntityType="EcommModel.customer_payment" />
+    <EntitySet Name="Carts" EntityType="EcommModel.Cart" />
+    <EntitySet Name="Customers" EntityType="EcommModel.Customer" />
+    <EntitySet Name="Product_Category" EntityType="EcommModel.Product_Category" />
+    <EntitySet Name="Product_items" EntityType="EcommModel.Product_items" />
+    <EntitySet Name="Product1" EntityType="EcommModel.Product1" />
+    <EntitySet Name="Products_order" EntityType="EcommModel.Products_order" />
+    <EntitySet Name="Products_order_list" EntityType="EcommModel.Products_order_list" />
   </EntityContainer>
-  <EntityType Name="category">
-    <Key>
-      <PropertyRef Name="category_id" />
-    </Key>
-    <Property Name="category_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="category_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="category_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="status" Type="Int32" Nullable="false" />
-    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
-  <EntityType Name="product">
-    <Key>
-      <PropertyRef Name="product_id" />
-    </Key>
-    <Property Name="product_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="product_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="product_category" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="product_unit_qty" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="product_unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="status" Type="Int32" Nullable="false" />
-    <Property Name="orignal_price" Type="Decimal" Nullable="false" />
-    <Property Name="product_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="sale_price" Type="Decimal" Nullable="false" />
-    <Property Name="shipping_class" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="stock" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
   <EntityType Name="customer_address">
     <Key>
       <PropertyRef Name="user_id" />
@@ -80,5 +58,120 @@
     <Property Name="payment_status" Type="Int32" Nullable="false" />
     <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="updated_at" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="basket_session" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_id" Type="Int32" />
+    <Property Name="item_id" Type="Int32" />
+    <Property Name="cust_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="cart_status" Type="Int32" />
+    <Property Name="Created_date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="cust_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_mobile" Type="Int32" />
+    <Property Name="cust_status" Type="Int32" />
+    <Property Name="cust_pincode" Type="Int32" />
+    <Property Name="cust_otp" Type="Int32" />
+    <Property Name="cat_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Created_date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Product_Category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cat_slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cat_parent" Type="Int32" />
+    <Property Name="cat_status" Type="Int32" />
+    <Property Name="Created_date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Product_items">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prod_id" Type="Int32" />
+    <Property Name="item_code" Type="Int32" />
+    <Property Name="item_spec" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="item_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="item_mrp" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="item_selling" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="item_stock" Type="Int32" />
+    <Property Name="item_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="item_status" Type="Int32" />
+    <Property Name="Created_date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Product1">
+    <Key>
+      <PropertyRef Name="prod_id" />
+    </Key>
+    <Property Name="prod_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_category" Type="Int32" />
+    <Property Name="prod_subcategory" Type="Int32" />
+    <Property Name="prod_brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="prod_status" Type="Int32" />
+    <Property Name="Created_date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Products_order">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="basket_session" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="show_id" Type="Int32" />
+    <Property Name="address_id" Type="Int32" />
+    <Property Name="cust_id" Type="Int32" />
+    <Property Name="total_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="pay_status" Type="Int32" />
+    <Property Name="cancel_reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="shipping_notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="delivery_boy_id" Type="Int32" />
+    <Property Name="order_status" Type="Int32" />
+    <Property Name="Confirmed_date" Type="DateTime" Precision="3" />
+    <Property Name="packed_date" Type="DateTime" Precision="3" />
+    <Property Name="shipped_date" Type="DateTime" Precision="3" />
+    <Property Name="delivered_date" Type="DateTime" Precision="3" />
+    <Property Name="cancelled_date" Type="DateTime" Precision="3" />
+    <Property Name="Created_date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Products_order_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="Int32" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="product_item_id" Type="Int32" />
+    <Property Name="cust_id" Type="Int32" />
+    <Property Name="product_amount_sell" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="product_amount_mrp" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="order_list_status" Type="Int32" />
+    <Property Name="product_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="product_category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="product_quantity" Type="Int32" />
+    <Property Name="product_total_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Created_date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_date" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

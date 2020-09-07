@@ -18,16 +18,18 @@ namespace AutobuyDirectApi.Controllers
         [System.Web.Http.Route("api/admin/GetCategory")]
         public JObject GetCategory()
         {
-            var Category = context.categories.AsNoTracking().OrderBy(a => a.created_date);
+            var Category = context.Product_Category.AsNoTracking().OrderBy(a => a.Created_date);
             JArray array = new JArray();
-            foreach (category cat in Category.Where(a => a.status == 1))
+            foreach (Product_Category cat in Category.Where(a => a.cat_status == 1))
             {
                 JObject bo = new JObject(
-                    new JProperty("category_id", cat.category_id),
-                    new JProperty("category_name", cat.category_name),
-                    new JProperty("category_type", cat.category_type),
-                    new JProperty("Created_Date", cat.created_date),
-                    new JProperty("Status", cat.status)
+                    new JProperty("category_id", cat.id),
+                    new JProperty("category_name", cat.cat_name),
+                    new JProperty("category_parent", cat.cat_parent),
+                    new JProperty("category_slug", cat.cat_slug),
+                    new JProperty("Created_Date", cat.Created_date),
+                    new JProperty("updated_Date", cat.Updated_date),
+                    new JProperty("Status", cat.cat_status)
                     );
                 array.Add(bo);
             }
@@ -43,17 +45,21 @@ namespace AutobuyDirectApi.Controllers
         [System.Web.Http.Route("api/admin/GetProduct")]
         public JObject GetProduct()
         {
-            var Product = context.products.AsNoTracking().OrderBy(a => a.product_name);
+            var Product = context.Product1.AsNoTracking().OrderBy(a => a.prod_name);
             JArray array = new JArray();
-            foreach (product pro in Product.Where(a => a.status == 1))
+            foreach (Product1 pro in Product.Where(a => a.prod_status == 1))
             {
                 JObject bo = new JObject(
-                    new JProperty("product_id", pro.product_id),
-                    new JProperty("product_name", pro.product_name),
-                    new JProperty("product_category", pro.product_category),
-                    new JProperty("product_unit_qty", pro.product_unit_qty),
-                    new JProperty("product_unit", pro.product_unit),
-                    new JProperty("Status", pro.status)
+                    new JProperty("product_id", pro.prod_id),
+                    new JProperty("product_name", pro.prod_name),
+                    new JProperty("product_slug", pro.prod_slug),
+                    new JProperty("product_category", pro.prod_category),
+                    new JProperty("product_brand", pro.prod_brand),
+                    new JProperty("product_desc", pro.prod_desc),
+                    new JProperty("product_sub_category", pro.prod_subcategory),
+                    new JProperty("product_created_date", pro.Created_date),
+                    new JProperty("product_updated_date", pro.Updated_date),
+                    new JProperty("Status", pro.prod_status)
                     );
                 array.Add(bo);
             }
@@ -71,20 +77,21 @@ namespace AutobuyDirectApi.Controllers
 
             int status = 0;
             string category_name = "";
-            string category_type = "";
-            
+            int category_parent = 0;
+            string category_slug = "";
             try
             {
                 category_name = (string)param.GetValue("categoryname");
-                category_type = (string)param.GetValue("categorytype");
-                
+                category_parent = (int)param.GetValue("category_parent");
+                category_slug= (string)param.GetValue("categoryslug");
 
-                category cat = new category();
-                cat.category_name = category_name;
-                cat.category_type = category_type;
-                cat.status = 1;
-                cat.created_date = DateTime.Now;
-                context.categories.Add(cat);
+                Product_Category cat = new Product_Category();
+                cat.cat_name = category_name;
+                cat.cat_parent = category_parent;
+                cat.cat_slug = category_slug;
+                cat.cat_status = 1;
+                cat.Created_date = DateTime.Now;
+                context.Product_Category.Add(cat);
                 context.SaveChanges();
                 status = 1;
             }
@@ -102,48 +109,42 @@ namespace AutobuyDirectApi.Controllers
 
             int status = 0;
             string product_name = "";
-            string product_category = "";
-            int product_unit_qty = 0;
-            string product_unit = "";
-            decimal org_price=0;
+            int product_category = 0;
+            string product_brand = "";
+            string product_desc = "";
+            string product_slug = "";
             decimal saleprice = 0;
-            string product_des = "";
-            string shippingclass = "";
+            int product_sub_Cat = 0;
             string status_str = "";
-            string stocks = "";
+           
             try
             {
                 product_name = (string)param.GetValue("product_title");
-                product_category = (string)param.GetValue("category");
-                product_unit_qty = (int)param.GetValue("quantity");
-                product_unit = (string)param.GetValue("Weight");
-                org_price = (decimal)param.GetValue("price");
-                product_des = (string)param.GetValue("product_description");
-                saleprice = (decimal)param.GetValue("sale_price");
-                shippingclass = (string)param.GetValue("shipping_class");
+                product_category = (int)param.GetValue("product_category");
+                product_brand = (string)param.GetValue("product_brand");
+                product_desc = (string)param.GetValue("product_description");
+                product_slug = (string)param.GetValue("product_slug");
+                product_sub_Cat = (int)param.GetValue("product_sub_category");
                 status_str = (string)param.GetValue("status");
-                stocks = (string)param.GetValue("stock");
-
+              
                 
-                product pro = new product();
-                pro.product_name = product_name;
-                pro.product_category =product_category;
-                pro.product_unit_qty = product_unit_qty;
-                pro.product_unit = product_unit;
-                pro.orignal_price = org_price;
-                pro.product_description = product_des;
-                pro.sale_price = saleprice;
-                pro.shipping_class = shippingclass;
+                Product1 pro = new Product1();
+                pro.prod_name = product_name;
+                pro.prod_category =product_category;
+                pro.prod_brand = product_brand;
+                pro.prod_desc = product_desc;
+                pro.prod_slug = product_slug;
+                pro.prod_subcategory = product_sub_Cat;
+                pro.Created_date = DateTime.Now;
                 if (status_str == "Active")
                 {
-                    pro.status = 1;
+                    pro.prod_status = 1;
                 }
                 else
                 {
-                    pro.status = 0;
+                    pro.prod_status = 0;
                 }
-                pro.stock = stocks;
-                context.products.Add(pro);
+                context.Product1.Add(pro);
                 context.SaveChanges();
                 status = 1;
             }

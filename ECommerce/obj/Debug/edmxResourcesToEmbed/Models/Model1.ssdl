@@ -1,15 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EcommModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="category">
+  <EntityType Name="Cart">
     <Key>
-      <PropertyRef Name="category_id" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="category_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="category_name" Type="varchar(max)" Nullable="false" />
-    <Property Name="category_type" Type="varchar(max)" />
-    <Property Name="status" Type="int" Nullable="false" />
-    <Property Name="created_date" Type="datetime" Nullable="false" />
-    <Property Name="modify_date" Type="datetime" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="basket_session" Type="varchar" MaxLength="50" />
+    <Property Name="prod_id" Type="int" />
+    <Property Name="item_id" Type="int" />
+    <Property Name="cust_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="cart_status" Type="int" />
+    <Property Name="Created_date" Type="datetime" />
+    <Property Name="Updated_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="cust_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cust_name" Type="varchar" MaxLength="50" />
+    <Property Name="cust_email" Type="varchar" MaxLength="50" />
+    <Property Name="cust_mobile" Type="int" />
+    <Property Name="cust_status" Type="int" />
+    <Property Name="cust_pincode" Type="int" />
+    <Property Name="cust_otp" Type="int" />
+    <Property Name="cat_password" Type="varchar" MaxLength="50" />
+    <Property Name="Created_date" Type="datetime" />
+    <Property Name="Updated_date" Type="datetime" />
   </EntityType>
   <EntityType Name="customer_address">
     <Key>
@@ -43,21 +61,91 @@
     <Property Name="created_date" Type="datetime" Nullable="false" />
     <Property Name="updated_at" Type="datetime" />
   </EntityType>
-  <EntityType Name="product">
+  <EntityType Name="Product_Category">
     <Key>
-      <PropertyRef Name="product_id" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="product_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="product_name" Type="varchar(max)" Nullable="false" />
-    <Property Name="product_category" Type="varchar(max)" Nullable="false" />
-    <Property Name="product_unit_qty" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="product_unit" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="status" Type="int" Nullable="false" />
-    <Property Name="orignal_price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="product_description" Type="nvarchar(max)" />
-    <Property Name="sale_price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="shipping_class" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="stock" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cat_name" Type="varchar" MaxLength="50" />
+    <Property Name="cat_slug" Type="varchar" MaxLength="50" />
+    <Property Name="cat_parent" Type="int" />
+    <Property Name="cat_status" Type="int" />
+    <Property Name="Created_date" Type="datetime" />
+    <Property Name="Updated_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Product_items">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prod_id" Type="int" />
+    <Property Name="item_code" Type="int" />
+    <Property Name="item_spec" Type="varchar" MaxLength="50" />
+    <Property Name="item_unit" Type="varchar" MaxLength="50" />
+    <Property Name="item_mrp" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="item_selling" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="item_stock" Type="int" />
+    <Property Name="item_image" Type="varchar(max)" />
+    <Property Name="item_status" Type="int" />
+    <Property Name="Created_date" Type="datetime" />
+    <Property Name="Updated_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="prod_id" />
+    </Key>
+    <Property Name="prod_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prod_name" Type="varchar" MaxLength="50" />
+    <Property Name="prod_slug" Type="varchar" MaxLength="50" />
+    <Property Name="prod_category" Type="int" />
+    <Property Name="prod_subcategory" Type="int" />
+    <Property Name="prod_brand" Type="varchar" MaxLength="50" />
+    <Property Name="prod_desc" Type="varchar(max)" />
+    <Property Name="prod_status" Type="int" />
+    <Property Name="Created_date" Type="datetime" />
+    <Property Name="Updated_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Products_order">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="basket_session" Type="varchar" MaxLength="50" />
+    <Property Name="show_id" Type="int" />
+    <Property Name="address_id" Type="int" />
+    <Property Name="cust_id" Type="int" />
+    <Property Name="total_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="pay_status" Type="int" />
+    <Property Name="cancel_reason" Type="varchar(max)" />
+    <Property Name="shipping_notes" Type="varchar(max)" />
+    <Property Name="delivery_boy_id" Type="int" />
+    <Property Name="order_status" Type="int" />
+    <Property Name="Confirmed_date" Type="datetime" />
+    <Property Name="packed_date" Type="datetime" />
+    <Property Name="shipped_date" Type="datetime" />
+    <Property Name="delivered_date" Type="datetime" />
+    <Property Name="cancelled_date" Type="datetime" />
+    <Property Name="Created_date" Type="datetime" />
+    <Property Name="Updated_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Products_order_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_id" Type="int" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="product_item_id" Type="int" />
+    <Property Name="cust_id" Type="int" />
+    <Property Name="product_amount_sell" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="product_amount_mrp" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="order_list_status" Type="int" />
+    <Property Name="product_details" Type="varchar(max)" />
+    <Property Name="product_category" Type="varchar(max)" />
+    <Property Name="product_quantity" Type="int" />
+    <Property Name="product_total_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Created_date" Type="datetime" />
+    <Property Name="Updated_date" Type="datetime" />
   </EntityType>
   <EntityType Name="user_details">
     <Key>
@@ -75,10 +163,15 @@
     <Property Name="last_login" Type="datetime" />
   </EntityType>
   <EntityContainer Name="EcommModelStoreContainer">
-    <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="customer_address" EntityType="Self.customer_address" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="customer_payment" EntityType="Self.customer_payment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Category" EntityType="Self.Product_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_items" EntityType="Self.Product_items" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products_order" EntityType="Self.Products_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products_order_list" EntityType="Self.Products_order_list" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user_details" EntityType="Self.user_details" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

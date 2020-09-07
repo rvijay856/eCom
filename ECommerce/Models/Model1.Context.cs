@@ -26,9 +26,14 @@ namespace AutobuyDirectApi.Models
         }
     
         public virtual DbSet<user_details> user_details { get; set; }
-        public virtual DbSet<category> categories { get; set; }
-        public virtual DbSet<product> products { get; set; }
         public virtual DbSet<customer_address> customer_address { get; set; }
         public virtual DbSet<customer_payment> customer_payment { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Product_Category> Product_Category { get; set; }
+        public virtual DbSet<Product_items> Product_items { get; set; }
+        public virtual DbSet<Product1> Product1 { get; set; }
+        public virtual DbSet<Products_order> Products_order { get; set; }
+        public virtual DbSet<Products_order_list> Products_order_list { get; set; }
     }
 }

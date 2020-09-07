@@ -12,13 +12,16 @@ namespace AutobuyDirectApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class category
+    public partial class Cart
     {
-        public long category_id { get; set; }
-        public string category_name { get; set; }
-        public string category_type { get; set; }
-        public int status { get; set; }
-        public System.DateTime created_date { get; set; }
-        public System.DateTime modify_date { get; set; }
+        public int id { get; set; }
+        public string basket_session { get; set; }
+        public Nullable<int> prod_id { get; set; }
+        public Nullable<int> item_id { get; set; }
+        public Nullable<int> cust_id { get; set; }
+        public Nullable<int> quantity { get; set; }
+        public Nullable<int> cart_status { get; set; }
+        public Nullable<System.DateTime> Created_date { get; set; }
+        public Nullable<System.DateTime> Updated_date { get; set; }
     }
 }
