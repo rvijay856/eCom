@@ -57,7 +57,7 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/OrderList/GetOrder/{cust_id}")]
+        [System.Web.Http.Route("api/Order/GetOrderList/{cust_id}")]
         public JObject GetOrderList(int cust_id)
         {
             int cus_id = cust_id;

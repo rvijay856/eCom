@@ -140,10 +140,10 @@ namespace AutobuyDirectApi.Controllers
             {
                 JObject wish_list = new JObject(
                 new JProperty("Cust_id", cus.cust_id),
-                new JProperty("", cus.item_id),
-                new JProperty("", cus.prod_id),
-                new JProperty("", cus.Created_date),
-                new JProperty("", cus.Updated_date)
+                new JProperty("item_id", cus.item_id),
+                new JProperty("prod_id", cus.prod_id),
+                new JProperty("Created_date", cus.Created_date),
+                new JProperty("Updated_date", cus.Updated_date)
                 );
                 array.Add(wish_list);
             }

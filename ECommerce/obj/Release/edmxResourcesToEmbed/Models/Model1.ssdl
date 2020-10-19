@@ -61,6 +61,21 @@
     <Property Name="created_date" Type="datetime" Nullable="false" />
     <Property Name="updated_at" Type="datetime" />
   </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="product_name" Type="varchar" MaxLength="50" />
+    <Property Name="product_slug" Type="varchar" MaxLength="50" />
+    <Property Name="product_category" Type="int" />
+    <Property Name="product_subcategory" Type="int" />
+    <Property Name="product_brand" Type="varchar" MaxLength="50" />
+    <Property Name="product_description" Type="varchar" MaxLength="50" />
+    <Property Name="product_status" Type="int" />
+    <Property Name="created_at" Type="date" />
+    <Property Name="updated_at" Type="date" />
+  </EntityType>
   <EntityType Name="Product_Category">
     <Key>
       <PropertyRef Name="id" />
@@ -162,16 +177,42 @@
     <Property Name="created_date" Type="datetime" Nullable="false" />
     <Property Name="last_login" Type="datetime" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Ecomm.dbo.Wishlist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Wishlist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prod_id" Type="int" />
+    <Property Name="item_id" Type="int" />
+    <Property Name="cust_id" Type="int" />
+    <Property Name="wish_status" Type="int" />
+    <Property Name="Created_date" Type="datetime" />
+    <Property Name="Updated_date" Type="datetime" />
+  </EntityType>
   <EntityContainer Name="EcommModelStoreContainer">
     <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="customer_address" EntityType="Self.customer_address" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="customer_payment" EntityType="Self.customer_payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product_Category" EntityType="Self.Product_Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product_items" EntityType="Self.Product_items" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products_order" EntityType="Self.Products_order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products_order_list" EntityType="Self.Products_order_list" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user_details" EntityType="Self.user_details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wishlist" EntityType="Self.Wishlist" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Wishlist].[Id] AS [Id], 
+    [Wishlist].[prod_id] AS [prod_id], 
+    [Wishlist].[item_id] AS [item_id], 
+    [Wishlist].[cust_id] AS [cust_id], 
+    [Wishlist].[wish_status] AS [wish_status], 
+    [Wishlist].[Created_date] AS [Created_date], 
+    [Wishlist].[Updated_date] AS [Updated_date]
+    FROM [dbo].[Wishlist] AS [Wishlist]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>
