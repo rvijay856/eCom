@@ -113,7 +113,6 @@ namespace AutobuyDirectApi.Controllers
             string product_brand = "";
             string product_desc = "";
             string product_slug = "";
-            decimal saleprice = 0;
             int product_sub_Cat = 0;
             string status_str = "";
            

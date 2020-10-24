@@ -173,22 +173,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="products">
-      <EntityTypeMapping TypeName="EcommModel.product">
-        <MappingFragment StoreEntitySet="product">
-          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
-          <ScalarProperty Name="created_at" ColumnName="created_at" />
-          <ScalarProperty Name="product_status" ColumnName="product_status" />
-          <ScalarProperty Name="product_description" ColumnName="product_description" />
-          <ScalarProperty Name="product_brand" ColumnName="product_brand" />
-          <ScalarProperty Name="product_subcategory" ColumnName="product_subcategory" />
-          <ScalarProperty Name="product_category" ColumnName="product_category" />
-          <ScalarProperty Name="product_slug" ColumnName="product_slug" />
-          <ScalarProperty Name="product_name" ColumnName="product_name" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Wishlists">
       <EntityTypeMapping TypeName="EcommModel.Wishlist">
         <MappingFragment StoreEntitySet="Wishlist">

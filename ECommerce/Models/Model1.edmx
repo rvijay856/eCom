@@ -26,7 +26,7 @@
           <Property Name="cust_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cust_name" Type="varchar" MaxLength="50" />
           <Property Name="cust_email" Type="varchar" MaxLength="50" />
-          <Property Name="cust_mobile" Type="int" />
+          <Property Name="cust_mobile" Type="varchar(max)" />
           <Property Name="cust_status" Type="int" />
           <Property Name="cust_pincode" Type="int" />
           <Property Name="cust_otp" Type="int" />
@@ -46,7 +46,7 @@
           <Property Name="customer_area" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="customer_country" Type="varchar" MaxLength="50" />
           <Property Name="customer_pincode" Type="int" />
-          <Property Name="customer_mobile" Type="int" Nullable="false" />
+          <Property Name="customer_mobile" Type="varchar(max)" />
           <Property Name="address_status" Type="int" Nullable="false" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_at" Type="datetime" />
@@ -65,21 +65,6 @@
           <Property Name="payment_status" Type="int" Nullable="false" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_at" Type="datetime" />
-        </EntityType>
-        <EntityType Name="product">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="product_name" Type="varchar" MaxLength="50" />
-          <Property Name="product_slug" Type="varchar" MaxLength="50" />
-          <Property Name="product_category" Type="int" />
-          <Property Name="product_subcategory" Type="int" />
-          <Property Name="product_brand" Type="varchar" MaxLength="50" />
-          <Property Name="product_description" Type="varchar" MaxLength="50" />
-          <Property Name="product_status" Type="int" />
-          <Property Name="created_at" Type="date" />
-          <Property Name="updated_at" Type="date" />
         </EntityType>
         <EntityType Name="Product_Category">
           <Key>
@@ -182,8 +167,6 @@
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="last_login" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Ecomm.dbo.Wishlist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Wishlist">
           <Key>
             <PropertyRef Name="Id" />
@@ -201,24 +184,13 @@ warning 6002: The table/view 'Ecomm.dbo.Wishlist' does not have a primary key de
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer_address" EntityType="Self.customer_address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer_payment" EntityType="Self.customer_payment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_Category" EntityType="Self.Product_Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_items" EntityType="Self.Product_items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products_order" EntityType="Self.Products_order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products_order_list" EntityType="Self.Products_order_list" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_details" EntityType="Self.user_details" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Wishlist" EntityType="Self.Wishlist" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Wishlist].[Id] AS [Id], 
-    [Wishlist].[prod_id] AS [prod_id], 
-    [Wishlist].[item_id] AS [item_id], 
-    [Wishlist].[cust_id] AS [cust_id], 
-    [Wishlist].[wish_status] AS [wish_status], 
-    [Wishlist].[Created_date] AS [Created_date], 
-    [Wishlist].[Updated_date] AS [Updated_date]
-    FROM [dbo].[Wishlist] AS [Wishlist]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -250,7 +222,6 @@ warning 6002: The table/view 'Ecomm.dbo.Wishlist' does not have a primary key de
           <EntitySet Name="Product1" EntityType="EcommModel.Product1" />
           <EntitySet Name="Products_order" EntityType="EcommModel.Products_order" />
           <EntitySet Name="Products_order_list" EntityType="EcommModel.Products_order_list" />
-          <EntitySet Name="products" EntityType="EcommModel.product" />
           <EntitySet Name="Wishlists" EntityType="EcommModel.Wishlist" />
         </EntityContainer>
         <EntityType Name="customer_address">
@@ -265,7 +236,7 @@ warning 6002: The table/view 'Ecomm.dbo.Wishlist' does not have a primary key de
           <Property Name="customer_area" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="customer_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="customer_pincode" Type="Int32" />
-          <Property Name="customer_mobile" Type="Int32" Nullable="false" />
+          <Property Name="customer_mobile" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="address_status" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
@@ -306,7 +277,7 @@ warning 6002: The table/view 'Ecomm.dbo.Wishlist' does not have a primary key de
           <Property Name="cust_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cust_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cust_mobile" Type="Int32" />
+          <Property Name="cust_mobile" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="cust_status" Type="Int32" />
           <Property Name="cust_pincode" Type="Int32" />
           <Property Name="cust_otp" Type="Int32" />
@@ -347,16 +318,16 @@ warning 6002: The table/view 'Ecomm.dbo.Wishlist' does not have a primary key de
           <Key>
             <PropertyRef Name="prod_id" />
           </Key>
-          <Property Name="prod_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="prod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="prod_slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prod_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="prod_name" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="prod_slug" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
           <Property Name="prod_category" Type="Int32" />
           <Property Name="prod_subcategory" Type="Int32" />
-          <Property Name="prod_brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="prod_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prod_brand" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="prod_desc" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
           <Property Name="prod_status" Type="Int32" />
-          <Property Name="Created_date" Type="DateTime" Precision="3" />
-          <Property Name="Updated_date" Type="DateTime" Precision="3" />
+          <Property Name="Created_date" Precision="3" Type="DateTime" />
+          <Property Name="Updated_date" Precision="3" Type="DateTime" />
         </EntityType>
         <EntityType Name="Products_order">
           <Key>
@@ -399,21 +370,6 @@ warning 6002: The table/view 'Ecomm.dbo.Wishlist' does not have a primary key de
           <Property Name="product_total_amount" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Created_date" Type="DateTime" Precision="3" />
           <Property Name="Updated_date" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="product">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="product_slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="product_category" Type="Int32" />
-          <Property Name="product_subcategory" Type="Int32" />
-          <Property Name="product_brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="product_description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="product_status" Type="Int32" />
-          <Property Name="created_at" Type="DateTime" Precision="0" />
-          <Property Name="updated_at" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Wishlist">
           <Key>
@@ -601,22 +557,6 @@ warning 6002: The table/view 'Ecomm.dbo.Wishlist' does not have a primary key de
                 <ScalarProperty Name="product_item_id" ColumnName="product_item_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="EcommModel.product">
-              <MappingFragment StoreEntitySet="product">
-                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
-                <ScalarProperty Name="product_status" ColumnName="product_status" />
-                <ScalarProperty Name="product_description" ColumnName="product_description" />
-                <ScalarProperty Name="product_brand" ColumnName="product_brand" />
-                <ScalarProperty Name="product_subcategory" ColumnName="product_subcategory" />
-                <ScalarProperty Name="product_category" ColumnName="product_category" />
-                <ScalarProperty Name="product_slug" ColumnName="product_slug" />
-                <ScalarProperty Name="product_name" ColumnName="product_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

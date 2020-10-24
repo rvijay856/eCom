@@ -17,7 +17,7 @@ namespace AutobuyDirectApi.Models
         public int cust_id { get; set; }
         public string cust_name { get; set; }
         public string cust_email { get; set; }
-        public Nullable<int> cust_mobile { get; set; }
+        public string cust_mobile { get; set; }
         public Nullable<int> cust_status { get; set; }
         public Nullable<int> cust_pincode { get; set; }
         public Nullable<int> cust_otp { get; set; }

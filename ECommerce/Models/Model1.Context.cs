@@ -35,7 +35,6 @@ namespace AutobuyDirectApi.Models
         public virtual DbSet<Product1> Product1 { get; set; }
         public virtual DbSet<Products_order> Products_order { get; set; }
         public virtual DbSet<Products_order_list> Products_order_list { get; set; }
-        public virtual DbSet<product> products { get; set; }
         public virtual DbSet<Wishlist> Wishlists { get; set; }
     }
 }
