@@ -18,9 +18,9 @@ namespace AutobuyDirectApi.Controllers
         [System.Web.Http.Route("api/admin/GetCategory")]
         public JObject GetCategory()
         {
-            var Category = context.Product_Category.AsNoTracking().OrderBy(a => a.Created_date);
+            var Category = context.Product_Category.AsNoTracking().OrderBy(a => a.id);
             JArray array = new JArray();
-            foreach (Product_Category cat in Category.Where(a => a.cat_status == 1))
+            foreach (Product_Category cat in Category.Where(a => a.cat_status == 1 && a.cat_parent==0))
             {
                 JObject bo = new JObject(
                     new JProperty("category_id", cat.id),
@@ -42,12 +42,38 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/admin/GetProduct")]
-        public JObject GetProduct()
+        [System.Web.Http.Route("api/admin/GetSubcategory/{CatID}")]
+        public JObject GetSubcategory(int CatID)
         {
-            var Product = context.Product1.AsNoTracking().OrderBy(a => a.prod_name);
+            int cat_id = CatID;
+            var subcategory = context.Product_Category.AsNoTracking().Where(a => a.cat_status == 1 && a.cat_parent == CatID);
+            JArray SubCat = new JArray();
+            foreach(Product_Category subcat in subcategory)
+            {
+                JObject sc = new JObject(
+                    new JProperty("category_id", subcat.id),
+                    new JProperty("category_name", subcat.cat_name),
+                    new JProperty("category_parent", subcat.cat_parent),
+                    new JProperty("category_slug", subcat.cat_slug),
+                    new JProperty("Created_Date", subcat.Created_date),
+                    new JProperty("updated_Date", subcat.Updated_date),
+                    new JProperty("Status", subcat.cat_status)
+                    );
+                SubCat.Add(sc);
+            }
+            JObject final = new JObject(
+                new JProperty("Subcategory_List", SubCat));
+            return final;
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/admin/GetBrand/{SCatID}")]
+        public JObject GetBrand(int SCatID)
+        {
+            int cat_id = SCatID;
+            var SubCatProduct = context.Product1.AsNoTracking().Where(a=>a.prod_status==1 && a.prod_subcategory==SCatID);
             JArray array = new JArray();
-            foreach (Product1 pro in Product.Where(a => a.prod_status == 1))
+            foreach (Product1 pro in SubCatProduct)
             {
                 JObject bo = new JObject(
                     new JProperty("product_id", pro.prod_id),
@@ -71,19 +97,65 @@ namespace AutobuyDirectApi.Controllers
             return final;
         }
 
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/admin/GetBrandDetails/{BID}")]
+        public JObject GetBrandDetails(int BID)
+        {
+            int Brand_ID = BID;
+            var Bdetails = context.Product_items.AsNoTracking().Where(a => a.item_status == 1 && a.prod_id == Brand_ID);
+            JArray array = new JArray();
+            foreach (Product_items Bitems in Bdetails)
+            {
+                JObject bo = new JObject(
+                    new JProperty("Item_id", Bitems.id),
+                    new JProperty("product_id", Bitems.prod_id),
+                    new JProperty("item_code", Bitems.item_code),
+                    new JProperty("item_spec", Bitems.item_spec),
+                    new JProperty("item_unit", Bitems.item_unit),
+                    new JProperty("item_mrp", Bitems.item_mrp),
+                    new JProperty("item_selling", Bitems.item_selling),
+                    new JProperty("item_stock", Bitems.item_stock),
+                    new JProperty("item_image", Bitems.item_image),
+                    new JProperty("item_status", Bitems.item_status),
+                    new JProperty("Created_date", Bitems.Created_date),
+                    new JProperty("Updated_date", Bitems.Updated_date)
+                    );
+                array.Add(bo);
+            }
+
+
+            JObject final = new JObject(
+               new JProperty("Product_Details", array));
+
+            return final;
+        }
+
         [System.Web.Http.HttpPost]
         public int CreateCategory(JObject param)
         {
-
+            //Get main cat or not chekc box kkanum then condition podanum
             int status = 0;
             string category_name = "";
             int category_parent = 0;
             string category_slug = "";
+            string[] replaceables = new[] { "+", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "\\", "\"", " ", "-", ";", "&", "|", "/", "_", "@", "#", "$", "%", "<", ">", "=" };
+            int count = 0;
+            Random random = new Random();
             try
             {
                 category_name = (string)param.GetValue("categoryname");
                 category_parent = (int)param.GetValue("category_parent");
                 category_slug= (string)param.GetValue("categoryslug");
+
+                for (int i = 0; i < replaceables.Length; i++)
+                {
+                    category_slug = category_slug.Replace(replaceables[i], String.Empty);
+                }
+                count = context.Product_Category.AsNoTracking().Where(a => a.cat_slug == category_slug).Count();
+                if (count != 0)
+                {
+                    category_slug = category_slug + "-" + random.Next(0, 1000).ToString();
+                }
 
                 Product_Category cat = new Product_Category();
                 cat.cat_name = category_name;
@@ -91,13 +163,14 @@ namespace AutobuyDirectApi.Controllers
                 cat.cat_slug = category_slug;
                 cat.cat_status = 1;
                 cat.Created_date = DateTime.Now;
+                cat.Updated_date = DateTime.Now;
                 context.Product_Category.Add(cat);
                 context.SaveChanges();
                 status = 1;
             }
             catch (Exception e)
             {
-                Logdetails.LogError("Post Error", "CreateCategoryerror admincontroller (69)", e.Message);
+                Logdetails.LogError("Post Error", "CreateCategoryerror admincontroller (134)", e.Message);
             }
 
             return status;
