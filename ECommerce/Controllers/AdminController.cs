@@ -89,8 +89,6 @@ namespace AutobuyDirectApi.Controllers
                     );
                 array.Add(bo);
             }
-
-
             JObject final = new JObject(
                new JProperty("Product_Details", array));
 
