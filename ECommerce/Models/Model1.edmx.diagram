@@ -4,18 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e3f3aaedded24f1989858201ef3ff59b" Name="Diagram1" ZoomLevel="95">
-        <EntityTypeShape EntityType="EcommModel.user_details" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommModel.customer_address" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="EcommModel.customer_payment" Width="1.5" PointX="2.5" PointY="0.75" />
-        <EntityTypeShape EntityType="EcommModel.Cart" Width="1.5" PointX="2.5" PointY="3.875" />
-        <EntityTypeShape EntityType="EcommModel.Customer" Width="1.5" PointX="4.125" PointY="0.75" />
-        <EntityTypeShape EntityType="EcommModel.Product_Category" Width="1.5" PointX="4.125" PointY="3.75" />
-        <EntityTypeShape EntityType="EcommModel.Product_items" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="EcommModel.Product1" PointX="5.75" PointY="4.25" Width="1.5" />
-        <EntityTypeShape EntityType="EcommModel.Products_order" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="EcommModel.Products_order_list" Width="1.5" PointX="9" PointY="0.75" />
-        <EntityTypeShape EntityType="EcommModel.Wishlist" Width="1.5" PointX="7.375" PointY="5.375" />
+      <Diagram DiagramId="8b291dce23e04a2d97c680c64554d048" Name="Diagram1">
+        <EntityTypeShape EntityType="EcommModel.Cart" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.Customer" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.customer_address" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.customer_payment" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.Postal_Code" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.Product_Category" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.Product_items" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.Product" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.Products_order" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.Products_order_list" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.sysdiagram" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.user_details" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommModel.Wishlist" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

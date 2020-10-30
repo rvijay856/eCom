@@ -12,7 +12,7 @@ namespace AutobuyDirectApi.Controllers
 {
     public class InitController : ApiController
     {
-        EcommEntities context = new EcommEntities();
+        EcommEntities1 context = new EcommEntities1();
 
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/Blog/GetBlogs")]

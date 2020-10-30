@@ -55,7 +55,7 @@ namespace AutobuyDirectApi.Providers
 
             context.OwinContext.Response.Headers.Set("Access-Control-Allow-Origin", "*");
 
-            using (var db = new EcommEntities())
+            using (var db = new EcommEntities1())
             {
                 if (db != null)
                 {

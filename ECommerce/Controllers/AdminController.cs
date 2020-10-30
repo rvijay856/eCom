@@ -12,15 +12,15 @@ namespace AutobuyDirectApi.Controllers
 {
     public class AdminController : ApiController
     {
-        EcommEntities context = new EcommEntities();
+        EcommEntities1 context = new EcommEntities1();
 
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/admin/GetCategory")]
         public JObject GetCategory()
         {
-            var Category = context.Product_Category.AsNoTracking().OrderBy(a => a.id);
+            var Category = context.Product_Category.AsNoTracking().Where(a => a.cat_status == 1 && a.cat_parent == 0);
             JArray array = new JArray();
-            foreach (Product_Category cat in Category.Where(a => a.cat_status == 1 && a.cat_parent==0))
+            foreach (Product_Category cat in Category)
             {
                 JObject bo = new JObject(
                     new JProperty("category_id", cat.id),
@@ -71,9 +71,9 @@ namespace AutobuyDirectApi.Controllers
         public JObject GetBrand(int SCatID)
         {
             int cat_id = SCatID;
-            var SubCatProduct = context.Product1.AsNoTracking().Where(a=>a.prod_status==1 && a.prod_subcategory==SCatID);
+            var SubCatProduct = context.Products.AsNoTracking().Where(a=>a.prod_status==1 && a.prod_subcategory==SCatID);
             JArray array = new JArray();
-            foreach (Product1 pro in SubCatProduct)
+            foreach (Product pro in SubCatProduct)
             {
                 JObject bo = new JObject(
                     new JProperty("product_id", pro.prod_id),
@@ -198,7 +198,7 @@ namespace AutobuyDirectApi.Controllers
                 status_str = (string)param.GetValue("status");
               
                 
-                Product1 pro = new Product1();
+                Product pro = new Product();
                 pro.prod_name = product_name;
                 pro.prod_category =product_category;
                 pro.prod_brand = product_brand;
@@ -214,7 +214,7 @@ namespace AutobuyDirectApi.Controllers
                 {
                     pro.prod_status = 0;
                 }
-                context.Product1.Add(pro);
+                context.Products.Add(pro);
                 context.SaveChanges();
                 status = 1;
             }

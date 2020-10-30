@@ -16,7 +16,7 @@ namespace AutobuyDirectApi.Controllers
 {
     public class SignupController : ApiController
     {
-        EcommEntities context = new EcommEntities();
+        EcommEntities1 context = new EcommEntities1();
 
         [System.Web.Http.HttpPost]
         public int signupsite(JObject param)

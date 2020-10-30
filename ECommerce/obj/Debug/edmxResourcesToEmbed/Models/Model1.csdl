@@ -1,65 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EcommModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="user_details">
-    <Key>
-      <PropertyRef Name="user_id" />
-    </Key>
-    <Property Name="user_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="user_type" Type="Int32" Nullable="false" />
-    <Property Name="user_status" Type="Int32" Nullable="false" />
-    <Property Name="created_date" Type="DateTime" Precision="3" Nullable="false" />
-    <Property Name="last_login" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityContainer Name="EcommEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="user_details" EntityType="Self.user_details" />
-    <EntitySet Name="customer_address" EntityType="EcommModel.customer_address" />
-    <EntitySet Name="customer_payment" EntityType="EcommModel.customer_payment" />
-    <EntitySet Name="Carts" EntityType="EcommModel.Cart" />
-    <EntitySet Name="Customers" EntityType="EcommModel.Customer" />
-    <EntitySet Name="Product_Category" EntityType="EcommModel.Product_Category" />
-    <EntitySet Name="Product_items" EntityType="EcommModel.Product_items" />
-    <EntitySet Name="Product1" EntityType="EcommModel.Product1" />
-    <EntitySet Name="Products_order" EntityType="EcommModel.Products_order" />
-    <EntitySet Name="Products_order_list" EntityType="EcommModel.Products_order_list" />
-    <EntitySet Name="Wishlists" EntityType="EcommModel.Wishlist" />
-  </EntityContainer>
-  <EntityType Name="customer_address">
-    <Key>
-      <PropertyRef Name="user_id" />
-    </Key>
-    <Property Name="id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="user_id" Type="Int32" Nullable="false" />
-    <Property Name="customer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="customer_address1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="customer_city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="customer_area" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="customer_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="customer_pincode" Type="Int32" />
-    <Property Name="customer_mobile" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="address_status" Type="Int32" Nullable="false" />
-    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="updated_at" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="customer_payment">
-    <Key>
-      <PropertyRef Name="user_id" />
-    </Key>
-    <Property Name="payment_id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="user_id" Type="Int32" Nullable="false" />
-    <Property Name="Card_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Card_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Expiration_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Security_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="CardHolderName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="payment_status" Type="Int32" Nullable="false" />
-    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="updated_at" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="Cart">
     <Key>
       <PropertyRef Name="id" />
@@ -81,13 +21,54 @@
     <Property Name="cust_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="cust_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="cust_mobile" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="cust_mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="cust_status" Type="Int32" />
     <Property Name="cust_pincode" Type="Int32" />
     <Property Name="cust_otp" Type="Int32" />
     <Property Name="cat_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Created_date" Type="DateTime" Precision="3" />
     <Property Name="Updated_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="customer_address">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="customer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_address1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_pincode" Type="Int32" />
+    <Property Name="customer_mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="address_status" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="customer_payment">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="payment_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="Card_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Card_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Expiration_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Security_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CardHolderName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="payment_status" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Postal_Code">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="area_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="area_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
   </EntityType>
   <EntityType Name="Product_Category">
     <Key>
@@ -118,20 +99,20 @@
     <Property Name="Created_date" Type="DateTime" Precision="3" />
     <Property Name="Updated_date" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="Product1">
+  <EntityType Name="Product">
     <Key>
       <PropertyRef Name="prod_id" />
     </Key>
-    <Property Name="prod_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-    <Property Name="prod_name" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
-    <Property Name="prod_slug" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="prod_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="prod_category" Type="Int32" />
     <Property Name="prod_subcategory" Type="Int32" />
-    <Property Name="prod_brand" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
-    <Property Name="prod_desc" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="prod_brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="prod_status" Type="Int32" />
-    <Property Name="Created_date" Precision="3" Type="DateTime" />
-    <Property Name="Updated_date" Precision="3" Type="DateTime" />
+    <Property Name="Created_date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Products_order">
     <Key>
@@ -175,6 +156,31 @@
     <Property Name="Created_date" Type="DateTime" Precision="3" />
     <Property Name="Updated_date" Type="DateTime" Precision="3" />
   </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="user_details">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_type" Type="Int32" Nullable="false" />
+    <Property Name="user_status" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="last_login" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="Wishlist">
     <Key>
       <PropertyRef Name="Id" />
@@ -187,4 +193,19 @@
     <Property Name="Created_date" Type="DateTime" Precision="3" />
     <Property Name="Updated_date" Type="DateTime" Precision="3" />
   </EntityType>
+  <EntityContainer Name="EcommEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="customer_address" EntityType="Self.customer_address" />
+    <EntitySet Name="customer_payment" EntityType="Self.customer_payment" />
+    <EntitySet Name="Postal_Code" EntityType="Self.Postal_Code" />
+    <EntitySet Name="Product_Category" EntityType="Self.Product_Category" />
+    <EntitySet Name="Product_items" EntityType="Self.Product_items" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Products_order" EntityType="Self.Products_order" />
+    <EntitySet Name="Products_order_list" EntityType="Self.Products_order_list" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="user_details" EntityType="Self.user_details" />
+    <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
+  </EntityContainer>
 </Schema>

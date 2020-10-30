@@ -12,7 +12,7 @@ namespace AutobuyDirectApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product1
+    public partial class Product
     {
         public int prod_id { get; set; }
         public string prod_name { get; set; }
