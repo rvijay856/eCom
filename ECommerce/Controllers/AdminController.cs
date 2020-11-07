@@ -101,29 +101,37 @@ namespace AutobuyDirectApi.Controllers
         {
             int Brand_ID = BID;
             var Bdetails = context.Product_items.AsNoTracking().Where(a => a.item_status == 1 && a.prod_id == Brand_ID);
-            JArray array = new JArray();
+            JArray Brand_details = new JArray();
+            JArray Brand_details_Spec = new JArray();
             foreach (Product_items Bitems in Bdetails)
             {
-                JObject bo = new JObject(
+                JObject Details = new JObject(
                     new JProperty("Item_id", Bitems.id),
                     new JProperty("product_id", Bitems.prod_id),
                     new JProperty("item_code", Bitems.item_code),
-                    new JProperty("item_spec", Bitems.item_spec),
-                    new JProperty("item_unit", Bitems.item_unit),
+                    new JProperty("Created_date", Bitems.Created_date),
+                    new JProperty("Updated_date", Bitems.Updated_date)
+                    );
+                Brand_details.Add(Details);
+
+                JObject Spec = new JObject(
+                    new JProperty("Item_id", Bitems.id),
+                    new JProperty("product_id", Bitems.prod_id),
+                    new JProperty("item_spec", Bitems.item_spec+" "+ Bitems.item_unit),
                     new JProperty("item_mrp", Bitems.item_mrp),
                     new JProperty("item_selling", Bitems.item_selling),
                     new JProperty("item_stock", Bitems.item_stock),
                     new JProperty("item_image", Bitems.item_image),
-                    new JProperty("item_status", Bitems.item_status),
-                    new JProperty("Created_date", Bitems.Created_date),
-                    new JProperty("Updated_date", Bitems.Updated_date)
+                    new JProperty("item_status", Bitems.item_status)
                     );
-                array.Add(bo);
+                Brand_details_Spec.Add(Spec);
             }
 
 
             JObject final = new JObject(
-               new JProperty("Product_Details", array));
+               new JProperty("Product_Details", Brand_details),
+               new JProperty("Product_Spec", Brand_details_Spec)
+               );
 
             return final;
         }
@@ -225,5 +233,6 @@ namespace AutobuyDirectApi.Controllers
 
             return status;
         }
+
     }
 }
