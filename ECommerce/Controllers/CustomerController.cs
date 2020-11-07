@@ -214,30 +214,43 @@ namespace AutobuyDirectApi.Controllers
             return status;
         }
 
-        public int PostalCodeValidation(JObject param)
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/customer/GetPostalCodeValidation/{Post_Code}")]
+        public JObject GetPostalCodeValidation(int Post_Code)
         {
-            int status = 0;
-            string PostCode = "";
+            JArray PostList = new JArray();
+            JObject final = new JObject();
+            string PostCode = Post_Code.ToString();
             try
             {
-                PostCode = (string)param.GetValue("PostCode");
-
                 int Post_code = context.Postal_Code.Where(a => a.area_code == PostCode && a.status == 1).Count();
+                var Postal = context.Postal_Code.Where(a => a.area_code == PostCode && a.status == 1);
                 if (Post_code!=0)
                 {
-                    status = 1;
+                   foreach(Postal_Code PC in Postal)
+                    {
+                        JObject Post_List = new JObject(
+                            new JProperty("Id", PC.Id),
+                            new JProperty("area_name", PC.area_name),
+                            new JProperty("area_code", PC.area_code)
+                            );
+                        PostList.Add(Post_List);
+                    }
+                    final = new JObject(
+                            new JProperty("PostList", PostList));
                 }
                 else
                 {
-                    status = 0;
+                    final = new JObject(
+                            new JProperty("PostList", PostList));
                 }
             }
             catch (Exception e)
             {
-                Logdetails.LogError("Post Error", "PostalCodeValidation customercontroller (217)", e.Message);
+                Logdetails.LogError("Post Error", "PostalCodeValidation customercontroller (219)", e.Message);
             }
 
-            return status;
+            return final;
         }
     }
 }
