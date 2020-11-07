@@ -48,7 +48,7 @@ namespace AutobuyDirectApi.Controllers
             }
             catch(Exception e)
             {
-                Logdetails.LogError("Post Error", "signuperror signupcontroller (19)", e.Message);
+                Logdetails.LogError("Post Error", "signuperror signupcontroller (22)", e.Message);
             }
 
             return status;

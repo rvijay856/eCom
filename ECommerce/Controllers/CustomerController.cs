@@ -213,5 +213,31 @@ namespace AutobuyDirectApi.Controllers
 
             return status;
         }
+
+        public int PostalCodeValidation(JObject param)
+        {
+            int status = 0;
+            string PostCode = "";
+            try
+            {
+                PostCode = (string)param.GetValue("PostCode");
+
+                int Post_code = context.Postal_Code.Where(a => a.area_code == PostCode && a.status == 1).Count();
+                if (Post_code!=0)
+                {
+                    status = 1;
+                }
+                else
+                {
+                    status = 0;
+                }
+            }
+            catch (Exception e)
+            {
+                Logdetails.LogError("Post Error", "PostalCodeValidation customercontroller (217)", e.Message);
+            }
+
+            return status;
+        }
     }
 }
