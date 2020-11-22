@@ -12,6 +12,7 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using System.Xml;
+using System.Configuration;
 
 namespace AutobuyDirectApi.Controllers
 {
@@ -24,45 +25,47 @@ namespace AutobuyDirectApi.Controllers
 		{
 			string Phone_No = PhoneNo;
 			String result;
-			string apiKey = "vdEIHmmAO1I-mOEQQxuw1txTsilR8dd1KOcNDHsJ0U";
+			Random Ran = new Random();
+			string apiKey = ConfigurationManager.AppSettings["apiKey"].ToString();
 			string numbers = Phone_No; // in a comma seperated list
-			string message = "This is your message Test using Textlocal API\n HI Bro i hope you recived this SMS Zuzu Bazaar";
+			string OTP = "";
+			OTP = Ran.Next(0, 1000000).ToString("D6");
+			string message = "This is your OTP"+OTP;
 			string sender = "TXTLCL";
 
-			String url = "https://api.textlocal.in/send/?apikey=" + apiKey + "&numbers=" + numbers + "&message=" + message + "&sender=" + sender;
-			//refer to parameters to complete correct url string
 
-			StreamWriter myWriter = null;
-			HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
+            String url = "https://api.textlocal.in/send/?apikey=" + apiKey + "&numbers=" + numbers + "&message=" + message + "&sender=" + sender;
+            //refer to parameters to complete correct url string
 
-			objRequest.Method = "POST";
-			objRequest.ContentLength = Encoding.UTF8.GetByteCount(url);
-			objRequest.ContentType = "application/x-www-form-urlencoded";
-			try
-			{
-				myWriter = new StreamWriter(objRequest.GetRequestStream());
-				myWriter.Write(url);
-			}
-			catch (Exception e)
-			{
-				return e.Message;
-			}
-			finally
-			{
-				myWriter.Close();
-			}
+            StreamWriter myWriter = null;
+            HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
 
-			HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
-			using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
-			{
-				result = sr.ReadToEnd();
-				// Close and clean up the StreamReader
-				sr.Close();
-			}
-			//XmlDocument doc = new XmlDocument();
-			//doc.LoadXml(result);
-			//string json = JsonConvert.SerializeXmlNode(result);
-            return result;
+            objRequest.Method = "POST";
+            objRequest.ContentLength = Encoding.UTF8.GetByteCount(url);
+            objRequest.ContentType = "application/x-www-form-urlencoded";
+            try
+            {
+                myWriter = new StreamWriter(objRequest.GetRequestStream());
+                myWriter.Write(url);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            finally
+            {
+                myWriter.Close();
+            }
+
+            HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
+            using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
+            {
+                result = sr.ReadToEnd();
+                // Close and clean up the StreamReader
+                sr.Close();
+            }
+            return result+OTP;
+
 		}
 	}
 }
