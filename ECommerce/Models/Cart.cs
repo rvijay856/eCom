@@ -23,5 +23,8 @@ namespace AutobuyDirectApi.Models
         public Nullable<int> cart_status { get; set; }
         public Nullable<System.DateTime> Created_date { get; set; }
         public Nullable<System.DateTime> Updated_date { get; set; }
+        public string item_spec { get; set; }
+        public string item_unit { get; set; }
+        public Nullable<decimal> item_selling { get; set; }
     }
 }

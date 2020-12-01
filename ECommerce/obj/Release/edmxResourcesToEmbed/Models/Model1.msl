@@ -4,6 +4,9 @@
     <EntitySetMapping Name="Carts">
       <EntityTypeMapping TypeName="EcommModel.Cart">
         <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="item_selling" ColumnName="item_selling" />
+          <ScalarProperty Name="item_unit" ColumnName="item_unit" />
+          <ScalarProperty Name="item_spec" ColumnName="item_spec" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="basket_session" ColumnName="basket_session" />
           <ScalarProperty Name="prod_id" ColumnName="prod_id" />
@@ -32,40 +35,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="customer_address">
-      <EntityTypeMapping TypeName="EcommModel.customer_address">
-        <MappingFragment StoreEntitySet="customer_address">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
-          <ScalarProperty Name="customer_address1" ColumnName="customer_address" />
-          <ScalarProperty Name="customer_city" ColumnName="customer_city" />
-          <ScalarProperty Name="customer_area" ColumnName="customer_area" />
-          <ScalarProperty Name="customer_country" ColumnName="customer_country" />
-          <ScalarProperty Name="customer_pincode" ColumnName="customer_pincode" />
-          <ScalarProperty Name="customer_mobile" ColumnName="customer_mobile" />
-          <ScalarProperty Name="address_status" ColumnName="address_status" />
-          <ScalarProperty Name="created_date" ColumnName="created_date" />
-          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="customer_payment">
-      <EntityTypeMapping TypeName="EcommModel.customer_payment">
-        <MappingFragment StoreEntitySet="customer_payment">
-          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="Card_no" ColumnName="Card_no" />
-          <ScalarProperty Name="Card_type" ColumnName="Card_type" />
-          <ScalarProperty Name="Expiration_date" ColumnName="Expiration_date" />
-          <ScalarProperty Name="Security_code" ColumnName="Security_code" />
-          <ScalarProperty Name="CardHolderName" ColumnName="CardHolderName" />
-          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
-          <ScalarProperty Name="created_date" ColumnName="created_date" />
-          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Postal_Code">
       <EntityTypeMapping TypeName="EcommModel.Postal_Code">
         <MappingFragment StoreEntitySet="Postal_Code">
@@ -79,6 +48,7 @@
     <EntitySetMapping Name="Product_Category">
       <EntityTypeMapping TypeName="EcommModel.Product_Category">
         <MappingFragment StoreEntitySet="Product_Category">
+          <ScalarProperty Name="cat_img" ColumnName="cat_img" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="cat_name" ColumnName="cat_name" />
           <ScalarProperty Name="cat_slug" ColumnName="cat_slug" />
@@ -197,6 +167,9 @@
     <EntitySetMapping Name="Wishlists">
       <EntityTypeMapping TypeName="EcommModel.Wishlist">
         <MappingFragment StoreEntitySet="Wishlist">
+          <ScalarProperty Name="item_selling" ColumnName="item_selling" />
+          <ScalarProperty Name="item_spec" ColumnName="item_spec" />
+          <ScalarProperty Name="item_unit" ColumnName="item_unit" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="prod_id" ColumnName="prod_id" />
           <ScalarProperty Name="item_id" ColumnName="item_id" />
@@ -204,6 +177,43 @@
           <ScalarProperty Name="wish_status" ColumnName="wish_status" />
           <ScalarProperty Name="Created_date" ColumnName="Created_date" />
           <ScalarProperty Name="Updated_date" ColumnName="Updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customer_address">
+      <EntityTypeMapping TypeName="EcommModel.customer_address">
+        <MappingFragment StoreEntitySet="customer_address">
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="address_status" ColumnName="address_status" />
+          <ScalarProperty Name="customer_mobile" ColumnName="customer_mobile" />
+          <ScalarProperty Name="customer_pincode" ColumnName="customer_pincode" />
+          <ScalarProperty Name="customer_country" ColumnName="customer_country" />
+          <ScalarProperty Name="customer_area" ColumnName="customer_area" />
+          <ScalarProperty Name="customer_city" ColumnName="customer_city" />
+          <ScalarProperty Name="customer_address1" ColumnName="customer_address" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer_Payment">
+      <EntityTypeMapping TypeName="EcommModel.Customer_Payment">
+        <MappingFragment StoreEntitySet="Customer_Payment">
+          <ScalarProperty Name="payment_amount" ColumnName="payment_amount" />
+          <ScalarProperty Name="payment_type" ColumnName="payment_type" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="card_status" ColumnName="card_status" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="CardHolderName" ColumnName="CardHolderName" />
+          <ScalarProperty Name="Security_code" ColumnName="Security_code" />
+          <ScalarProperty Name="Expiration_date" ColumnName="Expiration_date" />
+          <ScalarProperty Name="Card_type" ColumnName="Card_type" />
+          <ScalarProperty Name="Card_no" ColumnName="Card_no" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

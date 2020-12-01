@@ -15,7 +15,7 @@ namespace AutobuyDirectApi.Models
     public partial class customer_address
     {
         public decimal id { get; set; }
-        public int user_id { get; set; }
+        public Nullable<int> customer_id { get; set; }
         public string customer_name { get; set; }
         public string customer_address1 { get; set; }
         public string customer_city { get; set; }

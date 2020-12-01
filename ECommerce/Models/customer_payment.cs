@@ -12,17 +12,20 @@ namespace AutobuyDirectApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class customer_payment
+    public partial class Customer_Payment
     {
-        public decimal payment_id { get; set; }
-        public int user_id { get; set; }
+        public decimal id { get; set; }
+        public Nullable<int> customer_id { get; set; }
         public string Card_no { get; set; }
         public string Card_type { get; set; }
         public string Expiration_date { get; set; }
         public string Security_code { get; set; }
         public string CardHolderName { get; set; }
-        public int payment_status { get; set; }
+        public Nullable<int> payment_status { get; set; }
+        public int card_status { get; set; }
         public System.DateTime created_date { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
+        public string payment_type { get; set; }
+        public Nullable<decimal> payment_amount { get; set; }
     }
 }

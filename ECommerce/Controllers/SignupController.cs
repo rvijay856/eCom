@@ -11,6 +11,7 @@ using EcomErrorLog;
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
+using EcomSMS;
 
 namespace AutobuyDirectApi.Controllers
 {
@@ -19,39 +20,111 @@ namespace AutobuyDirectApi.Controllers
         EcommEntities1 context = new EcommEntities1();
 
         [System.Web.Http.HttpPost]
-        public int signupsite(JObject param)
+        public JObject signupsite(JObject param)
         {
 
             int status = 0;
-            string fname = "";
-            string lname = "";
+            string name = "";
             string email = "";
             string pword = "";
+            string mobile = "";
+            int email_Count = 0;
+            int mobile_count = 0;
+            String result = "";
+            Random Ran = new Random();
+            JArray Cust = new JArray();
             try
             {
-                fname = (string)param.GetValue("firstname");
-                lname = (string)param.GetValue("lastname");
+                name = (string)param.GetValue("name");
                 email = (string)param.GetValue("email");
                 pword = (string)param.GetValue("password");
+                mobile = (string)param.GetValue("mobile");
 
-                user_details us = new user_details();
-                us.fname = fname;
-                us.lname = lname;
-                us.email = email;
-                us.password = pword;
-                us.user_type = 1;
-                us.user_status = 1;
-                us.created_date = DateTime.Now;
-                context.user_details.Add(us);
-                context.SaveChanges();
-                status = 1;
+                name = name.Trim();
+                email = email.Trim();
+                pword = pword.Trim();
+                mobile = mobile.Trim();
+
+                string OTP = "";
+                OTP = Ran.Next(0, 1000000).ToString("D6");
+
+                email_Count = context.Customers.AsNoTracking().Where(a => a.cust_email == email).Count();
+                mobile_count = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile).Count();
+                if (email_Count!=0)
+                {
+                    JObject sg = new JObject(
+                             new JProperty("cust_id", ""),
+                             new JProperty("cust_name", ""),
+                             new JProperty("cust_mobile", ""),
+                             new JProperty("cust_email", ""),
+                             new JProperty("cust_status", ""),
+                             new JProperty("Created_date", ""),
+                             new JProperty("Updated_date", ""),
+                             new JProperty("status", "2")
+                         );
+                    Cust.Add(sg);
+                }
+                if(mobile_count!=0)
+                {
+                    JObject sg = new JObject(
+                            new JProperty("cust_id", ""),
+                            new JProperty("cust_name", ""),
+                            new JProperty("cust_mobile", ""),
+                            new JProperty("cust_email", ""),
+                            new JProperty("cust_status", ""),
+                            new JProperty("Created_date", ""),
+                            new JProperty("Updated_date", ""),
+                            new JProperty("status", "3")
+                        );
+                    Cust.Add(sg);
+                }
+                if (email_Count==0 && mobile_count==0)
+                {
+                    Customer cus = new Customer();
+                    cus.cust_name = name;
+                    cus.cust_email = email;
+                    cus.cust_mobile = mobile;
+                    cus.cust_status = 0;
+                    cus.cust_otp = int.Parse(OTP);
+                    cus.cat_password = pword;
+                    cus.Created_date = DateTime.Now;
+                    cus.Updated_date = DateTime.Now;
+
+                    context.Customers.Add(cus);
+                    context.SaveChanges();
+
+                    SMSSend smss = new SMSSend();
+                    result = smss.sendSMS("91"+mobile,OTP);
+
+                    var custo = context.Customers.AsNoTracking().Where(a=>a.cust_mobile==mobile && a.cust_email==email);
+
+                    foreach (Customer cu in custo)
+                    {
+
+                        JObject sg = new JObject(
+                            new JProperty("cust_id", cu.cust_id),
+                            new JProperty("cust_name", cu.cust_name),
+                            new JProperty("cust_mobile", cu.cust_mobile),
+                            new JProperty("cust_email", cu.cust_email),
+                            new JProperty("cust_status", cu.cust_status),
+                            new JProperty("Created_date", cu.Created_date),
+                            new JProperty("Updated_date", cu.Updated_date),
+                            new JProperty("status", "1")
+                        );
+                        Cust.Add(sg);
+                    }
+                }
+                
             }
             catch(Exception e)
             {
                 Logdetails.LogError("Post Error", "signuperror signupcontroller (22)", e.Message);
             }
 
-            return status;
+            JObject final = new JObject(
+               new JProperty("Customer_Details", Cust));
+
+            return final;
         }
 
         [System.Web.Http.Authorize]
@@ -153,6 +226,26 @@ namespace AutobuyDirectApi.Controllers
                 encryptpwd = encoding.GetString(ms.ToArray());
             }
             return encryptpwd;
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Sigup/GetOtp/{Cust_ID}/{Otp}")]
+        public JObject GetOtp(int Cust_ID,int Otp)
+        {
+            JObject final = new JObject();
+            int check_otp = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == Cust_ID).Select(a => a.cust_otp).Single();
+            if (check_otp==Otp)
+            {
+                final = new JObject(
+               new JProperty("Otp_Vlidation", "Success"));
+            }
+            else
+            {
+                final = new JObject(
+                        new JProperty("Otp_Vlidation", "Failed"));
+            }
+              
+            return final;
         }
     }
 }

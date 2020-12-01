@@ -110,16 +110,17 @@ namespace AutobuyDirectApi.Controllers
         public JObject GetMyprofile(int user_id)
         {
             int user_id_ = user_id;
-            var userlist = context.user_details.AsNoTracking().Where(a => a.user_id == user_id_);
+            var userlist = context.Customers.AsNoTracking().Where(a => a.cust_id == user_id_ && a.cust_status==1);
             JArray array = new JArray();
-            foreach (user_details user in userlist)
+            foreach (Customer user in userlist)
             {
                 JObject user_list = new JObject(
-                    new JProperty("fname", user.fname),
-                    new JProperty("lname", user.lname),
-                    new JProperty("email", user.email),
-                    new JProperty("address", user.address),
-                    new JProperty("last_login", user.last_login)
+                    new JProperty("ID", user.cust_id),
+                    new JProperty("name", user.cust_name),
+                    new JProperty("Phone", user.cust_mobile),
+                    new JProperty("email", user.cust_email),
+                    new JProperty("Pincode", user.cust_pincode)
+                    //new JProperty("last_login", user.last_login)
                     );
                 array.Add(user_list);
             }
