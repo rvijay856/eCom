@@ -16,19 +16,43 @@ namespace EcomSMS
     {
         public string sendSMS(string phone,string otp)
         {
-            String message = HttpUtility.UrlEncode("This is your otp message "+otp);
-            using (var wb = new WebClient())
-            {
-                byte[] response = wb.UploadValues("https://api.textlocal.in/send/", new NameValueCollection()
-                {
-                {"apikey" ,  ConfigurationManager.AppSettings["apiKey"].ToString()},
-                {"numbers" , phone},
-                {"message" , message},
-                {"sender" , "TXTLCL"}
-                });
-                string result = System.Text.Encoding.UTF8.GetString(response);
-                return result;
-            }
-        }
+			string result;
+			string apiKey = "vdEIHmmAO1I-5QhLD6sQ9qU26aNqCexE50qjF59zLy";
+			string numbers = "91"+phone; // in a comma seperated list
+			string message = "This is your message "+otp;
+			string sender = "TXTLCL";
+
+			String url = "https://api.textlocal.in/send/?apikey=" + apiKey + "&numbers=" + numbers + "&message=" + message + "&sender=" + sender;
+			//refer to parameters to complete correct url string
+
+			StreamWriter myWriter = null;
+			HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
+
+			objRequest.Method = "POST";
+			objRequest.ContentLength = Encoding.UTF8.GetByteCount(url);
+			objRequest.ContentType = "application/x-www-form-urlencoded";
+			try
+			{
+				myWriter = new StreamWriter(objRequest.GetRequestStream());
+				myWriter.Write(url);
+			}
+			catch (Exception e)
+			{
+				return e.Message;
+			}
+			finally
+			{
+				myWriter.Close();
+			}
+
+			HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
+			using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
+			{
+				result = sr.ReadToEnd();
+				// Close and clean up the StreamReader
+				sr.Close();
+			}
+			return result;
+		}
     }
 }

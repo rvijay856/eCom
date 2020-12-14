@@ -94,7 +94,7 @@ namespace AutobuyDirectApi.Controllers
                     context.SaveChanges();
 
                     SMSSend smss = new SMSSend();
-                    result = smss.sendSMS("91"+mobile,OTP);
+                    result = smss.sendSMS(mobile,OTP);
 
                     var custo = context.Customers.AsNoTracking().Where(a=>a.cust_mobile==mobile && a.cust_email==email);
 

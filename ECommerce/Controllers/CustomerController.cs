@@ -32,8 +32,15 @@ namespace AutobuyDirectApi.Controllers
                     new JProperty("cart_id", car.id),
                     new JProperty("product_id", car.prod_id),
                     new JProperty("item_id", car.item_id),
+                    new JProperty("cust_id", car.cust_id),
+                    new JProperty("product_name", context.Products.AsNoTracking().Where(a=>a.prod_id==car.prod_id).Select(a=>a.prod_name).Single()),
                     new JProperty("quantity", car.quantity),
                     new JProperty("basket_session", car.basket_session),
+                    new JProperty("item_selling", car.item_selling),
+                    new JProperty("item_MRP", context.Product_items.AsNoTracking().Where(a => a.id == car.item_id).Select(a => a.item_mrp).Single()),
+                    new JProperty("item_spec", car.item_spec),
+                    new JProperty("item_unit", car.item_unit),
+                    new JProperty("item_img", car.item_img),
                     new JProperty("Created_Date", car.Created_date),
                     new JProperty("updated_Date", car.Updated_date),
                     new JProperty("Status", car.cart_status)
@@ -51,18 +58,39 @@ namespace AutobuyDirectApi.Controllers
         {
             int status = 0;
             int user_id =0;
+            int item_id = 0;
             int prod_id = 0;
+            int quantity = 0;
+            string item_spec = "";
+            string item_unit = "";
+            decimal item_selling = 0;
+            string item_Img = "";
             try
             {
                 user_id = (int)param.GetValue("userid");
-                prod_id = (int)param.GetValue("prodid");
+                item_id = (int)param.GetValue("itemid");
+                quantity = (int)param.GetValue("quantity");
 
+                var cart_item = context.Product_items.AsNoTracking().Where(a => a.id == item_id);
+
+                foreach(Product_items cr in cart_item)
+                {
+                    prod_id = (int)cr.prod_id;
+                    item_spec = cr.item_spec;
+                    item_unit = cr.item_unit;
+                    item_selling = (decimal)cr.item_selling;
+                    item_Img = cr.item_image;
+                }
                 Cart car = new Cart();
-                car.cust_id = user_id;
+                car.cust_id = user_id;  
                 car.prod_id = prod_id;
                 car.basket_session = ""; // where it will be get
-                car.item_id = 0; // what is this
-                car.quantity = 0; // now its temp data once get in angular will update
+                car.item_id = item_id;
+                car.quantity = quantity;
+                car.item_spec = item_spec;
+                car.item_unit = item_unit;
+                car.item_selling = item_selling;
+                car.item_img = item_Img;
                 car.Created_date = DateTime.Now;
                 car.Updated_date = DateTime.Now;
                 car.cart_status = 1;
@@ -82,13 +110,13 @@ namespace AutobuyDirectApi.Controllers
         {
             int status = 0;
             int user_id = 0;
-            int prod_id = 0;
+            int item_id = 0;
             try
             {
                 user_id = (int)param.GetValue("userid");
-                prod_id = (int)param.GetValue("prodid");
+                item_id = (int)param.GetValue("itemid");
 
-                var cart_table = context.Carts.Where(a => a.cust_id == user_id && a.prod_id == prod_id);
+                var cart_table = context.Carts.Where(a => a.cust_id == user_id && a.prod_id == item_id);
                 foreach (Cart car in cart_table)
                 {
                     car.Updated_date = DateTime.Now;
@@ -135,7 +163,7 @@ namespace AutobuyDirectApi.Controllers
         public JObject GetWishlist(int cus_id)
         {
             int cust_id = cus_id;
-            var custwish = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id);
+            var custwish = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1);
             JArray array = new JArray();
             foreach(Wishlist cus in custwish)
             {
@@ -143,6 +171,13 @@ namespace AutobuyDirectApi.Controllers
                 new JProperty("Cust_id", cus.cust_id),
                 new JProperty("item_id", cus.item_id),
                 new JProperty("prod_id", cus.prod_id),
+                new JProperty("product_name", context.Products.AsNoTracking().Where(a => a.prod_id == cus.prod_id).Select(a => a.prod_name).Single()),
+                new JProperty("item_unit", cus.item_unit),
+                new JProperty("item_spec", cus.item_spec),
+                new JProperty("item_selling", cus.item_selling),
+                new JProperty("item_MRP", context.Product_items.AsNoTracking().Where(a => a.id == cus.item_id).Select(a => a.item_mrp).Single()),
+                new JProperty("item_img", cus.item_img),
+                new JProperty("wish_status", cus.wish_status),
                 new JProperty("Created_date", cus.Created_date),
                 new JProperty("Updated_date", cus.Updated_date)
                 );
@@ -157,26 +192,42 @@ namespace AutobuyDirectApi.Controllers
         public int addtowish(JObject param)
         {
             int status = 0;
-            int cust_id = 0;
-            int prod_id = 0;
+            int user_id = 0;
             int item_id = 0;
+            int prod_id = 0;
+            string item_spec = "";
+            string item_unit = "";
+            decimal item_selling = 0;
+            string item_Img = "";
             try
             {
-                cust_id = (int)param.GetValue("userid");
-                prod_id = (int)param.GetValue("prodid");
+                user_id = (int)param.GetValue("userid");
                 item_id = (int)param.GetValue("itemid");
 
+                var wish_item = context.Product_items.AsNoTracking().Where(a => a.id == item_id);
+
+                foreach (Product_items cr in wish_item)
+                {
+                    prod_id = (int)cr.prod_id;
+                    item_spec = cr.item_spec;
+                    item_unit = cr.item_unit;
+                    item_selling = (decimal)cr.item_selling;
+                    item_Img = cr.item_image;
+                }
                 Wishlist wish = new Wishlist();
-                wish.cust_id = cust_id;
+                wish.cust_id = user_id;
                 wish.prod_id = prod_id;
                 wish.item_id = item_id;
+                wish.item_spec = item_spec;
+                wish.item_unit = item_unit;
+                wish.item_selling = item_selling;
+                wish.item_img = item_Img;
                 wish.Created_date = DateTime.Now;
                 wish.Updated_date = DateTime.Now;
                 wish.wish_status = 1;
                 context.Wishlists.Add(wish);
                 context.SaveChanges();
                 status = 1;
-
             }
             catch (Exception e)
             {
@@ -190,15 +241,15 @@ namespace AutobuyDirectApi.Controllers
         {
             int status = 0;
             int cust_id = 0;
-            int prod_id = 0;
+            //int prod_id = 0;
             int item_id = 0;
             try
             {
                 cust_id = (int)param.GetValue("userid");
-                prod_id = (int)param.GetValue("prodid");
+                //prod_id = (int)param.GetValue("prodid");
                 item_id = (int)param.GetValue("itemid");
 
-                var wish_table = context.Wishlists.Where(a => a.cust_id == cust_id && a.prod_id == prod_id && a.item_id == item_id);
+                var wish_table = context.Wishlists.Where(a => a.cust_id == cust_id && a.item_id == item_id);
                 foreach (Wishlist wish in wish_table)
                 {
                     wish.Updated_date = DateTime.Now;

@@ -21,6 +21,7 @@
           <Property Name="item_spec" Type="varchar" MaxLength="50" />
           <Property Name="item_unit" Type="varchar" MaxLength="50" />
           <Property Name="item_selling" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="item_img" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -207,6 +208,7 @@
           <Property Name="item_unit" Type="varchar" MaxLength="50" />
           <Property Name="item_spec" Type="varchar" MaxLength="50" />
           <Property Name="item_selling" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="item_img" Type="varchar(max)" />
         </EntityType>
         <EntityContainer Name="EcommModelStoreContainer">
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
@@ -243,6 +245,7 @@
           <Property Name="item_spec" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="item_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="item_selling" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="item_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -394,6 +397,7 @@
           <Property Name="item_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="item_spec" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="item_selling" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="item_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="EcommEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carts" EntityType="Self.Cart" />
@@ -454,6 +458,7 @@
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="EcommModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="item_img" ColumnName="item_img" />
                 <ScalarProperty Name="item_selling" ColumnName="item_selling" />
                 <ScalarProperty Name="item_unit" ColumnName="item_unit" />
                 <ScalarProperty Name="item_spec" ColumnName="item_spec" />
@@ -617,6 +622,7 @@
           <EntitySetMapping Name="Wishlists">
             <EntityTypeMapping TypeName="EcommModel.Wishlist">
               <MappingFragment StoreEntitySet="Wishlist">
+                <ScalarProperty Name="item_img" ColumnName="item_img" />
                 <ScalarProperty Name="item_selling" ColumnName="item_selling" />
                 <ScalarProperty Name="item_spec" ColumnName="item_spec" />
                 <ScalarProperty Name="item_unit" ColumnName="item_unit" />

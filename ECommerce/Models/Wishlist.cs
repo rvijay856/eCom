@@ -24,5 +24,6 @@ namespace AutobuyDirectApi.Models
         public string item_unit { get; set; }
         public string item_spec { get; set; }
         public Nullable<decimal> item_selling { get; set; }
+        public string item_img { get; set; }
     }
 }

@@ -16,6 +16,7 @@
     <Property Name="item_spec" Type="varchar" MaxLength="50" />
     <Property Name="item_unit" Type="varchar" MaxLength="50" />
     <Property Name="item_selling" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="item_img" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -202,6 +203,7 @@
     <Property Name="item_unit" Type="varchar" MaxLength="50" />
     <Property Name="item_spec" Type="varchar" MaxLength="50" />
     <Property Name="item_selling" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="item_img" Type="varchar(max)" />
   </EntityType>
   <EntityContainer Name="EcommModelStoreContainer">
     <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />

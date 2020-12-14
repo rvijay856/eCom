@@ -16,6 +16,7 @@
     <Property Name="item_spec" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="item_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="item_selling" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="item_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -167,6 +168,7 @@
     <Property Name="item_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="item_spec" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="item_selling" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="item_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="EcommEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Carts" EntityType="Self.Cart" />

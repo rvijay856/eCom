@@ -75,11 +75,32 @@ namespace AutobuyDirectApi.Controllers
         public JObject GetBrand(int SCatID)
         {
             int cat_id = SCatID;
+            JObject bo = new JObject();
+            JObject it = new JObject();
             var SubCatProduct = context.Products.AsNoTracking().Where(a=>a.prod_status==1 && a.prod_subcategory==SCatID);
             JArray array = new JArray();
+            JArray items = new JArray();
             foreach (Product pro in SubCatProduct)
             {
-                JObject bo = new JObject(
+                var item = context.Product_items.AsNoTracking().Where(a => a.prod_id == pro.prod_id);
+                items = new JArray();
+                foreach (Product_items pi in item)
+                {
+                    it = new JObject(
+                        new JProperty("id", pi.id),
+                        new JProperty("item_image", pi.item_image),
+                        new JProperty("item_mrp", pi.item_mrp),
+                        new JProperty("item_selling", pi.item_selling),
+                        new JProperty("item_spec", pi.item_spec),
+                        new JProperty("item_status", pi.item_status),
+                        new JProperty("item_stock", pi.item_stock),
+                        new JProperty("item_unit", pi.item_unit),
+                        new JProperty("prod_id", pi.prod_id)
+                        );
+                    items.Add(it);
+                }
+
+                 bo = new JObject(
                     new JProperty("product_id", pro.prod_id),
                     new JProperty("product_name", pro.prod_name),
                     new JProperty("product_slug", pro.prod_slug),
@@ -89,8 +110,9 @@ namespace AutobuyDirectApi.Controllers
                     new JProperty("product_sub_category", pro.prod_subcategory),
                     new JProperty("product_created_date", pro.Created_date),
                     new JProperty("product_updated_date", pro.Updated_date),
-                    new JProperty("Status", pro.prod_status)
-                    );
+                    new JProperty("Status", pro.prod_status),
+                    new JProperty("Item_spec",items)
+                    );                
                 array.Add(bo);
             }
             JObject final = new JObject(
@@ -200,10 +222,10 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public int CreateProduct(JObject param)
+        public string CreateProduct(JObject param)
         {
 
-            int status = 0;
+            string status = "Already Exist";
             string BrandName = "";
             string category = "";
             string code = "";
@@ -261,8 +283,11 @@ namespace AutobuyDirectApi.Controllers
                 
                 Pro_count = context.Products.AsNoTracking().Where(a => a.prod_name == product_name && a.prod_slug == product_slug).Count();
 
-                if (Pro_count!=0)
+                if (Pro_count != 0)
+                {
                     prod_id = (int)context.Products.Where(a => a.prod_slug == product_slug && a.prod_name == product_name).Select(a => a.prod_id).Single();
+                    proitem_count = context.Product_items.AsNoTracking().Where(a => a.prod_id == prod_id && a.item_spec == spec).Count();
+                }
 
                 if (count != 0)
                 {
@@ -300,8 +325,9 @@ namespace AutobuyDirectApi.Controllers
 
                     context.Product_items.Add(proItem);
                     context.SaveChanges();
+                    status = "Success";
                 }
-                else
+                else if (Pro_count!=0 & proitem_count==0)
                 {
                     Product_items proItem = new Product_items();
                     proItem.prod_id = prod_id;
@@ -318,8 +344,8 @@ namespace AutobuyDirectApi.Controllers
 
                     context.Product_items.Add(proItem);
                     context.SaveChanges();
+                    status = "Success";
                 }
-                status = 1;
             }
             catch (Exception e)
             {
