@@ -65,6 +65,7 @@ namespace AutobuyDirectApi.Controllers
             string item_unit = "";
             decimal item_selling = 0;
             string item_Img = "";
+            int cartcount = 0;
             try
             {
                 user_id = (int)param.GetValue("userid");
@@ -72,31 +73,45 @@ namespace AutobuyDirectApi.Controllers
                 quantity = (int)param.GetValue("quantity");
 
                 var cart_item = context.Product_items.AsNoTracking().Where(a => a.id == item_id);
-
-                foreach(Product_items cr in cart_item)
+                cartcount = context.Carts.AsNoTracking().Where(a => a.cust_id == user_id && a.item_id == item_id).Count();
+                if (cartcount == 0)
                 {
-                    prod_id = (int)cr.prod_id;
-                    item_spec = cr.item_spec;
-                    item_unit = cr.item_unit;
-                    item_selling = (decimal)cr.item_selling;
-                    item_Img = cr.item_image;
+                    foreach (Product_items cr in cart_item)
+                    {
+                        prod_id = (int)cr.prod_id;
+                        item_spec = cr.item_spec;
+                        item_unit = cr.item_unit;
+                        item_selling = (decimal)cr.item_selling;
+                        item_Img = cr.item_image;
+                    }
+                    Cart car = new Cart();
+                    car.cust_id = user_id;
+                    car.prod_id = prod_id;
+                    car.basket_session = ""; // where it will be get
+                    car.item_id = item_id;
+                    car.quantity = quantity;
+                    car.item_spec = item_spec;
+                    car.item_unit = item_unit;
+                    car.item_selling = item_selling;
+                    car.item_img = item_Img;
+                    car.Created_date = DateTime.Now;
+                    car.Updated_date = DateTime.Now;
+                    car.cart_status = 1;
+                    context.Carts.Add(car);
+                    context.SaveChanges();
+                    status = 1;
                 }
-                Cart car = new Cart();
-                car.cust_id = user_id;  
-                car.prod_id = prod_id;
-                car.basket_session = ""; // where it will be get
-                car.item_id = item_id;
-                car.quantity = quantity;
-                car.item_spec = item_spec;
-                car.item_unit = item_unit;
-                car.item_selling = item_selling;
-                car.item_img = item_Img;
-                car.Created_date = DateTime.Now;
-                car.Updated_date = DateTime.Now;
-                car.cart_status = 1;
-                context.Carts.Add(car);
-                context.SaveChanges();
-                status = 1;
+                else if(cartcount!=0)
+                {
+                    var cart_table = context.Carts.Where(a => a.cust_id == user_id && a.item_id == item_id);
+                    foreach (Cart car in cart_table)
+                    {
+                        car.Updated_date = DateTime.Now;
+                        car.quantity = car.quantity + quantity;
+                    }
+                    context.SaveChanges();
+                    status = 1;
+                }
                
             }
             catch (Exception e)
@@ -116,7 +131,7 @@ namespace AutobuyDirectApi.Controllers
                 user_id = (int)param.GetValue("userid");
                 item_id = (int)param.GetValue("itemid");
 
-                var cart_table = context.Carts.Where(a => a.cust_id == user_id && a.prod_id == item_id);
+                var cart_table = context.Carts.Where(a => a.cust_id == user_id && a.item_id == item_id);
                 foreach (Cart car in cart_table)
                 {
                     car.Updated_date = DateTime.Now;
@@ -199,6 +214,7 @@ namespace AutobuyDirectApi.Controllers
             string item_unit = "";
             decimal item_selling = 0;
             string item_Img = "";
+            int wishcount = 0;
             try
             {
                 user_id = (int)param.GetValue("userid");
@@ -206,28 +222,43 @@ namespace AutobuyDirectApi.Controllers
 
                 var wish_item = context.Product_items.AsNoTracking().Where(a => a.id == item_id);
 
-                foreach (Product_items cr in wish_item)
+                wishcount = context.Wishlists.AsNoTracking().Where(a => a.item_id == item_id && a.cust_id == user_id).Count();
+                if (wishcount == 0)
                 {
-                    prod_id = (int)cr.prod_id;
-                    item_spec = cr.item_spec;
-                    item_unit = cr.item_unit;
-                    item_selling = (decimal)cr.item_selling;
-                    item_Img = cr.item_image;
+                    foreach (Product_items cr in wish_item)
+                    {
+                        prod_id = (int)cr.prod_id;
+                        item_spec = cr.item_spec;
+                        item_unit = cr.item_unit;
+                        item_selling = (decimal)cr.item_selling;
+                        item_Img = cr.item_image;
+                    }
+                    Wishlist wish = new Wishlist();
+                    wish.cust_id = user_id;
+                    wish.prod_id = prod_id;
+                    wish.item_id = item_id;
+                    wish.item_spec = item_spec;
+                    wish.item_unit = item_unit;
+                    wish.item_selling = item_selling;
+                    wish.item_img = item_Img;
+                    wish.Created_date = DateTime.Now;
+                    wish.Updated_date = DateTime.Now;
+                    wish.wish_status = 1;
+                    context.Wishlists.Add(wish);
+                    context.SaveChanges();
+                    status = 1;
                 }
-                Wishlist wish = new Wishlist();
-                wish.cust_id = user_id;
-                wish.prod_id = prod_id;
-                wish.item_id = item_id;
-                wish.item_spec = item_spec;
-                wish.item_unit = item_unit;
-                wish.item_selling = item_selling;
-                wish.item_img = item_Img;
-                wish.Created_date = DateTime.Now;
-                wish.Updated_date = DateTime.Now;
-                wish.wish_status = 1;
-                context.Wishlists.Add(wish);
-                context.SaveChanges();
-                status = 1;
+                else if(wishcount!=0)
+                {
+                    var wish_table = context.Wishlists.Where(a => a.cust_id == user_id && a.item_id == item_id);
+                    foreach (Wishlist wish in wish_table)
+                    {
+                        wish.Updated_date = DateTime.Now;
+                        wish.wish_status = 1;
+                    }
+                    context.SaveChanges();
+                    status = 1;
+                }
             }
             catch (Exception e)
             {

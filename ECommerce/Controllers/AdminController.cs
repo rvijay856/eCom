@@ -148,7 +148,8 @@ namespace AutobuyDirectApi.Controllers
                     new JProperty("item_selling", Bitems.item_selling),
                     new JProperty("item_stock", Bitems.item_stock),
                     new JProperty("item_image", Bitems.item_image),
-                    new JProperty("item_status", Bitems.item_status)
+                    new JProperty("item_status", Bitems.item_status),
+                    new JProperty("iswishlist",context.Wishlists.AsNoTracking().Where(a=>a.item_id== Bitems.prod_id).Count())
                     );
                 Brand_details_Spec.Add(Spec);
             }
