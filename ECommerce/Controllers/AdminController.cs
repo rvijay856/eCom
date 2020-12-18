@@ -95,7 +95,8 @@ namespace AutobuyDirectApi.Controllers
                         new JProperty("item_status", pi.item_status),
                         new JProperty("item_stock", pi.item_stock),
                         new JProperty("item_unit", pi.item_unit),
-                        new JProperty("prod_id", pi.prod_id)
+                        new JProperty("prod_id", pi.prod_id),
+                        new JProperty("iswishlist", context.Wishlists.AsNoTracking().Where(a => a.item_id == pi.id).Count())
                         );
                     items.Add(it);
                 }
