@@ -82,7 +82,7 @@ namespace AutobuyDirectApi.Providers
                         if (user != null)
                         {
 
-                            if (!string.IsNullOrEmpty(user.Where(u => (string.Equals(u.cust_email.Trim(), userid.Trim(), StringComparison.OrdinalIgnoreCase)) && u.cat_password == context.Password && u.cust_status == 1).FirstOrDefault().email))
+                            if (!string.IsNullOrEmpty(user.Where(u => (string.Equals(u.cust_email.Trim(), userid.Trim(), StringComparison.OrdinalIgnoreCase)) && u.cat_password == context.Password && u.cust_status == 1).FirstOrDefault().cust_email))
                             {
                                 var login1 = db.user_details.Where(a => a.email.Trim().ToLower() == userid.Trim().ToLower());
                                 //foreach (User_Info uf in login1)
