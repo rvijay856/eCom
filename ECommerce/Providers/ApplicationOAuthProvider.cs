@@ -25,10 +25,10 @@ namespace AutobuyDirectApi.Providers
         {
             context.Validated(); //   
         }
-        
+
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-           // var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+            // var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             //ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
@@ -71,8 +71,8 @@ namespace AutobuyDirectApi.Providers
                         userid = context.UserName.Substring(0, context.UserName.LastIndexOf("-pushid"));
                         pushid = context.UserName.Substring(context.UserName.LastIndexOf("-pushid") + 7);
                     }
-                    var user = db.user_details.ToList();
-                    user_type = (int)user.Where(a => a.email.Trim().ToLower() == userid.Trim().ToLower()).Select(a => a.user_type).Single();
+                    var user = db.Customers.ToList();
+                    //   user_type = (int)user.Where(a => a.cust_email.Trim().ToLower() == userid.Trim().ToLower()).Select(a => a.user_type).Single();
 
 
                     try
@@ -82,77 +82,44 @@ namespace AutobuyDirectApi.Providers
                         if (user != null)
                         {
 
-                            if (user_type == 20000)
+                            if (!string.IsNullOrEmpty(user.Where(u => (string.Equals(u.cust_email.Trim(), userid.Trim(), StringComparison.OrdinalIgnoreCase)) && u.cat_password == context.Password && u.cust_status == 1).FirstOrDefault().email))
                             {
-                                if (!string.IsNullOrEmpty(user.Where(u => (string.Equals(u.email.Trim(), userid.Trim(), StringComparison.OrdinalIgnoreCase)) && u.password == context.Password).FirstOrDefault().email))
-                                {
-                                    var login1 = db.user_details.Where(a => a.email.Trim().ToLower() == userid.Trim().ToLower());
-                                    //foreach (user_details uf in login1)
-                                    //{
-                                    //    uf.user_status = 1;
-                                    //    //uf.Push_id = pushid;  
-                                    //}
-                                    //db.SaveChanges();
+                                var login1 = db.user_details.Where(a => a.email.Trim().ToLower() == userid.Trim().ToLower());
+                                //foreach (User_Info uf in login1)
+                                //{
+                                //    uf.User_status = 1;
+                                //    if (pushid != null && pushid != "")
+                                //        uf.Push_id = pushid;
+                                //}
+                                //db.SaveChanges();
 
 
-                                    identity.AddClaim(new Claim(ClaimTypes.Role, userid));
+                                identity.AddClaim(new Claim(ClaimTypes.Role, userid));
 
-                                    var props = new AuthenticationProperties(new Dictionary<string, string>
-                                    {
-                                        {
-                                            "userdisplayname", userid
-                                        },
-                                        {
-                                             "role", "admin"
-                                        }
-                                     });
-
-                                    var ticket = new AuthenticationTicket(identity, props);
-                                    context.Validated(ticket);
-                                    context.Validated(identity);
-                                }
-                            }
-                            else if (user_type != 20000)
-                            {
-
-                                if (!string.IsNullOrEmpty(user.Where(u => (string.Equals(u.email.Trim(), userid.Trim(), StringComparison.OrdinalIgnoreCase)) && u.password == context.Password && u.user_status == 1).FirstOrDefault().email))
-                                {
-                                    var login1 = db.user_details.Where(a => a.email.Trim().ToLower() == userid.Trim().ToLower());
-                                    //foreach (User_Info uf in login1)
-                                    //{
-                                    //    uf.User_status = 1;
-                                    //    if (pushid != null && pushid != "")
-                                    //        uf.Push_id = pushid;
-                                    //}
-                                    //db.SaveChanges();
-
-
-                                    identity.AddClaim(new Claim(ClaimTypes.Role, userid));
-
-                                    var props = new AuthenticationProperties(new Dictionary<string, string>
+                                var props = new AuthenticationProperties(new Dictionary<string, string>
                                         {
                                             {
                                                 "userdisplayname", userid
                                             },
                                             {
-                                                 "role", "admin"
+                                                 "role", "customer"
                                             }
                                          });
 
-                                    var ticket = new AuthenticationTicket(identity, props);
-                                    context.Validated(ticket);
-                                    context.Validated(identity);
-                                }
+                                var ticket = new AuthenticationTicket(identity, props);
+                                context.Validated(ticket);
+                                context.Validated(identity);
+                            }
 
-                                else
-                                {
-                                    context.SetError("invalid_grant", "Provided username and password is incorrect");
+                            else
+                            {
+                                context.SetError("invalid_grant", "Provided username and password is incorrect");
 
-                                    context.Rejected();
-
-                                }
+                                context.Rejected();
 
                             }
+
+
                         }
                     }
                     catch (System.Exception e)
@@ -171,7 +138,7 @@ namespace AutobuyDirectApi.Providers
             }
 
         }
-            
+
     }
 
     public class RefreshTokenProvider : IAuthenticationTokenProvider

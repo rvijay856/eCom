@@ -33,12 +33,12 @@ namespace AutobuyDirectApi.Controllers
             JArray s = (JArray)d.GetValue("hai");
             string ab = (string)s[0];
 
-            var login = context.user_details.Where(a => a.email.Trim().ToLower() == ab.Trim().ToLower());
+            var login = context.Customers.Where(a => a.cust_email.Trim().ToLower() == ab.Trim().ToLower());
 
-            foreach (user_details uf in login)
+            foreach (Customer uf in login)
             {
-                user_id = uf.user_id;
-                user_status = (uf.user_status == null) ? 0 : (int)uf.user_status;
+                user_id = uf.cust_id;
+                user_status = (uf.cust_status == null) ? 0 : (int)uf.cust_status;
 
             }
             JObject bd = new JObject(
