@@ -13,6 +13,42 @@ namespace AutobuyDirectApi.Controllers
     public class InitController : ApiController
     {
         EcommEntities1 context = new EcommEntities1();
+        public JObject Login()
+        {
+
+            decimal user_id = 0;
+            int user_status = 0;
+
+            ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
+
+            //var claims = claimsIdentity.Claims.Select(x => new { type = x.Type, value = x.Value });
+
+            var claims1 = claimsIdentity.Claims.Select(x => x.Value);
+
+            JObject d = new JObject(
+
+                new JProperty("hai", claims1
+                ));
+
+            JArray s = (JArray)d.GetValue("hai");
+            string ab = (string)s[0];
+
+            var login = context.user_details.Where(a => a.email.Trim().ToLower() == ab.Trim().ToLower());
+
+            foreach (user_details uf in login)
+            {
+                user_id = uf.user_id;
+                user_status = (uf.user_status == null) ? 0 : (int)uf.user_status;
+
+            }
+            JObject bd = new JObject(
+
+                    new JProperty("User_id", user_id),
+                    new JProperty("Login_status", user_status));
+
+
+            return bd;
+        }
 
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/Blog/GetBlogs")]

@@ -1,5 +1,6 @@
 ﻿using AutobuyDirectApi.Models;
 using EcomErrorLog;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.CodeDom;
@@ -23,8 +24,20 @@ namespace AutobuyDirectApi.Controllers
         [System.Web.Http.Route("api/customer/GetCart/{user_id}")]
         public JObject GetCart(int user_id)
         {
+            int cust_id = 0;
+            int Login_status = 0;
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+
+
             int user_id_ = user_id;
-            var cartlist = context.Carts.AsNoTracking().Where(a => a.cust_id==user_id_ && a.cart_status==1);
+            var cartlist = context.Carts.AsNoTracking().Where(a => a.cust_id== cust_id && a.cart_status==1);
             JArray array = new JArray();
             foreach (Cart car in cartlist)
             {
