@@ -21,8 +21,8 @@ namespace AutobuyDirectApi.Controllers
         EcommEntities1 context = new EcommEntities1();
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/customer/GetCart/{user_id}")]
-        public JObject GetCart(int user_id)
+        [System.Web.Http.Route("api/customer/GetCart")]
+        public JObject GetCart()
         {
             int cust_id = 0;
             int Login_status = 0;
@@ -35,8 +35,6 @@ namespace AutobuyDirectApi.Controllers
             cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
             Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
 
-
-            int user_id_ = user_id;
             var cartlist = context.Carts.AsNoTracking().Where(a => a.cust_id== cust_id && a.cart_status==1);
             JArray array = new JArray();
             foreach (Cart car in cartlist)
@@ -67,10 +65,10 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public int addtocart(JObject param)
+        public int addtocart(JObject parame)
         {
             int status = 0;
-            int user_id =0;
+            //int user_id =0;
             int item_id = 0;
             int prod_id = 0;
             int quantity = 0;
@@ -79,14 +77,26 @@ namespace AutobuyDirectApi.Controllers
             decimal item_selling = 0;
             string item_Img = "";
             int cartcount = 0;
+            int cust_id = 0;
+            int Login_status = 0;
+
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
             try
             {
-                user_id = (int)param.GetValue("userid");
-                item_id = (int)param.GetValue("itemid");
-                quantity = (int)param.GetValue("quantity");
+
+                //user_id = cust_id;//(int)parame.GetValue("userid");
+                item_id = (int)parame.GetValue("itemid");
+                quantity = (int)parame.GetValue("quantity");
 
                 var cart_item = context.Product_items.AsNoTracking().Where(a => a.id == item_id);
-                cartcount = context.Carts.AsNoTracking().Where(a => a.cust_id == user_id && a.item_id == item_id).Count();
+                cartcount = context.Carts.AsNoTracking().Where(a => a.cust_id == cust_id && a.item_id == item_id).Count();
                 if (cartcount == 0)
                 {
                     foreach (Product_items cr in cart_item)
@@ -98,7 +108,7 @@ namespace AutobuyDirectApi.Controllers
                         item_Img = cr.item_image;
                     }
                     Cart car = new Cart();
-                    car.cust_id = user_id;
+                    car.cust_id = cust_id;
                     car.prod_id = prod_id;
                     car.basket_session = ""; // where it will be get
                     car.item_id = item_id;
@@ -116,7 +126,7 @@ namespace AutobuyDirectApi.Controllers
                 }
                 else if(cartcount!=0)
                 {
-                    var cart_table = context.Carts.Where(a => a.cust_id == user_id && a.item_id == item_id);
+                    var cart_table = context.Carts.Where(a => a.cust_id == cust_id && a.item_id == item_id);
                     foreach (Cart car in cart_table)
                     {
                         car.Updated_date = DateTime.Now;
@@ -134,17 +144,30 @@ namespace AutobuyDirectApi.Controllers
 
             return status;
         }
-        public int removefromcart(JObject param)
+        public int removefromcart(JObject parame)
         {
             int status = 0;
-            int user_id = 0;
+            //int user_id = 0;
             int item_id = 0;
+
+            int cust_id = 0;
+            int Login_status = 0;
+
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+
             try
             {
-                user_id = (int)param.GetValue("userid");
-                item_id = (int)param.GetValue("itemid");
+                //user_id = cust_id;// (int)parame.GetValue("userid");
+                item_id = (int)parame.GetValue("itemid");
 
-                var cart_table = context.Carts.Where(a => a.cust_id == user_id && a.item_id == item_id);
+                var cart_table = context.Carts.Where(a => a.cust_id == cust_id && a.item_id == item_id);
                 foreach (Cart car in cart_table)
                 {
                     car.Updated_date = DateTime.Now;
@@ -162,11 +185,22 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/customer/GetMyprofile/{user_id}")]
-        public JObject GetMyprofile(int user_id)
+        [System.Web.Http.Route("api/customer/GetMyprofile")]
+        public JObject GetMyprofile()
         {
-            int user_id_ = user_id;
-            var userlist = context.Customers.AsNoTracking().Where(a => a.cust_id == user_id_ && a.cust_status==1);
+            int cust_id = 0;
+            int Login_status = 0;
+
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+            
+            var userlist = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id && a.cust_status==1);
             JArray array = new JArray();
             foreach (Customer user in userlist)
             {
@@ -187,10 +221,21 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/customer/GetWishlist/{cus_id}")]
-        public JObject GetWishlist(int cus_id)
+        [System.Web.Http.Route("api/customer/GetWishlist")]
+        public JObject GetWishlist()
         {
-            int cust_id = cus_id;
+            int cust_id = 0;
+            int Login_status = 0;
+
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+
             var custwish = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1);
             JArray array = new JArray();
             foreach(Wishlist cus in custwish)
@@ -217,10 +262,10 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public int addtowish(JObject param)
+        public int addtowish(JObject parame)
         {
             int status = 0;
-            int user_id = 0;
+            //int user_id = 0;
             int item_id = 0;
             int prod_id = 0;
             string item_spec = "";
@@ -228,14 +273,27 @@ namespace AutobuyDirectApi.Controllers
             decimal item_selling = 0;
             string item_Img = "";
             int wishcount = 0;
+            int cust_id = 0;
+            int Login_status = 0;
+
+            
             try
             {
-                user_id = (int)param.GetValue("userid");
-                item_id = (int)param.GetValue("itemid");
+                InitController Login = new InitController();
+
+                JObject param = Login.Login();
+
+                string json = JsonConvert.SerializeObject(param);
+
+                cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+                Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+
+                //user_id = cust_id;// (int)parame.GetValue("userid");
+                item_id = (int)parame.GetValue("itemid");
 
                 var wish_item = context.Product_items.AsNoTracking().Where(a => a.id == item_id);
 
-                wishcount = context.Wishlists.AsNoTracking().Where(a => a.item_id == item_id && a.cust_id == user_id).Count();
+                wishcount = context.Wishlists.AsNoTracking().Where(a => a.item_id == item_id && a.cust_id == cust_id).Count();
                 if (wishcount == 0)
                 {
                     foreach (Product_items cr in wish_item)
@@ -247,7 +305,7 @@ namespace AutobuyDirectApi.Controllers
                         item_Img = cr.item_image;
                     }
                     Wishlist wish = new Wishlist();
-                    wish.cust_id = user_id;
+                    wish.cust_id = cust_id;
                     wish.prod_id = prod_id;
                     wish.item_id = item_id;
                     wish.item_spec = item_spec;
@@ -263,7 +321,7 @@ namespace AutobuyDirectApi.Controllers
                 }
                 else if(wishcount!=0)
                 {
-                    var wish_table = context.Wishlists.Where(a => a.cust_id == user_id && a.item_id == item_id);
+                    var wish_table = context.Wishlists.Where(a => a.cust_id == cust_id && a.item_id == item_id);
                     foreach (Wishlist wish in wish_table)
                     {
                         wish.Updated_date = DateTime.Now;
@@ -281,17 +339,29 @@ namespace AutobuyDirectApi.Controllers
             return status;
         }
 
-        public int removefromwish(JObject param)
+        public int removefromwish(JObject parame)
         {
             int status = 0;
-            int cust_id = 0;
+            //int cust_id = 0;
             //int prod_id = 0;
             int item_id = 0;
+            int cust_id = 0;
+            int Login_status = 0;
+
             try
             {
-                cust_id = (int)param.GetValue("userid");
+                InitController Login = new InitController();
+
+                JObject param = Login.Login();
+
+                string json = JsonConvert.SerializeObject(param);
+
+                cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+                Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+
+                //cust_id = (int)parame.GetValue("userid");
                 //prod_id = (int)param.GetValue("prodid");
-                item_id = (int)param.GetValue("itemid");
+                item_id = (int)parame.GetValue("itemid");
 
                 var wish_table = context.Wishlists.Where(a => a.cust_id == cust_id && a.item_id == item_id);
                 foreach (Wishlist wish in wish_table)
