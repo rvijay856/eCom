@@ -1,5 +1,6 @@
 ﻿using AutobuyDirectApi.Models;
 using EcomErrorLog;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.CodeDom;
@@ -20,11 +21,21 @@ namespace AutobuyDirectApi.Controllers
         EcommEntities1 context = new EcommEntities1();
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/Order/GetOrder/{cust_id}")]
-        public JObject GetOrder(int cust_id)
+        [System.Web.Http.Route("api/Order/GetOrder")]
+        public JObject GetOrder()
         {
-            int cus_id = cust_id;
-            var Pro_Order = context.Products_order.AsNoTracking().Where(a => a.cust_id == cus_id && a.order_status == 1);
+            int cust_id = 0;
+            int Login_status = 0;
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+
+            var Pro_Order = context.Products_order.AsNoTracking().Where(a => a.cust_id == cust_id && a.order_status == 1);
             JArray Order_array = new JArray();
             foreach (Products_order Prod_Order in Pro_Order)
             {
@@ -57,11 +68,21 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/Order/GetOrderList/{cust_id}")]
-        public JObject GetOrderList(int cust_id)
+        [System.Web.Http.Route("api/Order/GetOrderList")]
+        public JObject GetOrderList()
         {
-            int cus_id = cust_id;
-            var Pro_Order_List = context.Products_order_list.AsNoTracking().Where(a => a.cust_id == cus_id && a.order_list_status == 1);
+            int cust_id = 0;
+            int Login_status = 0;
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+
+            var Pro_Order_List = context.Products_order_list.AsNoTracking().Where(a => a.cust_id == cust_id && a.order_list_status == 1);
             JArray OrderList_array = new JArray();
             foreach (Products_order_list Prod_Order_List in Pro_Order_List)
             {

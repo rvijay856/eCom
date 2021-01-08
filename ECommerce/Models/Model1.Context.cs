@@ -38,5 +38,6 @@ namespace AutobuyDirectApi.Models
         public virtual DbSet<Wishlist> Wishlists { get; set; }
         public virtual DbSet<customer_address> customer_address { get; set; }
         public virtual DbSet<Customer_Payment> Customer_Payment { get; set; }
+        public virtual DbSet<Brand_Menu> Brand_Menu { get; set; }
     }
 }

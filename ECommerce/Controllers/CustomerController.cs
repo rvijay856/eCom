@@ -418,5 +418,34 @@ namespace AutobuyDirectApi.Controllers
 
             return final;
         }
+
+        public int CreateOrder(JObject parame)
+        {
+            int status = 0;
+            int cust_id = 0;
+            int Login_status = 0;
+            int item_id = 0;
+            int Qty = 0;
+            try
+            {
+                InitController Login = new InitController();
+
+                JObject param = Login.Login();
+
+                string json = JsonConvert.SerializeObject(param);
+
+                cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
+                Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+
+                item_id= (int)parame.GetValue("itemid");
+                Qty= (int)parame.GetValue("Qty");
+            }
+            catch(Exception e)
+            {
+                Logdetails.LogError("Post Error", "createorder customercontroller (188)", e.Message);
+            }
+
+            return status;
+        }
     }
 }

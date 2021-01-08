@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EcommModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brand_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brand_Title" Type="varchar" MaxLength="50" />
+          <Property Name="Barnd_Section" Type="varchar" MaxLength="50" />
+          <Property Name="Brand_Order" Type="int" />
+          <Property Name="Brand_Img" Type="varchar(max)" />
+          <Property Name="Brand_Status" Type="int" />
+          <Property Name="Created_Date" Type="date" />
+          <Property Name="Updated_Date" Type="date" />
+        </EntityType>
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="id" />
@@ -211,6 +224,7 @@
           <Property Name="item_img" Type="varchar(max)" />
         </EntityType>
         <EntityContainer Name="EcommModelStoreContainer">
+          <EntitySet Name="Brand_Menu" EntityType="Self.Brand_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer_address" EntityType="Self.customer_address" Schema="dbo" store:Type="Tables" />
@@ -413,6 +427,7 @@
           <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
           <EntitySet Name="customer_address" EntityType="EcommModel.customer_address" />
           <EntitySet Name="Customer_Payment" EntityType="EcommModel.Customer_Payment" />
+          <EntitySet Name="Brand_Menu" EntityType="EcommModel.Brand_Menu" />
         </EntityContainer>
         <EntityType Name="customer_address">
           <Key>
@@ -448,6 +463,19 @@
           <Property Name="updated_at" Type="DateTime" Precision="3" />
           <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="payment_amount" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Brand_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Barnd_Section" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Brand_Order" Type="Int32" />
+          <Property Name="Brand_Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Brand_Status" Type="Int32" />
+          <Property Name="Created_Date" Type="DateTime" Precision="0" />
+          <Property Name="Updated_Date" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -670,6 +698,20 @@
                 <ScalarProperty Name="Card_no" ColumnName="Card_no" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brand_Menu">
+            <EntityTypeMapping TypeName="EcommModel.Brand_Menu">
+              <MappingFragment StoreEntitySet="Brand_Menu">
+                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Brand_Status" ColumnName="Brand_Status" />
+                <ScalarProperty Name="Brand_Img" ColumnName="Brand_Img" />
+                <ScalarProperty Name="Brand_Order" ColumnName="Brand_Order" />
+                <ScalarProperty Name="Barnd_Section" ColumnName="Barnd_Section" />
+                <ScalarProperty Name="Brand_Title" ColumnName="Brand_Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
