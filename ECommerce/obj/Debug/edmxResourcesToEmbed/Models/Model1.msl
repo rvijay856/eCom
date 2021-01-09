@@ -219,5 +219,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Brand_Menu">
+      <EntityTypeMapping TypeName="EcommModel.Brand_Menu">
+        <MappingFragment StoreEntitySet="Brand_Menu">
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Brand_Status" ColumnName="Brand_Status" />
+          <ScalarProperty Name="Brand_Img" ColumnName="Brand_Img" />
+          <ScalarProperty Name="Brand_Order" ColumnName="Brand_Order" />
+          <ScalarProperty Name="Barnd_Section" ColumnName="Barnd_Section" />
+          <ScalarProperty Name="Brand_Title" ColumnName="Brand_Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

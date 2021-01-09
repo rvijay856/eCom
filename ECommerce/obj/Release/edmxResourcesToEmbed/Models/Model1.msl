@@ -23,6 +23,9 @@
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="EcommModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="cust_type" ColumnName="cust_type" />
+          <ScalarProperty Name="Last_login" ColumnName="Last_login" />
+          <ScalarProperty Name="cust_address_id" ColumnName="cust_address_id" />
           <ScalarProperty Name="cust_id" ColumnName="cust_id" />
           <ScalarProperty Name="cust_name" ColumnName="cust_name" />
           <ScalarProperty Name="cust_email" ColumnName="cust_email" />
@@ -216,6 +219,20 @@
           <ScalarProperty Name="Card_no" ColumnName="Card_no" />
           <ScalarProperty Name="customer_id" ColumnName="customer_id" />
           <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Brand_Menu">
+      <EntityTypeMapping TypeName="EcommModel.Brand_Menu">
+        <MappingFragment StoreEntitySet="Brand_Menu">
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Brand_Status" ColumnName="Brand_Status" />
+          <ScalarProperty Name="Brand_Img" ColumnName="Brand_Img" />
+          <ScalarProperty Name="Brand_Order" ColumnName="Brand_Order" />
+          <ScalarProperty Name="Barnd_Section" ColumnName="Barnd_Section" />
+          <ScalarProperty Name="Brand_Title" ColumnName="Brand_Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

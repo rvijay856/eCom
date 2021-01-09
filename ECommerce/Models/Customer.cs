@@ -24,5 +24,8 @@ namespace AutobuyDirectApi.Models
         public string cat_password { get; set; }
         public Nullable<System.DateTime> Created_date { get; set; }
         public Nullable<System.DateTime> Updated_date { get; set; }
+        public Nullable<int> cust_address_id { get; set; }
+        public Nullable<System.DateTime> Last_login { get; set; }
+        public Nullable<int> cust_type { get; set; }
     }
 }

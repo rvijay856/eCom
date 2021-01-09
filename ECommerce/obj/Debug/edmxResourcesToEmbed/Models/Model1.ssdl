@@ -1,5 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EcommModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Brand_Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Brand_Title" Type="varchar" MaxLength="50" />
+    <Property Name="Barnd_Section" Type="varchar" MaxLength="50" />
+    <Property Name="Brand_Order" Type="int" />
+    <Property Name="Brand_Img" Type="varchar(max)" />
+    <Property Name="Brand_Status" Type="int" />
+    <Property Name="Created_Date" Type="date" />
+    <Property Name="Updated_Date" Type="date" />
+  </EntityType>
   <EntityType Name="Cart">
     <Key>
       <PropertyRef Name="id" />
@@ -206,6 +219,7 @@
     <Property Name="item_img" Type="varchar(max)" />
   </EntityType>
   <EntityContainer Name="EcommModelStoreContainer">
+    <EntitySet Name="Brand_Menu" EntityType="Self.Brand_Menu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="customer_address" EntityType="Self.customer_address" Schema="dbo" store:Type="Tables" />

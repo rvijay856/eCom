@@ -128,6 +128,8 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.Authorize]
+        //[System.Web.Http.HttpGet]
+        //[System.Web.Http.Route("api/Sigup/GetUserClaims")]
         public JObject GetUserClaims()
         {
 
@@ -143,40 +145,59 @@ namespace AutobuyDirectApi.Controllers
             string ab = (string)s[0];
             
 
-            var user_deta = context.user_details.AsNoTracking().Where(a => a.email == ab);
+            var user_deta = context.Customers.AsNoTracking().Where(a => a.cust_email == ab);
 
             decimal user_id = 0;
-            var fname = "";
-            var lname = "";
+            var name = "";
             var email = "";
             var address = "";
-            int user_type=0;
+            var city = "";
+            var state = "";
+            var country = "";
+            var pincode = "";
+            var mobile = "";
+            var last_Login = "";
+            int user_type = 0;
 
-            foreach (user_details urd in user_deta)
+
+            foreach (Customer urd in user_deta)
             {
-                user_id = urd.user_id;
-                fname = urd.fname;
-                lname = urd.lname;
-                email = urd.email;
-                address = urd.address;
-                user_type = urd.user_type;
+                user_id = urd.cust_id;
+                name = urd.cust_name;
+                email = urd.cust_email;
+                user_type = (int)urd.cust_type;
+                if (urd.cust_address_id != null && urd.cust_address_id != 0)
+                {
+                    address = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_address1).Single();
+                    city = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_city).Single();
+                    state = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_area).Single();
+                    country = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_country).Single();
+                    pincode = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_pincode).Single().ToString();
+                    mobile = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_mobile).Single().ToString();
+                }
+                last_Login = urd.Last_login.ToString();
             }
             JObject ud = new JObject(
                 new JProperty("user_id", user_id),
-                 new JProperty("fname", fname),          
-                 new JProperty("lname", lname),
+                 new JProperty("name", name),          
                  new JProperty("email", email),
+                 new JProperty("user_type", user_type),
                  new JProperty("address", address),
-                 new JProperty("user_type", user_type)
+                 new JProperty("city", city),
+                 new JProperty("state", state),
+                 new JProperty("country", country),
+                 new JProperty("pincode", pincode),
+                 new JProperty("mobile", mobile),
+                 new JProperty("last_Login", last_Login)
                 ); ;
             DateTime lastlogin = DateTime.Now;
 
            
-            var users = context.user_details.Where(x => x.user_id== user_id);
+            var users = context.Customers.Where(x => x.cust_id== user_id);
 
-            foreach (user_details user in users)
+            foreach (Customer user in users)
             {
-                user.last_login = lastlogin;
+                user.Last_login = lastlogin;
 
             }
             context.SaveChanges();

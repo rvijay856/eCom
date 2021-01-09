@@ -184,6 +184,7 @@
     <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
     <EntitySet Name="customer_address" EntityType="EcommModel.customer_address" />
     <EntitySet Name="Customer_Payment" EntityType="EcommModel.Customer_Payment" />
+    <EntitySet Name="Brand_Menu" EntityType="EcommModel.Brand_Menu" />
   </EntityContainer>
   <EntityType Name="customer_address">
     <Key>
@@ -219,5 +220,18 @@
     <Property Name="updated_at" Type="DateTime" Precision="3" />
     <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="payment_amount" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Brand_Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Brand_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Barnd_Section" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Brand_Order" Type="Int32" />
+    <Property Name="Brand_Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Brand_Status" Type="Int32" />
+    <Property Name="Created_Date" Type="DateTime" Precision="0" />
+    <Property Name="Updated_Date" Type="DateTime" Precision="0" />
   </EntityType>
 </Schema>

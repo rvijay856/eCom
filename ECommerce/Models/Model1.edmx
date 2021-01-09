@@ -44,12 +44,15 @@
           <Property Name="cust_name" Type="varchar" MaxLength="50" />
           <Property Name="cust_email" Type="varchar" MaxLength="50" />
           <Property Name="cust_mobile" Type="varchar(max)" />
+          <Property Name="cust_type" Type="int" />
           <Property Name="cust_status" Type="int" />
+          <Property Name="cust_address_id" Type="int" />
           <Property Name="cust_pincode" Type="int" />
           <Property Name="cust_otp" Type="int" />
           <Property Name="cat_password" Type="varchar" MaxLength="50" />
           <Property Name="Created_date" Type="datetime" />
           <Property Name="Updated_date" Type="datetime" />
+          <Property Name="Last_login" Type="datetime" />
         </EntityType>
         <EntityType Name="customer_address">
           <Key>
@@ -275,6 +278,9 @@
           <Property Name="cat_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Created_date" Type="DateTime" Precision="3" />
           <Property Name="Updated_date" Type="DateTime" Precision="3" />
+          <Property Name="cust_address_id" Type="Int32" />
+          <Property Name="Last_login" Type="DateTime" Precision="3" />
+          <Property Name="cust_type" Type="Int32" />
         </EntityType>
         <EntityType Name="Postal_Code">
           <Key>
@@ -505,6 +511,9 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="EcommModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="cust_type" ColumnName="cust_type" />
+                <ScalarProperty Name="Last_login" ColumnName="Last_login" />
+                <ScalarProperty Name="cust_address_id" ColumnName="cust_address_id" />
                 <ScalarProperty Name="cust_id" ColumnName="cust_id" />
                 <ScalarProperty Name="cust_name" ColumnName="cust_name" />
                 <ScalarProperty Name="cust_email" ColumnName="cust_email" />
