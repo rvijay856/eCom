@@ -39,12 +39,15 @@
     <Property Name="cust_name" Type="varchar" MaxLength="50" />
     <Property Name="cust_email" Type="varchar" MaxLength="50" />
     <Property Name="cust_mobile" Type="varchar(max)" />
+    <Property Name="cust_type" Type="int" />
     <Property Name="cust_status" Type="int" />
+    <Property Name="cust_address_id" Type="int" />
     <Property Name="cust_pincode" Type="int" />
     <Property Name="cust_otp" Type="int" />
     <Property Name="cat_password" Type="varchar" MaxLength="50" />
     <Property Name="Created_date" Type="datetime" />
     <Property Name="Updated_date" Type="datetime" />
+    <Property Name="Last_login" Type="datetime" />
   </EntityType>
   <EntityType Name="customer_address">
     <Key>

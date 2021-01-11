@@ -127,7 +127,7 @@ namespace AutobuyDirectApi.Controllers
             return final;
         }
 
-        [System.Web.Http.Authorize]
+        //[System.Web.Http.Authorize]
         //[System.Web.Http.HttpGet]
         //[System.Web.Http.Route("api/Sigup/GetUserClaims")]
         public JObject GetUserClaims()

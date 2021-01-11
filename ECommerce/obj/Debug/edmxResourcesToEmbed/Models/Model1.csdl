@@ -32,6 +32,9 @@
     <Property Name="cat_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Created_date" Type="DateTime" Precision="3" />
     <Property Name="Updated_date" Type="DateTime" Precision="3" />
+    <Property Name="cust_address_id" Type="Int32" />
+    <Property Name="Last_login" Type="DateTime" Precision="3" />
+    <Property Name="cust_type" Type="Int32" />
   </EntityType>
   <EntityType Name="Postal_Code">
     <Key>

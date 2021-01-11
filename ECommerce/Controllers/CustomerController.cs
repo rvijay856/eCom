@@ -16,6 +16,7 @@ using System.Web.UI;
 
 namespace AutobuyDirectApi.Controllers
 {
+    [System.Web.Http.Authorize]
     public class CustomerController : ApiController
     {
         EcommEntities1 context = new EcommEntities1();

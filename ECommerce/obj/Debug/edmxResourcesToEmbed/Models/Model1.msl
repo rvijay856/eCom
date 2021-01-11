@@ -23,6 +23,9 @@
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="EcommModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="cust_type" ColumnName="cust_type" />
+          <ScalarProperty Name="Last_login" ColumnName="Last_login" />
+          <ScalarProperty Name="cust_address_id" ColumnName="cust_address_id" />
           <ScalarProperty Name="cust_id" ColumnName="cust_id" />
           <ScalarProperty Name="cust_name" ColumnName="cust_name" />
           <ScalarProperty Name="cust_email" ColumnName="cust_email" />
