@@ -32,8 +32,8 @@ namespace AutobuyDirectApi.Controllers
 
             string json = JsonConvert.SerializeObject(param);
 
-            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
 
             var Pro_Order = context.Products_order.AsNoTracking().Where(a => a.cust_id == cust_id && a.order_status == 1);
             JArray Order_array = new JArray();
@@ -79,8 +79,8 @@ namespace AutobuyDirectApi.Controllers
 
             string json = JsonConvert.SerializeObject(param);
 
-            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
 
             var Pro_Order_List = context.Products_order_list.AsNoTracking().Where(a => a.cust_id == cust_id && a.order_list_status == 1);
             JArray OrderList_array = new JArray();

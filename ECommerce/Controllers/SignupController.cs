@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.IO;
 using EcomSMS;
+using Newtonsoft.Json;
 
 namespace AutobuyDirectApi.Controllers
 {
@@ -127,25 +128,25 @@ namespace AutobuyDirectApi.Controllers
             return final;
         }
 
-        //[System.Web.Http.Authorize]
-        //[System.Web.Http.HttpGet]
-        //[System.Web.Http.Route("api/Sigup/GetUserClaims")]
+        [System.Web.Http.Authorize]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Signup/GetUserClaims")]
         public JObject GetUserClaims()
         {
 
-            ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
+            int cust_id = 0;
+            int Login_status = 0;
+            InitController Login = new InitController();
 
-            var claims1 = claimsIdentity.Claims.Select(x => x.Value);
+            JObject param = Login.Login();
 
-            JObject d = new JObject(
-                new JProperty("hai", claims1
-                ));
+            string json = JsonConvert.SerializeObject(param);
 
-            JArray s = (JArray)d.GetValue("hai");
-            string ab = (string)s[0];
-            
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
 
-            var user_deta = context.Customers.AsNoTracking().Where(a => a.cust_email == ab);
+
+            var user_deta = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id);
 
             decimal user_id = 0;
             var name = "";
@@ -250,11 +251,22 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/Sigup/GetOtp/{Cust_ID}/{Otp}")]
-        public JObject GetOtp(int Cust_ID,int Otp)
+        [System.Web.Http.Route("api/Sigup/GetOtp/{Otp}")]
+        public JObject GetOtp(int Otp)
         {
+            int cust_id = 0;
+            int Login_status = 0;
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
+
             JObject final = new JObject();
-            int check_otp = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == Cust_ID).Select(a => a.cust_otp).Single();
+            int check_otp = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_otp).Single();
             if (check_otp==Otp)
             {
                 final = new JObject(

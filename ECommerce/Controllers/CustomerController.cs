@@ -33,8 +33,8 @@ namespace AutobuyDirectApi.Controllers
 
             string json = JsonConvert.SerializeObject(param);
 
-            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
 
             var cartlist = context.Carts.AsNoTracking().Where(a => a.cust_id== cust_id && a.cart_status==1);
             JArray array = new JArray();
@@ -87,8 +87,8 @@ namespace AutobuyDirectApi.Controllers
 
             string json = JsonConvert.SerializeObject(param);
 
-            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
             try
             {
 
@@ -160,8 +160,8 @@ namespace AutobuyDirectApi.Controllers
 
             string json = JsonConvert.SerializeObject(param);
 
-            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
 
             try
             {
@@ -198,9 +198,9 @@ namespace AutobuyDirectApi.Controllers
 
             string json = JsonConvert.SerializeObject(param);
 
-            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
-            
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
+
             var userlist = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id && a.cust_status==1);
             JArray array = new JArray();
             foreach (Customer user in userlist)
@@ -234,8 +234,8 @@ namespace AutobuyDirectApi.Controllers
 
             string json = JsonConvert.SerializeObject(param);
 
-            cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-            Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
 
             var custwish = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1);
             JArray array = new JArray();
@@ -286,8 +286,8 @@ namespace AutobuyDirectApi.Controllers
 
                 string json = JsonConvert.SerializeObject(param);
 
-                cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-                Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+                cust_id = (int)JObject.Parse(json)["User_id"];
+                Login_status = (int)JObject.Parse(json)["Login_status"];
 
                 //user_id = cust_id;// (int)parame.GetValue("userid");
                 item_id = (int)parame.GetValue("itemid");
@@ -357,8 +357,8 @@ namespace AutobuyDirectApi.Controllers
 
                 string json = JsonConvert.SerializeObject(param);
 
-                cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-                Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+                cust_id = (int)JObject.Parse(json)["User_id"];
+                Login_status = (int)JObject.Parse(json)["Login_status"];
 
                 //cust_id = (int)parame.GetValue("userid");
                 //prod_id = (int)param.GetValue("prodid");
@@ -435,10 +435,10 @@ namespace AutobuyDirectApi.Controllers
 
                 string json = JsonConvert.SerializeObject(param);
 
-                cust_id = (int)JObject.Parse(json)["Login"]["User_id"];
-                Login_status = (int)JObject.Parse(json)["Login"]["Login_status"];
+                cust_id = (int)JObject.Parse(json)["User_id"];
+                Login_status = (int)JObject.Parse(json)["Login_status"];
 
-                item_id= (int)parame.GetValue("itemid");
+                item_id = (int)parame.GetValue("itemid");
                 Qty= (int)parame.GetValue("Qty");
             }
             catch(Exception e)
