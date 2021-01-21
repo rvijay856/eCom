@@ -13,10 +13,10 @@ namespace AutobuyDirectApi.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EcommEntities1 : DbContext
+    public partial class EcommEntities : DbContext
     {
-        public EcommEntities1()
-            : base("name=EcommEntities1")
+        public EcommEntities()
+            : base("name=EcommEntities")
         {
         }
     
@@ -25,19 +25,18 @@ namespace AutobuyDirectApi.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Brand_Menu> Brand_Menu { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<customer_address> customer_address { get; set; }
+        public virtual DbSet<Customer_Payment> Customer_Payment { get; set; }
         public virtual DbSet<Postal_Code> Postal_Code { get; set; }
         public virtual DbSet<Product_Category> Product_Category { get; set; }
         public virtual DbSet<Product_items> Product_items { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Products_order> Products_order { get; set; }
         public virtual DbSet<Products_order_list> Products_order_list { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user_details> user_details { get; set; }
         public virtual DbSet<Wishlist> Wishlists { get; set; }
-        public virtual DbSet<customer_address> customer_address { get; set; }
-        public virtual DbSet<Customer_Payment> Customer_Payment { get; set; }
-        public virtual DbSet<Brand_Menu> Brand_Menu { get; set; }
     }
 }

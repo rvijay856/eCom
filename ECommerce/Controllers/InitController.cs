@@ -12,7 +12,7 @@ namespace AutobuyDirectApi.Controllers
 {
     public class InitController : ApiController
     {
-        EcommEntities1 context = new EcommEntities1();
+        EcommEntities context = new EcommEntities();
         public JObject Login()
         {
 

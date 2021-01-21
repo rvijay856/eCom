@@ -25,9 +25,6 @@ namespace EcomErrorLog
                 }
                 using (StreamWriter w = File.AppendText(sPath))
                 {
-
-
-
                     w.WriteLine("___________________________________________________START_______________________________________________");
                     w.WriteLine("\r\nLog Entry : ");
                     w.WriteLine("{0}", DateTime.Now.ToString(CultureInfo.InvariantCulture));

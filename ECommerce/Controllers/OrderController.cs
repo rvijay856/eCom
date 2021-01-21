@@ -18,7 +18,7 @@ namespace AutobuyDirectApi.Controllers
 {
     public class OrderController : ApiController
     {
-        EcommEntities1 context = new EcommEntities1();
+        EcommEntities context = new EcommEntities();
 
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/Order/GetOrder")]

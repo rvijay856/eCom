@@ -55,7 +55,7 @@ namespace AutobuyDirectApi.Providers
 
             context.OwinContext.Response.Headers.Set("Access-Control-Allow-Origin", "*");
 
-            using (var db = new EcommEntities1())
+            using (var db = new EcommEntities())
             {
                 if (db != null)
                 {
@@ -84,7 +84,7 @@ namespace AutobuyDirectApi.Providers
 
                             if (!string.IsNullOrEmpty(user.Where(u => (string.Equals(u.cust_email.Trim(), userid.Trim(), StringComparison.OrdinalIgnoreCase)) && u.cat_password == context.Password && u.cust_status == 1).FirstOrDefault().cust_email))
                             {
-                                var login1 = db.user_details.Where(a => a.email.Trim().ToLower() == userid.Trim().ToLower());
+                                var login1 = db.Customers.Where(a => a.cust_email.Trim().ToLower() == userid.Trim().ToLower());
                                 //foreach (User_Info uf in login1)
                                 //{
                                 //    uf.User_status = 1;

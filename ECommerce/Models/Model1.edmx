@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EcommModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EcommModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brand_Menu">
           <Key>
             <PropertyRef Name="Id" />
@@ -185,16 +185,6 @@
           <Property Name="Created_date" Type="datetime" />
           <Property Name="Updated_date" Type="datetime" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="user_details">
           <Key>
             <PropertyRef Name="user_id" />
@@ -238,14 +228,27 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products_order" EntityType="Self.Products_order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products_order_list" EntityType="Self.Products_order_list" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_details" EntityType="Self.user_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EcommModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Brand_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Barnd_Section" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Brand_Order" Type="Int32" />
+          <Property Name="Brand_Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Brand_Status" Type="Int32" />
+          <Property Name="Created_Date" Type="DateTime" Precision="0" />
+          <Property Name="Updated_Date" Type="DateTime" Precision="0" />
+        </EntityType>
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="id" />
@@ -272,15 +275,50 @@
           <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cust_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cust_mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cust_type" Type="Int32" />
           <Property Name="cust_status" Type="Int32" />
+          <Property Name="cust_address_id" Type="Int32" />
           <Property Name="cust_pincode" Type="Int32" />
           <Property Name="cust_otp" Type="Int32" />
           <Property Name="cat_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Created_date" Type="DateTime" Precision="3" />
           <Property Name="Updated_date" Type="DateTime" Precision="3" />
-          <Property Name="cust_address_id" Type="Int32" />
           <Property Name="Last_login" Type="DateTime" Precision="3" />
-          <Property Name="cust_type" Type="Int32" />
+        </EntityType>
+        <EntityType Name="customer_address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_id" Type="Int32" />
+          <Property Name="customer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customer_address1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customer_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customer_area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customer_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_pincode" Type="Int32" />
+          <Property Name="customer_mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="address_status" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Customer_Payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_id" Type="Int32" />
+          <Property Name="Card_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Card_type" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Expiration_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Security_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CardHolderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="payment_status" Type="Int32" />
+          <Property Name="card_status" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="payment_amount" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Postal_Code">
           <Key>
@@ -299,10 +337,10 @@
           <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cat_slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cat_parent" Type="Int32" />
+          <Property Name="cat_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="cat_status" Type="Int32" />
           <Property Name="Created_date" Type="DateTime" Precision="3" />
           <Property Name="Updated_date" Type="DateTime" Precision="3" />
-          <Property Name="cat_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Product_items">
           <Key>
@@ -378,16 +416,6 @@
           <Property Name="Created_date" Type="DateTime" Precision="3" />
           <Property Name="Updated_date" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="user_details">
           <Key>
             <PropertyRef Name="user_id" />
@@ -419,83 +447,44 @@
           <Property Name="item_selling" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="item_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="EcommEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EcommEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brand_Menu" EntityType="Self.Brand_Menu" />
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="customer_address" EntityType="Self.customer_address" />
+          <EntitySet Name="Customer_Payment" EntityType="Self.Customer_Payment" />
           <EntitySet Name="Postal_Code" EntityType="Self.Postal_Code" />
           <EntitySet Name="Product_Category" EntityType="Self.Product_Category" />
           <EntitySet Name="Product_items" EntityType="Self.Product_items" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Products_order" EntityType="Self.Products_order" />
           <EntitySet Name="Products_order_list" EntityType="Self.Products_order_list" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="user_details" EntityType="Self.user_details" />
           <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
-          <EntitySet Name="customer_address" EntityType="EcommModel.customer_address" />
-          <EntitySet Name="Customer_Payment" EntityType="EcommModel.Customer_Payment" />
-          <EntitySet Name="Brand_Menu" EntityType="EcommModel.Brand_Menu" />
         </EntityContainer>
-        <EntityType Name="customer_address">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="customer_id" Type="Int32" />
-          <Property Name="customer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="customer_address1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="customer_city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="customer_area" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="customer_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="customer_pincode" Type="Int32" />
-          <Property Name="customer_mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="address_status" Type="Int32" Nullable="false" />
-          <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="updated_at" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="Customer_Payment">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="customer_id" Type="Int32" />
-          <Property Name="Card_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Card_type" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Expiration_date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Security_code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CardHolderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="payment_status" Type="Int32" />
-          <Property Name="card_status" Type="Int32" Nullable="false" />
-          <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="updated_at" Type="DateTime" Precision="3" />
-          <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="payment_amount" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="Brand_Menu">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Brand_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Barnd_Section" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Brand_Order" Type="Int32" />
-          <Property Name="Brand_Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Brand_Status" Type="Int32" />
-          <Property Name="Created_Date" Type="DateTime" Precision="0" />
-          <Property Name="Updated_Date" Type="DateTime" Precision="0" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EcommModelStoreContainer" CdmEntityContainer="EcommEntities1">
+        <EntityContainerMapping StorageEntityContainer="EcommModelStoreContainer" CdmEntityContainer="EcommEntities">
+          <EntitySetMapping Name="Brand_Menu">
+            <EntityTypeMapping TypeName="EcommModel.Brand_Menu">
+              <MappingFragment StoreEntitySet="Brand_Menu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Brand_Title" ColumnName="Brand_Title" />
+                <ScalarProperty Name="Barnd_Section" ColumnName="Barnd_Section" />
+                <ScalarProperty Name="Brand_Order" ColumnName="Brand_Order" />
+                <ScalarProperty Name="Brand_Img" ColumnName="Brand_Img" />
+                <ScalarProperty Name="Brand_Status" ColumnName="Brand_Status" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="EcommModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
-                <ScalarProperty Name="item_img" ColumnName="item_img" />
-                <ScalarProperty Name="item_selling" ColumnName="item_selling" />
-                <ScalarProperty Name="item_unit" ColumnName="item_unit" />
-                <ScalarProperty Name="item_spec" ColumnName="item_spec" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="basket_session" ColumnName="basket_session" />
                 <ScalarProperty Name="prod_id" ColumnName="prod_id" />
@@ -505,25 +494,66 @@
                 <ScalarProperty Name="cart_status" ColumnName="cart_status" />
                 <ScalarProperty Name="Created_date" ColumnName="Created_date" />
                 <ScalarProperty Name="Updated_date" ColumnName="Updated_date" />
+                <ScalarProperty Name="item_spec" ColumnName="item_spec" />
+                <ScalarProperty Name="item_unit" ColumnName="item_unit" />
+                <ScalarProperty Name="item_selling" ColumnName="item_selling" />
+                <ScalarProperty Name="item_img" ColumnName="item_img" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="EcommModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="cust_type" ColumnName="cust_type" />
-                <ScalarProperty Name="Last_login" ColumnName="Last_login" />
-                <ScalarProperty Name="cust_address_id" ColumnName="cust_address_id" />
                 <ScalarProperty Name="cust_id" ColumnName="cust_id" />
                 <ScalarProperty Name="cust_name" ColumnName="cust_name" />
                 <ScalarProperty Name="cust_email" ColumnName="cust_email" />
                 <ScalarProperty Name="cust_mobile" ColumnName="cust_mobile" />
+                <ScalarProperty Name="cust_type" ColumnName="cust_type" />
                 <ScalarProperty Name="cust_status" ColumnName="cust_status" />
+                <ScalarProperty Name="cust_address_id" ColumnName="cust_address_id" />
                 <ScalarProperty Name="cust_pincode" ColumnName="cust_pincode" />
                 <ScalarProperty Name="cust_otp" ColumnName="cust_otp" />
                 <ScalarProperty Name="cat_password" ColumnName="cat_password" />
                 <ScalarProperty Name="Created_date" ColumnName="Created_date" />
                 <ScalarProperty Name="Updated_date" ColumnName="Updated_date" />
+                <ScalarProperty Name="Last_login" ColumnName="Last_login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_address">
+            <EntityTypeMapping TypeName="EcommModel.customer_address">
+              <MappingFragment StoreEntitySet="customer_address">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_address1" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_city" ColumnName="customer_city" />
+                <ScalarProperty Name="customer_area" ColumnName="customer_area" />
+                <ScalarProperty Name="customer_country" ColumnName="customer_country" />
+                <ScalarProperty Name="customer_pincode" ColumnName="customer_pincode" />
+                <ScalarProperty Name="customer_mobile" ColumnName="customer_mobile" />
+                <ScalarProperty Name="address_status" ColumnName="address_status" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_Payment">
+            <EntityTypeMapping TypeName="EcommModel.Customer_Payment">
+              <MappingFragment StoreEntitySet="Customer_Payment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="Card_no" ColumnName="Card_no" />
+                <ScalarProperty Name="Card_type" ColumnName="Card_type" />
+                <ScalarProperty Name="Expiration_date" ColumnName="Expiration_date" />
+                <ScalarProperty Name="Security_code" ColumnName="Security_code" />
+                <ScalarProperty Name="CardHolderName" ColumnName="CardHolderName" />
+                <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+                <ScalarProperty Name="card_status" ColumnName="card_status" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="payment_type" ColumnName="payment_type" />
+                <ScalarProperty Name="payment_amount" ColumnName="payment_amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -540,11 +570,11 @@
           <EntitySetMapping Name="Product_Category">
             <EntityTypeMapping TypeName="EcommModel.Product_Category">
               <MappingFragment StoreEntitySet="Product_Category">
-                <ScalarProperty Name="cat_img" ColumnName="cat_img" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="cat_name" ColumnName="cat_name" />
                 <ScalarProperty Name="cat_slug" ColumnName="cat_slug" />
                 <ScalarProperty Name="cat_parent" ColumnName="cat_parent" />
+                <ScalarProperty Name="cat_img" ColumnName="cat_img" />
                 <ScalarProperty Name="cat_status" ColumnName="cat_status" />
                 <ScalarProperty Name="Created_date" ColumnName="Created_date" />
                 <ScalarProperty Name="Updated_date" ColumnName="Updated_date" />
@@ -629,17 +659,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="EcommModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="user_details">
             <EntityTypeMapping TypeName="EcommModel.user_details">
               <MappingFragment StoreEntitySet="user_details">
@@ -659,10 +678,6 @@
           <EntitySetMapping Name="Wishlists">
             <EntityTypeMapping TypeName="EcommModel.Wishlist">
               <MappingFragment StoreEntitySet="Wishlist">
-                <ScalarProperty Name="item_img" ColumnName="item_img" />
-                <ScalarProperty Name="item_selling" ColumnName="item_selling" />
-                <ScalarProperty Name="item_spec" ColumnName="item_spec" />
-                <ScalarProperty Name="item_unit" ColumnName="item_unit" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="prod_id" ColumnName="prod_id" />
                 <ScalarProperty Name="item_id" ColumnName="item_id" />
@@ -670,57 +685,10 @@
                 <ScalarProperty Name="wish_status" ColumnName="wish_status" />
                 <ScalarProperty Name="Created_date" ColumnName="Created_date" />
                 <ScalarProperty Name="Updated_date" ColumnName="Updated_date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="customer_address">
-            <EntityTypeMapping TypeName="EcommModel.customer_address">
-              <MappingFragment StoreEntitySet="customer_address">
-                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="address_status" ColumnName="address_status" />
-                <ScalarProperty Name="customer_mobile" ColumnName="customer_mobile" />
-                <ScalarProperty Name="customer_pincode" ColumnName="customer_pincode" />
-                <ScalarProperty Name="customer_country" ColumnName="customer_country" />
-                <ScalarProperty Name="customer_area" ColumnName="customer_area" />
-                <ScalarProperty Name="customer_city" ColumnName="customer_city" />
-                <ScalarProperty Name="customer_address1" ColumnName="customer_address" />
-                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
-                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customer_Payment">
-            <EntityTypeMapping TypeName="EcommModel.Customer_Payment">
-              <MappingFragment StoreEntitySet="Customer_Payment">
-                <ScalarProperty Name="payment_amount" ColumnName="payment_amount" />
-                <ScalarProperty Name="payment_type" ColumnName="payment_type" />
-                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="card_status" ColumnName="card_status" />
-                <ScalarProperty Name="payment_status" ColumnName="payment_status" />
-                <ScalarProperty Name="CardHolderName" ColumnName="CardHolderName" />
-                <ScalarProperty Name="Security_code" ColumnName="Security_code" />
-                <ScalarProperty Name="Expiration_date" ColumnName="Expiration_date" />
-                <ScalarProperty Name="Card_type" ColumnName="Card_type" />
-                <ScalarProperty Name="Card_no" ColumnName="Card_no" />
-                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Brand_Menu">
-            <EntityTypeMapping TypeName="EcommModel.Brand_Menu">
-              <MappingFragment StoreEntitySet="Brand_Menu">
-                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Brand_Status" ColumnName="Brand_Status" />
-                <ScalarProperty Name="Brand_Img" ColumnName="Brand_Img" />
-                <ScalarProperty Name="Brand_Order" ColumnName="Brand_Order" />
-                <ScalarProperty Name="Barnd_Section" ColumnName="Barnd_Section" />
-                <ScalarProperty Name="Brand_Title" ColumnName="Brand_Title" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="item_unit" ColumnName="item_unit" />
+                <ScalarProperty Name="item_spec" ColumnName="item_spec" />
+                <ScalarProperty Name="item_selling" ColumnName="item_selling" />
+                <ScalarProperty Name="item_img" ColumnName="item_img" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

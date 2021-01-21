@@ -18,9 +18,9 @@ namespace AutobuyDirectApi.Models
         public string cat_name { get; set; }
         public string cat_slug { get; set; }
         public Nullable<int> cat_parent { get; set; }
+        public string cat_img { get; set; }
         public Nullable<int> cat_status { get; set; }
         public Nullable<System.DateTime> Created_date { get; set; }
         public Nullable<System.DateTime> Updated_date { get; set; }
-        public string cat_img { get; set; }
     }
 }
