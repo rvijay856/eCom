@@ -15,154 +15,8 @@ namespace AutobuyDirectApi.Controllers
 {
     public class AdminController : ApiController
     {
+
         EcommEntities context = new EcommEntities();
-
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/admin/GetCategory")]
-        public JObject GetCategory()
-        {
-            var Category = context.Product_Category.AsNoTracking().Where(a => a.cat_status == 1 && a.cat_parent == 0);
-            JArray array = new JArray();
-            foreach (Product_Category cat in Category)
-            {
-                JObject bo = new JObject(
-                    new JProperty("category_id", cat.id),
-                    new JProperty("category_name", cat.cat_name),
-                    new JProperty("category_parent", cat.cat_parent),
-                    new JProperty("category_slug", cat.cat_slug),
-                    new JProperty("category_img", cat.cat_img),
-                    new JProperty("Created_Date", cat.Created_date),
-                    new JProperty("updated_Date", cat.Updated_date),
-                    new JProperty("Status", cat.cat_status)
-                    );
-                array.Add(bo);
-            }
-
-
-            JObject final = new JObject(
-               new JProperty("Category_Details", array));
-
-            return final;
-        }
-
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/admin/GetSubcategory/{CatID}")]
-        public JObject GetSubcategory(int CatID)
-        {
-            int cat_id = CatID;
-            var subcategory = context.Product_Category.AsNoTracking().Where(a => a.cat_status == 1 && a.cat_parent == CatID);
-            JArray SubCat = new JArray();
-            foreach (Product_Category subcat in subcategory)
-            {
-                JObject sc = new JObject(
-                    new JProperty("category_id", subcat.id),
-                    new JProperty("category_name", subcat.cat_name),
-                    new JProperty("category_parent", subcat.cat_parent),
-                    new JProperty("category_slug", subcat.cat_slug),
-                    new JProperty("Created_Date", subcat.Created_date),
-                    new JProperty("updated_Date", subcat.Updated_date),
-                    new JProperty("Status", subcat.cat_status)
-                    );
-                SubCat.Add(sc);
-            }
-            JObject final = new JObject(
-                new JProperty("Subcategory_List", SubCat));
-            return final;
-        }
-
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/admin/GetBrand/{SCatID}")]
-        public JObject GetBrand(int SCatID)
-        {
-            int cat_id = SCatID;
-            JObject bo = new JObject();
-            JObject it = new JObject();
-            var SubCatProduct = context.Products.AsNoTracking().Where(a => a.prod_status == 1 && a.prod_subcategory == SCatID);
-            JArray array = new JArray();
-            JArray items = new JArray();
-            foreach (Product pro in SubCatProduct)
-            {
-                var item = context.Product_items.AsNoTracking().Where(a => a.prod_id == pro.prod_id);
-                items = new JArray();
-                foreach (Product_items pi in item)
-                {
-                    it = new JObject(
-                        new JProperty("id", pi.id),
-                        new JProperty("item_image", pi.item_image),
-                        new JProperty("item_mrp", pi.item_mrp),
-                        new JProperty("item_selling", pi.item_selling),
-                        new JProperty("item_spec", pi.item_spec),
-                        new JProperty("item_status", pi.item_status),
-                        new JProperty("item_stock", pi.item_stock),
-                        new JProperty("item_unit", pi.item_unit),
-                        new JProperty("prod_id", pi.prod_id),
-                        new JProperty("iswishlist", context.Wishlists.AsNoTracking().Where(a => a.item_id == pi.id).Count())
-                        );
-                    items.Add(it);
-                }
-
-                bo = new JObject(
-                   new JProperty("product_id", pro.prod_id),
-                   new JProperty("product_name", pro.prod_name),
-                   new JProperty("product_slug", pro.prod_slug),
-                   new JProperty("product_category", pro.prod_category),
-                   new JProperty("product_brand", pro.prod_brand),
-                   new JProperty("product_desc", pro.prod_desc),
-                   new JProperty("product_sub_category", pro.prod_subcategory),
-                   new JProperty("product_created_date", pro.Created_date),
-                   new JProperty("product_updated_date", pro.Updated_date),
-                   new JProperty("Status", pro.prod_status),
-                   new JProperty("Item_spec", items)
-                   );
-                array.Add(bo);
-            }
-            JObject final = new JObject(
-               new JProperty("Product_Details", array));
-
-            return final;
-        }
-
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/admin/GetBrandDetails/{BID}")]
-        public JObject GetBrandDetails(int BID)
-        {
-            int Brand_ID = BID;
-            var Bdetails = context.Product_items.AsNoTracking().Where(a => a.item_status == 1 && a.prod_id == Brand_ID);
-            JArray Brand_details = new JArray();
-            JArray Brand_details_Spec = new JArray();
-            foreach (Product_items Bitems in Bdetails)
-            {
-                JObject Details = new JObject(
-                    new JProperty("Item_id", Bitems.id),
-                    new JProperty("product_id", Bitems.prod_id),
-                    new JProperty("item_code", Bitems.item_code),
-                    new JProperty("Created_date", Bitems.Created_date),
-                    new JProperty("Updated_date", Bitems.Updated_date)
-                    );
-                Brand_details.Add(Details);
-
-                JObject Spec = new JObject(
-                    new JProperty("Item_id", Bitems.id),
-                    new JProperty("product_id", Bitems.prod_id),
-                    new JProperty("item_spec", Bitems.item_spec + " " + Bitems.item_unit),
-                    new JProperty("item_mrp", Bitems.item_mrp),
-                    new JProperty("item_selling", Bitems.item_selling),
-                    new JProperty("item_stock", Bitems.item_stock),
-                    new JProperty("item_image", Bitems.item_image),
-                    new JProperty("item_status", Bitems.item_status),
-                    new JProperty("iswishlist", context.Wishlists.AsNoTracking().Where(a => a.item_id == Bitems.prod_id).Count())
-                    );
-                Brand_details_Spec.Add(Spec);
-            }
-
-
-            JObject final = new JObject(
-               new JProperty("Product_Details", Brand_details),
-               new JProperty("Product_Spec", Brand_details_Spec)
-               );
-
-            return final;
-        }
 
         [System.Web.Http.HttpPost]
         public int CreateCategory(JObject param)
@@ -357,110 +211,73 @@ namespace AutobuyDirectApi.Controllers
             return status;
         }
 
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/admin/GetAdminCategory")]
-        public JObject GetAdminCategory()
-        {
-            JArray ParentCatarray = new JArray();
-            JArray SubCatarray = new JArray();
-            JArray Productarray = new JArray();
-            try
-            {
-                var Category = context.Product_Category.AsNoTracking().Where(a => a.cat_parent == 0);
-                var SubCategory = context.Product_Category.AsNoTracking().Where(a => a.cat_parent != 0);
-                var Product = context.Products.AsNoTracking();
-                
-                foreach (Product_Category cat in Category)
-                {
-                    JObject bo = new JObject(
-                        new JProperty("category_id", cat.id),
-                        new JProperty("category_name", cat.cat_name),
-                        new JProperty("category_parent", cat.cat_parent),
-                        new JProperty("category_slug", cat.cat_slug),
-                        new JProperty("category_img", cat.cat_img),
-                        new JProperty("Created_Date", cat.Created_date),
-                        new JProperty("updated_Date", cat.Updated_date),
-                        new JProperty("Status", cat.cat_status)
-                        );
-                    ParentCatarray.Add(bo);
-                }
-                foreach (Product_Category sub in SubCategory)
-                {
-                    JObject su = new JObject(
-                        new JProperty("category_id", sub.id),
-                        new JProperty("category_name", sub.cat_name),
-                        new JProperty("category_parent", sub.cat_parent),
-                        new JProperty("category_slug", sub.cat_slug),
-                        new JProperty("category_img", sub.cat_img),
-                        new JProperty("Created_Date", sub.Created_date),
-                        new JProperty("updated_Date", sub.Updated_date),
-                        new JProperty("Status", sub.cat_status)
-                        );
-                    SubCatarray.Add(su);
-                }
-                foreach (Product pro in Product)
-                {
-                    JObject po = new JObject(
-                        new JProperty("prod_id", pro.prod_id),
-                        new JProperty("prod_name", pro.prod_name),
-                        new JProperty("prod_slug", pro.prod_slug),
-                        new JProperty("prod_category", pro.prod_category),
-                        new JProperty("prod_subcategory", pro.prod_subcategory),
-                        new JProperty("prod_brand", pro.prod_brand),
-                        new JProperty("prod_desc", pro.prod_desc),
-                        new JProperty("prod_status", pro.prod_status),
-                        new JProperty("Created_date", pro.Created_date),
-                        new JProperty("Updated_date", pro.Updated_date)
-                        );
-                    Productarray.Add(po);
-                }
-            }
-            catch (Exception e)
-            {
-                Logdetails.LogError("Post Error", "GetAdminCategoryerror admincontroller (362)", e.Message);
-            }
-               JObject final = new JObject(
-               new JProperty("ParentCategory_Details", ParentCatarray),
-               new JProperty("SubCatarray_Details", SubCatarray),
-               new JProperty("Product_Details", Productarray)
-               );
-            return final;
-        }
-
         [System.Web.Http.HttpPost]
         public string CreateBrand(JObject param)
         {
             string status = "";
             string brand_title = "";
             string brand_type = "";
-            string products = "";
+            //string products = "";
             string sub_cate = "";
             string url_img = "";
+            int prod_id = 0;
+            string item_name = "";
+            int prod_category = 0;
+            int prod_subcategory = 0;
+            JArray prod = new JArray();
             int brand_type_count = 0;
+            int brand_title_count = 0;
+            int brand_id = 0;
             try
             {
                 brand_title = (string)param.GetValue("brand_title");
                 brand_type=(string)param.GetValue("brand_type");
-                products = (string)param.GetValue("products");
+                prod = (JArray)param.GetValue("products");
                 sub_cate= (string)param.GetValue("sub_cate");
                 url_img= (string)param.GetValue("url");
-                brand_type_count = context.Brand_Menu.AsNoTracking().Where(a=>a.Barnd_Section==brand_type).Count();
-                if (brand_type_count < 4)
+                brand_type_count = context.Brand_Menu.AsNoTracking().Where(a => a.Barnd_Section == brand_type && a.Brand_Status == 1).Count();
+                brand_title_count = context.Brand_Menu.AsNoTracking().Where(a => a.Brand_Title.Equals(brand_title.Trim()) && a.Brand_Status == 1).Count();
+
+
+                if (brand_type_count < 4 & brand_title_count==0)
                 {
                     Brand_Menu BM = new Brand_Menu();
-                    BM.Brand_Title = brand_title;
+                    BM.Brand_Title = brand_title.Trim();
                     BM.Barnd_Section = brand_type;
-                    BM.Brand_Order = brand_type_count+1;
+                    BM.Brand_Order = brand_type_count + 1;
                     BM.Brand_Img = url_img;
                     BM.Brand_Status = 1;
                     BM.Created_Date = DateTime.Now;
                     BM.Updated_Date = DateTime.Now;
                     status = "Success";
+                    context.Brand_Menu.Add(BM);
+                    context.SaveChanges();
+
+                    brand_id = BM.Id;
                 }
                 else
                 {
-                    status = "Limit Exist";
+                    status = "Limit Exist or Title Already Exist";
                 }
+                foreach(JObject item in prod)
+                {
+                    prod_id = (int)item.GetValue("id");
+                    item_name = (string)item.GetValue("itemName");
+                    prod_category = (int)item.GetValue("prod_category");
+                    prod_subcategory = (int)item.GetValue("prod_subcategory");
+
+                    Brand_Product BP = new Brand_Product();
+                    BP.Prod_id = prod_id;
+                    BP.Prod_name = item_name;
+                    BP.Prod_category = prod_category;
+                    BP.Prod_subcategory = prod_subcategory;
+                    BP.status = 1;
+
+                    context.Brand_Product.Add(BP);
+                    context.SaveChanges();
+                  
+                }
+
             }
             catch (Exception e)
             {
@@ -468,7 +285,6 @@ namespace AutobuyDirectApi.Controllers
             }
             return status;
         }
-
-
+        
     }
 }

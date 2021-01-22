@@ -211,6 +211,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\InitController.cs" />
     <Compile Include="Controllers\SMS.cs" />
@@ -218,6 +219,9 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Models\Brand_Menu.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Brand_Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs">
@@ -354,6 +358,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Auto2_id\" />
+    <Folder Include="Views\Common\" />
     <Folder Include="XSLT\" />
   </ItemGroup>
   <ItemGroup>

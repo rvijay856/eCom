@@ -131,7 +131,7 @@ namespace AutobuyDirectApi.Controllers
                     foreach (Cart car in cart_table)
                     {
                         car.Updated_date = DateTime.Now;
-                        car.quantity = car.quantity + quantity;
+                        car.quantity = quantity;
                     }
                     context.SaveChanges();
                     status = 1;
@@ -343,8 +343,7 @@ namespace AutobuyDirectApi.Controllers
         public int removefromwish(JObject parame)
         {
             int status = 0;
-            //int cust_id = 0;
-            //int prod_id = 0;
+            int prod_id = 0;
             int item_id = 0;
             int cust_id = 0;
             int Login_status = 0;
@@ -361,10 +360,10 @@ namespace AutobuyDirectApi.Controllers
                 Login_status = (int)JObject.Parse(json)["Login_status"];
 
                 //cust_id = (int)parame.GetValue("userid");
-                //prod_id = (int)param.GetValue("prodid");
+                prod_id = (int)parame.GetValue("prodid");
                 item_id = (int)parame.GetValue("itemid");
 
-                var wish_table = context.Wishlists.Where(a => a.cust_id == cust_id && a.item_id == item_id);
+                var wish_table = context.Wishlists.Where(a => a.cust_id == cust_id && a.item_id == item_id && a.prod_id==prod_id);
                 foreach (Wishlist wish in wish_table)
                 {
                     wish.Updated_date = DateTime.Now;
@@ -381,44 +380,7 @@ namespace AutobuyDirectApi.Controllers
             return status;
         }
 
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/customer/GetPostalCodeValidation/{Post_Code}")]
-        public JObject GetPostalCodeValidation(int Post_Code)
-        {
-            JArray PostList = new JArray();
-            JObject final = new JObject();
-            string PostCode = Post_Code.ToString();
-            try
-            {
-                int Post_code = context.Postal_Code.Where(a => a.area_code == PostCode && a.status == 1).Count();
-                var Postal = context.Postal_Code.Where(a => a.area_code == PostCode && a.status == 1);
-                if (Post_code!=0)
-                {
-                   foreach(Postal_Code PC in Postal)
-                    {
-                        JObject Post_List = new JObject(
-                            new JProperty("Id", PC.Id),
-                            new JProperty("area_name", PC.area_name),
-                            new JProperty("area_code", PC.area_code)
-                            );
-                        PostList.Add(Post_List);
-                    }
-                    final = new JObject(
-                            new JProperty("PostList", PostList));
-                }
-                else
-                {
-                    final = new JObject(
-                            new JProperty("PostList", PostList));
-                }
-            }
-            catch (Exception e)
-            {
-                Logdetails.LogError("Post Error", "PostalCodeValidation customercontroller (219)", e.Message);
-            }
-
-            return final;
-        }
+        
 
         public int CreateOrder(JObject parame)
         {

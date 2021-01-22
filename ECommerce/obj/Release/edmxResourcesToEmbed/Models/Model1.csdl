@@ -225,5 +225,17 @@
     <EntitySet Name="Products_order_list" EntityType="Self.Products_order_list" />
     <EntitySet Name="user_details" EntityType="Self.user_details" />
     <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
+    <EntitySet Name="Brand_Product" EntityType="EcommModel.Brand_Product" />
   </EntityContainer>
+  <EntityType Name="Brand_Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prod_id" Type="Int32" />
+    <Property Name="Prod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Prod_category" Type="Int32" />
+    <Property Name="Prod_subcategory" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
 </Schema>

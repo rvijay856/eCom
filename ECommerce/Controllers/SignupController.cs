@@ -159,6 +159,8 @@ namespace AutobuyDirectApi.Controllers
             var mobile = "";
             var last_Login = "";
             int user_type = 0;
+            int cart_count = 0;
+            int wishlist_count = 0;
 
 
             foreach (Customer urd in user_deta)
@@ -178,6 +180,9 @@ namespace AutobuyDirectApi.Controllers
                 }
                 last_Login = urd.Last_login.ToString();
             }
+            cart_count = context.Carts.AsNoTracking().Where(a => a.cust_id == cust_id && a.cart_status == 1).Count();
+            wishlist_count = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1).Count();
+
             JObject ud = new JObject(
                 new JProperty("user_id", user_id),
                  new JProperty("name", name),          
@@ -189,8 +194,10 @@ namespace AutobuyDirectApi.Controllers
                  new JProperty("country", country),
                  new JProperty("pincode", pincode),
                  new JProperty("mobile", mobile),
-                 new JProperty("last_Login", last_Login)
-                ); ;
+                 new JProperty("last_Login", last_Login),
+                 new JProperty("cart_count", cart_count),
+                 new JProperty("wishlist_count", wishlist_count)
+                ); 
             DateTime lastlogin = DateTime.Now;
 
            

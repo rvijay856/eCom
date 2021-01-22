@@ -725,4 +725,3 @@ C:\Projects\eCom\ECommerce\obj\Debug\ECommerce.csproj.CoreCompileInputs.cache
 C:\Projects\eCom\ECommerce\obj\Debug\ECommerce.csproj.CopyComplete
 C:\Projects\eCom\ECommerce\obj\Debug\AutobuyDirectApi.dll
 C:\Projects\eCom\ECommerce\obj\Debug\AutobuyDirectApi.pdb
-C:\Projects\eCom\ECommerce\obj\Debug\ECommerce.csprojAssemblyReference.cache

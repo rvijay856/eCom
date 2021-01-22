@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EcommModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EcommModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brand_Menu">
           <Key>
             <PropertyRef Name="Id" />
@@ -17,6 +17,17 @@
           <Property Name="Brand_Status" Type="int" />
           <Property Name="Created_Date" Type="date" />
           <Property Name="Updated_Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Brand_Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prod_id" Type="int" />
+          <Property Name="Prod_name" Type="varchar" MaxLength="50" />
+          <Property Name="Prod_category" Type="int" />
+          <Property Name="Prod_subcategory" Type="int" />
+          <Property Name="status" Type="int" />
         </EntityType>
         <EntityType Name="Cart">
           <Key>
@@ -218,6 +229,7 @@
         </EntityType>
         <EntityContainer Name="EcommModelStoreContainer">
           <EntitySet Name="Brand_Menu" EntityType="Self.Brand_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brand_Product" EntityType="Self.Brand_Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer_address" EntityType="Self.customer_address" Schema="dbo" store:Type="Tables" />
@@ -231,8 +243,7 @@
           <EntitySet Name="user_details" EntityType="Self.user_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EcommModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -461,7 +472,19 @@
           <EntitySet Name="Products_order_list" EntityType="Self.Products_order_list" />
           <EntitySet Name="user_details" EntityType="Self.user_details" />
           <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
+          <EntitySet Name="Brand_Product" EntityType="EcommModel.Brand_Product" />
         </EntityContainer>
+        <EntityType Name="Brand_Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prod_id" Type="Int32" />
+          <Property Name="Prod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Prod_category" Type="Int32" />
+          <Property Name="Prod_subcategory" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -689,6 +712,18 @@
                 <ScalarProperty Name="item_spec" ColumnName="item_spec" />
                 <ScalarProperty Name="item_selling" ColumnName="item_selling" />
                 <ScalarProperty Name="item_img" ColumnName="item_img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brand_Product">
+            <EntityTypeMapping TypeName="EcommModel.Brand_Product">
+              <MappingFragment StoreEntitySet="Brand_Product">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Prod_subcategory" ColumnName="Prod_subcategory" />
+                <ScalarProperty Name="Prod_category" ColumnName="Prod_category" />
+                <ScalarProperty Name="Prod_name" ColumnName="Prod_name" />
+                <ScalarProperty Name="Prod_id" ColumnName="Prod_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

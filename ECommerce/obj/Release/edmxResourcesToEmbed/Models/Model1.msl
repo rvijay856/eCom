@@ -225,5 +225,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Brand_Product">
+      <EntityTypeMapping TypeName="EcommModel.Brand_Product">
+        <MappingFragment StoreEntitySet="Brand_Product">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="Prod_subcategory" ColumnName="Prod_subcategory" />
+          <ScalarProperty Name="Prod_category" ColumnName="Prod_category" />
+          <ScalarProperty Name="Prod_name" ColumnName="Prod_name" />
+          <ScalarProperty Name="Prod_id" ColumnName="Prod_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
