@@ -271,6 +271,7 @@ namespace AutobuyDirectApi.Controllers
                     BP.Prod_name = item_name;
                     BP.Prod_category = prod_category;
                     BP.Prod_subcategory = prod_subcategory;
+                    BP.Brand_id = brand_id;
                     BP.status = 1;
 
                     context.Brand_Product.Add(BP);

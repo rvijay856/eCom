@@ -15,14 +15,15 @@
           <Property Name="Brand_Order" Type="int" />
           <Property Name="Brand_Img" Type="varchar(max)" />
           <Property Name="Brand_Status" Type="int" />
-          <Property Name="Created_Date" Type="date" />
-          <Property Name="Updated_Date" Type="date" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Updated_Date" Type="datetime" />
         </EntityType>
         <EntityType Name="Brand_Product">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brand_id" Type="int" />
           <Property Name="Prod_id" Type="int" />
           <Property Name="Prod_name" Type="varchar" MaxLength="50" />
           <Property Name="Prod_category" Type="int" />
@@ -257,8 +258,8 @@
           <Property Name="Brand_Order" Type="Int32" />
           <Property Name="Brand_Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Brand_Status" Type="Int32" />
-          <Property Name="Created_Date" Type="DateTime" Precision="0" />
-          <Property Name="Updated_Date" Type="DateTime" Precision="0" />
+          <Property Name="Created_Date" Type="DateTime" Precision="3" />
+          <Property Name="Updated_Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Cart">
           <Key>
@@ -484,6 +485,7 @@
           <Property Name="Prod_category" Type="Int32" />
           <Property Name="Prod_subcategory" Type="Int32" />
           <Property Name="status" Type="Int32" />
+          <Property Name="Brand_id" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -718,6 +720,7 @@
           <EntitySetMapping Name="Brand_Product">
             <EntityTypeMapping TypeName="EcommModel.Brand_Product">
               <MappingFragment StoreEntitySet="Brand_Product">
+                <ScalarProperty Name="Brand_id" ColumnName="Brand_id" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="Prod_subcategory" ColumnName="Prod_subcategory" />
                 <ScalarProperty Name="Prod_category" ColumnName="Prod_category" />

@@ -20,5 +20,6 @@ namespace AutobuyDirectApi.Models
         public Nullable<int> Prod_category { get; set; }
         public Nullable<int> Prod_subcategory { get; set; }
         public Nullable<int> status { get; set; }
+        public Nullable<int> Brand_id { get; set; }
     }
 }
