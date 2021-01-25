@@ -135,10 +135,10 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/Common/GetBrandDetails/{BID}")]
-        public JObject GetBrandDetails(int BID)
+        [System.Web.Http.Route("api/Common/GetBrandDetails/{ITID}")]
+        public JObject GetBrandDetails(int ITID)
         {
-            int Brand_ID = BID;
+            int item_ID = ITID;
             int cust_id = 0;
             InitController Login = new InitController();
 
@@ -148,7 +148,7 @@ namespace AutobuyDirectApi.Controllers
 
             cust_id = (int)JObject.Parse(json)["User_id"];
 
-            var Bdetails = context.Product_items.AsNoTracking().Where(a => a.item_status == 1 && a.prod_id == Brand_ID);
+            var Bdetails = context.Product_items.AsNoTracking().Where(a => a.item_status == 1 && a.id == item_ID);
             JArray Brand_details = new JArray();
             JArray Brand_details_Spec = new JArray();
             foreach (Product_items Bitems in Bdetails)
@@ -156,6 +156,8 @@ namespace AutobuyDirectApi.Controllers
                 JObject Details = new JObject(
                     new JProperty("Item_id", Bitems.id),
                     new JProperty("product_id", Bitems.prod_id),
+                    new JProperty("product_Name", context.Products.AsNoTracking().Where(a=>a.prod_id==Bitems.prod_id).Select(a=>a.prod_name).Single()),
+                    new JProperty("product_Desc", context.Products.AsNoTracking().Where(a => a.prod_id == Bitems.prod_id).Select(a => a.prod_desc).Single()),
                     new JProperty("item_code", Bitems.item_code),
                     new JProperty("Created_date", Bitems.Created_date),
                     new JProperty("Updated_date", Bitems.Updated_date)
@@ -322,6 +324,7 @@ namespace AutobuyDirectApi.Controllers
 
             return final;
         }
+
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/Common/GetBrandItemList/{BID}")]
         public JObject GetBrandItemList(int BID)
@@ -391,5 +394,105 @@ namespace AutobuyDirectApi.Controllers
 
             return final;
         }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Common/GetCarouselList")]
+        public JObject GetCarouselList()
+        {
+            JArray Carousellist = new JArray();
+            JObject final = new JObject();
+
+            var CL = context.Carousel_Menu.AsNoTracking().Where(a => a.Carousel_Status == 1);
+
+            foreach (Carousel_Menu bli in CL)
+            {
+                JObject Brand_List = new JObject(
+                    new JProperty("Carousel_Section", bli.Carousel_Section),
+                    new JProperty("Carousel_Img", bli.Carousel_Img),
+                    new JProperty("Carousel_Order", bli.Carousel_Order),
+                    new JProperty("Carousel_Status", bli.Carousel_Status),
+                    new JProperty("Carousel_Title", bli.Carousel_Title),
+                    new JProperty("Id", bli.Id),
+                    new JProperty("Updated_Date", bli.Updated_Date),
+                    new JProperty("Created_Date", bli.Created_Date)
+                    );
+                Carousellist.Add(Brand_List);
+            }
+            final = new JObject(
+                    new JProperty("CarouselList", Carousellist));
+
+            return final;
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Common/GetCarouselItemList/{CID}")]
+        public JObject GetCarouselItemList(int CID)
+        {
+            int cust_id = 0;
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["User_id"];
+
+            JObject final = new JObject();
+            JArray branditemlist = new JArray();
+            JObject bo = new JObject();
+            JObject it = new JObject();
+            JArray array = new JArray();
+            JArray items = new JArray();
+
+            var CList = context.Carousel_Product.AsNoTracking().Where(a => a.Carousel_id == CID);
+
+            foreach (Carousel_Product CI in CList)
+            {
+                var SubCatProduct = context.Products.AsNoTracking().Where(a => a.prod_status == 1 && a.prod_id == CI.Prod_id);
+
+                foreach (Product pro in SubCatProduct)
+                {
+                    var item = context.Product_items.AsNoTracking().Where(a => a.prod_id == pro.prod_id);
+                    items = new JArray();
+                    foreach (Product_items pi in item)
+                    {
+                        it = new JObject(
+                            new JProperty("id", pi.id),
+                            new JProperty("item_image", pi.item_image),
+                            new JProperty("item_mrp", pi.item_mrp),
+                            new JProperty("item_selling", pi.item_selling),
+                            new JProperty("item_spec", pi.item_spec),
+                            new JProperty("item_status", pi.item_status),
+                            new JProperty("item_stock", pi.item_stock),
+                            new JProperty("item_unit", pi.item_unit),
+                            new JProperty("prod_id", pi.prod_id),
+                            new JProperty("iswishlist", context.Wishlists.AsNoTracking().Where(a => a.item_id == pi.id && a.cust_id == cust_id).Count())
+                            );
+                        items.Add(it);
+                    }
+
+                    bo = new JObject(
+                       new JProperty("product_id", pro.prod_id),
+                       new JProperty("product_name", pro.prod_name),
+                       new JProperty("product_slug", pro.prod_slug),
+                       new JProperty("product_category", pro.prod_category),
+                       new JProperty("product_brand", pro.prod_brand),
+                       new JProperty("product_desc", pro.prod_desc),
+                       new JProperty("product_sub_category", pro.prod_subcategory),
+                       new JProperty("product_created_date", pro.Created_date),
+                       new JProperty("product_updated_date", pro.Updated_date),
+                       new JProperty("Status", pro.prod_status),
+                       new JProperty("Item_spec", items)
+                       );
+                    array.Add(bo);
+                }
+            }
+
+            final = new JObject(
+               new JProperty("CarouselItemList", array));
+
+            return final;
+        }
+
     }
 }

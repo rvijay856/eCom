@@ -286,6 +286,81 @@ namespace AutobuyDirectApi.Controllers
             }
             return status;
         }
-        
+
+        [System.Web.Http.HttpPost]
+        public string CreateCarousel(JObject param)
+        {
+            string status = "";
+            string Carousel_title = "";
+            string Carousel_type = "";
+            //string products = "";
+            string sub_cate = "";
+            string url_img = "";
+            int prod_id = 0;
+            string item_name = "";
+            int prod_category = 0;
+            int prod_subcategory = 0;
+            JArray prod = new JArray();
+            int Carousel_type_count = 0;
+            int Carousel_title_count = 0;
+            int Carousel_id = 0;
+            try
+            {
+                Carousel_title = (string)param.GetValue("Carousel_title");
+                Carousel_type = (string)param.GetValue("Carousel_type");
+                prod = (JArray)param.GetValue("products");
+                sub_cate = (string)param.GetValue("sub_cate");
+                url_img = (string)param.GetValue("url");
+                Carousel_type_count = context.Carousel_Menu.AsNoTracking().Where(a => a.Carousel_Section == Carousel_type && a.Carousel_Status == 1).Count();
+                Carousel_title_count = context.Carousel_Menu.AsNoTracking().Where(a => a.Carousel_Title.Equals(Carousel_title.Trim()) && a.Carousel_Status == 1).Count();
+
+
+                if (Carousel_type_count < 3 & Carousel_title_count == 0)
+                {
+                    Carousel_Menu BM = new Carousel_Menu();
+                    BM.Carousel_Title = Carousel_title.Trim();
+                    BM.Carousel_Section = Carousel_type;
+                    BM.Carousel_Order = Carousel_type_count + 1;
+                    BM.Carousel_Img = url_img;
+                    BM.Carousel_Status = 1;
+                    BM.Created_Date = DateTime.Now;
+                    BM.Updated_Date = DateTime.Now;
+                    status = "Success";
+                    context.Carousel_Menu.Add(BM);
+                    context.SaveChanges();
+
+                    Carousel_id = BM.Id;
+                }
+                else
+                {
+                    status = "Limit Exist or Title Already Exist";
+                }
+                foreach (JObject item in prod)
+                {
+                    prod_id = (int)item.GetValue("id");
+                    item_name = (string)item.GetValue("itemName");
+                    prod_category = (int)item.GetValue("prod_category");
+                    prod_subcategory = (int)item.GetValue("prod_subcategory");
+
+                    Carousel_Product BP = new Carousel_Product();
+                    BP.Prod_id = prod_id;
+                    BP.Prod_name = item_name;
+                    BP.Prod_category = prod_category;
+                    BP.Prod_subcategory = prod_subcategory;
+                    BP.Carousel_id = Carousel_id;
+                    BP.status = 1;
+
+                    context.Carousel_Product.Add(BP);
+                    context.SaveChanges();
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Logdetails.LogError("Post Error", "CreateBranderror admincontroller (424)", e.Message);
+            }
+            return status;
+        }
     }
 }
