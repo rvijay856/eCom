@@ -265,5 +265,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Trending_Menu">
+      <EntityTypeMapping TypeName="EcommModel.Trending_Menu">
+        <MappingFragment StoreEntitySet="Trending_Menu">
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Trending_Status" ColumnName="Trending_Status" />
+          <ScalarProperty Name="Trending_Title" ColumnName="Trending_Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trending_Product">
+      <EntityTypeMapping TypeName="EcommModel.Trending_Product">
+        <MappingFragment StoreEntitySet="Trending_Product">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="Prod_subcategory" ColumnName="Prod_subcategory" />
+          <ScalarProperty Name="Prod_category" ColumnName="Prod_category" />
+          <ScalarProperty Name="Prod_name" ColumnName="Prod_name" />
+          <ScalarProperty Name="Prod_id" ColumnName="Prod_id" />
+          <ScalarProperty Name="Trending_id" ColumnName="Trending_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

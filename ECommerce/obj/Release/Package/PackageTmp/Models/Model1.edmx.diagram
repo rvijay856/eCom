@@ -21,6 +21,8 @@
         <EntityTypeShape EntityType="EcommModel.Brand_Product" Width="1.5" PointX="7.375" PointY="10.75" />
         <EntityTypeShape EntityType="EcommModel.Carousel_Menu" Width="1.5" PointX="9.375" PointY="10.75" />
         <EntityTypeShape EntityType="EcommModel.Carousel_Product" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="EcommModel.Trending_Menu" Width="1.5" PointX="11.375" PointY="8.75" />
+        <EntityTypeShape EntityType="EcommModel.Trending_Product" Width="1.5" PointX="11.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

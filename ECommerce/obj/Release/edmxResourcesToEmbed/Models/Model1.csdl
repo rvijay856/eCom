@@ -228,6 +228,8 @@
     <EntitySet Name="Brand_Product" EntityType="EcommModel.Brand_Product" />
     <EntitySet Name="Carousel_Menu" EntityType="EcommModel.Carousel_Menu" />
     <EntitySet Name="Carousel_Product" EntityType="EcommModel.Carousel_Product" />
+    <EntitySet Name="Trending_Menu" EntityType="EcommModel.Trending_Menu" />
+    <EntitySet Name="Trending_Product" EntityType="EcommModel.Trending_Product" />
   </EntityContainer>
   <EntityType Name="Brand_Product">
     <Key>
@@ -260,6 +262,28 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Carousel_id" Type="Int32" />
+    <Property Name="Prod_id" Type="Int32" />
+    <Property Name="Prod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Prod_category" Type="Int32" />
+    <Property Name="Prod_subcategory" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Trending_Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Trending_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Trending_Status" Type="Int32" />
+    <Property Name="Created_Date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_Date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Trending_Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Trending_id" Type="Int32" />
     <Property Name="Prod_id" Type="Int32" />
     <Property Name="Prod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Prod_category" Type="Int32" />

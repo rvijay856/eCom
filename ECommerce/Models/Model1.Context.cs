@@ -41,5 +41,7 @@ namespace AutobuyDirectApi.Models
         public virtual DbSet<Brand_Product> Brand_Product { get; set; }
         public virtual DbSet<Carousel_Menu> Carousel_Menu { get; set; }
         public virtual DbSet<Carousel_Product> Carousel_Product { get; set; }
+        public virtual DbSet<Trending_Menu> Trending_Menu { get; set; }
+        public virtual DbSet<Trending_Product> Trending_Product { get; set; }
     }
 }

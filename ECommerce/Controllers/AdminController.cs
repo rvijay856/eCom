@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 
 namespace AutobuyDirectApi.Controllers
 {
+    [System.Web.Http.Authorize]
     public class AdminController : ApiController
     {
 
@@ -358,7 +359,74 @@ namespace AutobuyDirectApi.Controllers
             }
             catch (Exception e)
             {
-                Logdetails.LogError("Post Error", "CreateBranderror admincontroller (424)", e.Message);
+                Logdetails.LogError("Post Error", "CreateCarouselerror admincontroller (424)", e.Message);
+            }
+            return status;
+        }
+
+        [System.Web.Http.HttpPost]
+        public string CreateTrending(JObject param)
+        {
+            string status = "";
+            string Trending_title = "";
+            string sub_cate = "";
+            int prod_id = 0;
+            string item_name = "";
+            int prod_category = 0;
+            int prod_subcategory = 0;
+            JArray prod = new JArray();
+            int Trending_title_count = 0;
+            int Trending_id = 0;
+            try
+            {
+                Trending_title = (string)param.GetValue("Trending_title");
+                prod = (JArray)param.GetValue("products");
+                sub_cate = (string)param.GetValue("sub_cate");
+                Trending_title_count = context.Trending_Menu.AsNoTracking().Where(a => a.Trending_Title.Equals(Trending_title.Trim()) && a.Trending_Status == 1).Count();
+
+
+                if (Trending_title_count == 0)
+                {
+                    Trending_Menu TM = new Trending_Menu();
+                    TM.Trending_Title = Trending_title.Trim();
+                    TM.Trending_Status = 1;
+                    TM.Created_Date = DateTime.Now;
+                    TM.Updated_Date = DateTime.Now;
+                    status = "Success";
+                    context.Trending_Menu.Add(TM);
+                    context.SaveChanges();
+
+                    Trending_id = TM.Id;
+
+                }
+                else
+                {
+                    status = "Title Already Exist";
+                }
+                foreach (JObject item in prod)
+                {
+                    prod_id = (int)item.GetValue("id");
+                    item_name = (string)item.GetValue("itemName");
+                    prod_category = (int)item.GetValue("prod_category");
+                    prod_subcategory = (int)item.GetValue("prod_subcategory");
+
+                    Trending_Product TP = new Trending_Product();
+                    TP.Prod_id = prod_id;
+                    TP.Prod_name = item_name;
+                    TP.Prod_category = prod_category;
+                    TP.Prod_subcategory = prod_subcategory;
+                    TP.Trending_id = Trending_id;
+                    TP.status = 1;
+
+                    context.Trending_Product.Add(TP);
+                    context.SaveChanges();
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Logdetails.LogError("Post Error", "CreateTrendingerror admincontroller (424)", e.Message);
             }
             return status;
         }
