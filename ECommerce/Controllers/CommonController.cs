@@ -301,26 +301,37 @@ namespace AutobuyDirectApi.Controllers
         public JObject GetBrandList()
         {
             JArray brandlist = new JArray();
+            JArray Fbrandlist = new JArray();
             JObject final = new JObject();
+            JObject Brand_Lis = new JObject();
+            var BL = context.Brand_Menu.AsNoTracking().Where(a => a.Brand_Status == 1).Select(a => a.Barnd_Section).Distinct();
 
-            var BL = context.Brand_Menu.AsNoTracking().Where(a => a.Brand_Status == 1);
-
-            foreach(Brand_Menu bli in BL)
+            foreach(string bli in BL)
             {
-                JObject Brand_List = new JObject(
-                    new JProperty("Barnd_Section", bli.Barnd_Section),
-                    new JProperty("Brand_Img", bli.Brand_Img),
-                    new JProperty("Brand_Order", bli.Brand_Order),
-                    new JProperty("Brand_Status", bli.Brand_Status),
-                    new JProperty("Brand_Title", bli.Brand_Title),
-                    new JProperty("Id", bli.Id),
-                    new JProperty("Updated_Date", bli.Updated_Date),
-                    new JProperty("Created_Date", bli.Created_Date)
+                
+                var BLD = context.Brand_Menu.AsNoTracking().Where(a => a.Barnd_Section == bli);
+                brandlist = new JArray();
+                foreach(Brand_Menu br in BLD)
+                {
+                    JObject Brand_List = new JObject(
+                        new JProperty("Brand_Img", br.Brand_Img),
+                        new JProperty("Brand_Order", br.Brand_Order),
+                        new JProperty("Brand_Status", br.Brand_Status),
+                        new JProperty("Brand_Title", br.Brand_Title),
+                        new JProperty("Id", br.Id),
+                        new JProperty("Updated_Date", br.Updated_Date),
+                        new JProperty("Created_Date", br.Created_Date)
                     );
-                brandlist.Add(Brand_List);
+                    brandlist.Add(Brand_List);
+                }
+                    Brand_Lis = new JObject(
+                        new JProperty("Barnd_Section", bli),
+                        new JProperty("brandLi", brandlist)
+                        );
+                Fbrandlist.Add(Brand_Lis);
             }
             final = new JObject(
-                    new JProperty("brandList", brandlist));
+                    new JProperty("brandList", Fbrandlist));
 
             return final;
         }

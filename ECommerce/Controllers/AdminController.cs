@@ -227,7 +227,7 @@ namespace AutobuyDirectApi.Controllers
             int prod_subcategory = 0;
             JArray prod = new JArray();
             int brand_type_count = 0;
-            int brand_title_count = 0;
+            //string brand_titles = "";
             int brand_id = 0;
             try
             {
@@ -237,10 +237,11 @@ namespace AutobuyDirectApi.Controllers
                 sub_cate= (string)param.GetValue("sub_cate");
                 url_img= (string)param.GetValue("url");
                 brand_type_count = context.Brand_Menu.AsNoTracking().Where(a => a.Barnd_Section == brand_type && a.Brand_Status == 1).Count();
-                brand_title_count = context.Brand_Menu.AsNoTracking().Where(a => a.Brand_Title.Equals(brand_title.Trim()) && a.Brand_Status == 1).Count();
+                if(brand_type_count!=0)
+                    brand_title = context.Brand_Menu.AsNoTracking().Where(a => a.Barnd_Section == brand_type).Select(a => a.Brand_Title).Single();
 
 
-                if (brand_type_count < 4 & brand_title_count==0)
+                if (brand_type_count < 4)
                 {
                     Brand_Menu BM = new Brand_Menu();
                     BM.Brand_Title = brand_title.Trim();
@@ -258,7 +259,7 @@ namespace AutobuyDirectApi.Controllers
                 }
                 else
                 {
-                    status = "Limit Exist or Title Already Exist";
+                    status = "Limit Exist";
                 }
                 foreach(JObject item in prod)
                 {
