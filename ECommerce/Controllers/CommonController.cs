@@ -527,54 +527,58 @@ namespace AutobuyDirectApi.Controllers
             JArray Title = new JArray();
             JObject Titleobj = new JObject();
 
-            int Trending_Id = context.Trending_Menu.AsNoTracking().Where(a => a.Trending_Status == 1).Select(a=>a.Id).Single();
-            var trend_pro = context.Trending_Product.AsNoTracking().Where(a => a.Trending_id == Trending_Id);
-
-            foreach (Trending_Product TP in trend_pro)
+            var Trending_Id = context.Trending_Menu.AsNoTracking().Where(a => a.Trending_Status == 1);
+            foreach (Trending_Menu TM in Trending_Id)
             {
-                var SubCatProduct = context.Products.AsNoTracking().Where(a => a.prod_status == 1 && a.prod_id == TP.Prod_id);
+                var trend_pro = context.Trending_Product.AsNoTracking().Where(a => a.Trending_id == TM.Id);
 
-                foreach (Product pro in SubCatProduct)
+                foreach (Trending_Product TP in trend_pro)
                 {
-                    var item = context.Product_items.AsNoTracking().Where(a => a.prod_id == pro.prod_id);
-                    items = new JArray();
-                    foreach (Product_items pi in item)
-                    {
-                        it = new JObject(
-                            new JProperty("id", pi.id),
-                            new JProperty("item_image", pi.item_image),
-                            new JProperty("item_mrp", pi.item_mrp),
-                            new JProperty("item_selling", pi.item_selling),
-                            new JProperty("item_spec", pi.item_spec),
-                            new JProperty("item_status", pi.item_status),
-                            new JProperty("item_stock", pi.item_stock),
-                            new JProperty("item_unit", pi.item_unit),
-                            new JProperty("prod_id", pi.prod_id),
-                            new JProperty("iswishlist", context.Wishlists.AsNoTracking().Where(a => a.item_id == pi.id && a.cust_id == cust_id).Count())
-                            );
-                        items.Add(it);
-                    }
+                    var SubCatProduct = context.Products.AsNoTracking().Where(a => a.prod_status == 1 && a.prod_id == TP.Prod_id);
 
-                    bo = new JObject(
-                       new JProperty("product_id", pro.prod_id),
-                       new JProperty("product_name", pro.prod_name),
-                       new JProperty("product_slug", pro.prod_slug),
-                       new JProperty("product_category", pro.prod_category),
-                       new JProperty("product_brand", pro.prod_brand),
-                       new JProperty("product_desc", pro.prod_desc),
-                       new JProperty("product_sub_category", pro.prod_subcategory),
-                       new JProperty("product_created_date", pro.Created_date),
-                       new JProperty("product_updated_date", pro.Updated_date),
-                       new JProperty("Status", pro.prod_status),
-                       new JProperty("Item_spec", items)
-                       );
-                    array.Add(bo);
+                    foreach (Product pro in SubCatProduct)
+                    {
+                        var item = context.Product_items.AsNoTracking().Where(a => a.prod_id == pro.prod_id);
+                        items = new JArray();
+                        foreach (Product_items pi in item)
+                        {
+                            it = new JObject(
+                                new JProperty("id", pi.id),
+                                new JProperty("item_image", pi.item_image),
+                                new JProperty("item_mrp", pi.item_mrp),
+                                new JProperty("item_selling", pi.item_selling),
+                                new JProperty("item_spec", pi.item_spec),
+                                new JProperty("item_status", pi.item_status),
+                                new JProperty("item_stock", pi.item_stock),
+                                new JProperty("item_unit", pi.item_unit),
+                                new JProperty("prod_id", pi.prod_id),
+                                new JProperty("iswishlist", context.Wishlists.AsNoTracking().Where(a => a.item_id == pi.id && a.cust_id == cust_id).Count())
+                                );
+                            items.Add(it);
+                        }
+
+                        bo = new JObject(
+                           new JProperty("product_id", pro.prod_id),
+                           new JProperty("product_name", pro.prod_name),
+                           new JProperty("product_slug", pro.prod_slug),
+                           new JProperty("product_category", pro.prod_category),
+                           new JProperty("product_brand", pro.prod_brand),
+                           new JProperty("product_desc", pro.prod_desc),
+                           new JProperty("product_sub_category", pro.prod_subcategory),
+                           new JProperty("product_created_date", pro.Created_date),
+                           new JProperty("product_updated_date", pro.Updated_date),
+                           new JProperty("Status", pro.prod_status),
+                           new JProperty("Item_spec", items)
+                           );
+                        array.Add(bo);
+                    }
                 }
+
+                Titleobj = new JObject(
+                    new JProperty("Trending_Title", TM.Trending_Title)
+                    );
+                Title.Add(Titleobj);
             }
-            Titleobj = new JObject(
-                new JProperty("Trending_Title", context.Trending_Menu.AsNoTracking().Where(a => a.Trending_Status == 1).Select(a => a.Trending_Title).Single())
-                );
-            Title.Add(Titleobj);
             final = new JObject(
                new JProperty("TrendingItemList", array),
                new JProperty("Trending_Title", Title)
