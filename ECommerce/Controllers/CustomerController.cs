@@ -380,8 +380,6 @@ namespace AutobuyDirectApi.Controllers
             return status;
         }
 
-        
-
         public int CreateOrder(JObject parame)
         {
             int status = 0;

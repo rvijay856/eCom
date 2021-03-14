@@ -61,6 +61,7 @@ namespace AutobuyDirectApi.Controllers
                     new JProperty("category_id", subcat.id),
                     new JProperty("category_name", subcat.cat_name),
                     new JProperty("category_parent", subcat.cat_parent),
+                    new JProperty("category_image", subcat.cat_img),
                     new JProperty("category_slug", subcat.cat_slug),
                     new JProperty("Created_Date", subcat.Created_date),
                     new JProperty("updated_Date", subcat.Updated_date),
