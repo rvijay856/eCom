@@ -19,8 +19,8 @@ namespace EcomSMS
 			string result;
 			string apiKey = "vdEIHmmAO1I-5QhLD6sQ9qU26aNqCexE50qjF59zLy";
 			string numbers = "91"+phone; // in a comma seperated list
-			string message = "This is your message "+otp;
-			string sender = "TXTLCL";
+			string message = "We are from ZUZU. The OTP is "+ otp + " to login for the website or app.";
+			string sender = "RHIGLO";
 
 			String url = "https://api.textlocal.in/send/?apikey=" + apiKey + "&numbers=" + numbers + "&message=" + message + "&sender=" + sender;
 			//refer to parameters to complete correct url string

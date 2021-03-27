@@ -88,6 +88,7 @@ namespace AutobuyDirectApi.Controllers
                     cus.cust_status = 0;
                     cus.cust_otp = int.Parse(OTP);
                     cus.cat_password = pword;
+                    cus.cust_type = 1;
                     cus.Created_date = DateTime.Now;
                     cus.Updated_date = DateTime.Now;
 
@@ -108,6 +109,7 @@ namespace AutobuyDirectApi.Controllers
                             new JProperty("cust_mobile", cu.cust_mobile),
                             new JProperty("cust_email", cu.cust_email),
                             new JProperty("cust_status", cu.cust_status),
+                            new JProperty("cust_type", cu.cust_type),
                             new JProperty("Created_date", cu.Created_date),
                             new JProperty("Updated_date", cu.Updated_date),
                             new JProperty("status", "1")
