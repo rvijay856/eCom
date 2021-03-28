@@ -99,14 +99,16 @@
           <Property Name="customer_id" Type="int" />
           <Property Name="customer_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="customer_address" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="customer_city" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="customer_area" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="customer_country" Type="varchar" MaxLength="50" />
+          <Property Name="Landmark" Type="varchar" MaxLength="50" />
+          <Property Name="customer_city" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="customer_pincode" Type="int" />
-          <Property Name="customer_mobile" Type="varchar(max)" />
+          <Property Name="customer_state" Type="varchar" MaxLength="50" />
+          <Property Name="customer_country" Type="varchar" MaxLength="50" />
+          <Property Name="customer_mobile" Type="varchar" MaxLength="50" />
           <Property Name="address_status" Type="int" Nullable="false" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
-          <Property Name="updated_at" Type="datetime" />
+          <Property Name="updated_date" Type="datetime" />
         </EntityType>
         <EntityType Name="Customer_Payment">
           <Key>
@@ -360,10 +362,12 @@
           <Property Name="customer_area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="customer_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="customer_pincode" Type="Int32" />
-          <Property Name="customer_mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="customer_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="address_status" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Landmark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Customer_Payment">
           <Key>
@@ -650,6 +654,9 @@
           <EntitySetMapping Name="customer_address">
             <EntityTypeMapping TypeName="EcommModel.customer_address">
               <MappingFragment StoreEntitySet="customer_address">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="customer_state" ColumnName="customer_state" />
+                <ScalarProperty Name="Landmark" ColumnName="Landmark" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="customer_name" ColumnName="customer_name" />
@@ -661,7 +668,6 @@
                 <ScalarProperty Name="customer_mobile" ColumnName="customer_mobile" />
                 <ScalarProperty Name="address_status" ColumnName="address_status" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

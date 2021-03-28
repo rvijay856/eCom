@@ -56,6 +56,9 @@
     <EntitySetMapping Name="customer_address">
       <EntityTypeMapping TypeName="EcommModel.customer_address">
         <MappingFragment StoreEntitySet="customer_address">
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="customer_state" ColumnName="customer_state" />
+          <ScalarProperty Name="Landmark" ColumnName="Landmark" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="customer_id" ColumnName="customer_id" />
           <ScalarProperty Name="customer_name" ColumnName="customer_name" />
@@ -67,7 +70,6 @@
           <ScalarProperty Name="customer_mobile" ColumnName="customer_mobile" />
           <ScalarProperty Name="address_status" ColumnName="address_status" />
           <ScalarProperty Name="created_date" ColumnName="created_date" />
-          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

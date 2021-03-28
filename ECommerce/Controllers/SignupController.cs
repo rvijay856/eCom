@@ -29,8 +29,8 @@ namespace AutobuyDirectApi.Controllers
             string email = "";
             string pword = "";
             string mobile = "";
-            int email_Count = 0;
             int mobile_count = 0;
+            int Custmobile_OTP = 0;
             String result = "";
             Random Ran = new Random();
             JArray Cust = new JArray();
@@ -49,23 +49,12 @@ namespace AutobuyDirectApi.Controllers
                 string OTP = "";
                 OTP = Ran.Next(0, 1000000).ToString("D6");
 
-                email_Count = context.Customers.AsNoTracking().Where(a => a.cust_email == email).Count();
                 mobile_count = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile).Count();
-                if (email_Count!=0)
-                {
-                    JObject sg = new JObject(
-                             new JProperty("cust_id", ""),
-                             new JProperty("cust_name", ""),
-                             new JProperty("cust_mobile", ""),
-                             new JProperty("cust_email", ""),
-                             new JProperty("cust_status", ""),
-                             new JProperty("Created_date", ""),
-                             new JProperty("Updated_date", ""),
-                             new JProperty("status", "2")
-                         );
-                    Cust.Add(sg);
-                }
                 if(mobile_count!=0)
+                {
+                    Custmobile_OTP = (int)context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile).Select(a => a.cust_otp).Single();
+                }
+                if (mobile_count != 0 && Custmobile_OTP == 0)
                 {
                     JObject sg = new JObject(
                             new JProperty("cust_id", ""),
@@ -75,11 +64,43 @@ namespace AutobuyDirectApi.Controllers
                             new JProperty("cust_status", ""),
                             new JProperty("Created_date", ""),
                             new JProperty("Updated_date", ""),
-                            new JProperty("status", "3")
+                            new JProperty("status", "You are already registered. Please log in.")
                         );
                     Cust.Add(sg);
                 }
-                if (email_Count==0 && mobile_count==0)
+                else if (mobile_count != 0 && Custmobile_OTP != 0)
+                {
+                    SMSSend smss = new SMSSend();
+                    result = smss.sendSMS(mobile, OTP);
+
+                    var custo = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile);
+
+                    //Customer custom = new Customer();
+                    //custom.cust_status = 1;
+                    //custom.cust_otp = 0;
+                    //custom.Updated_date = DateTime.Now;
+
+                    //context.Customers.Add(custom);
+                    //context.SaveChanges();
+
+                    foreach (Customer cu in custo)
+                    {
+
+                        JObject sg = new JObject(
+                            new JProperty("cust_id", cu.cust_id),
+                            new JProperty("cust_name", cu.cust_name),
+                            new JProperty("cust_mobile", cu.cust_mobile),
+                            new JProperty("cust_email", cu.cust_email),
+                            new JProperty("cust_status", cu.cust_status),
+                            new JProperty("cust_type", cu.cust_type),
+                            new JProperty("Created_date", cu.Created_date),
+                            new JProperty("Updated_date", cu.Updated_date),
+                            new JProperty("status", "You are already registered. Please verify mobile number.")
+                        );
+                        Cust.Add(sg);
+                    }
+                }
+                else if (mobile_count==0)
                 {
                     Customer cus = new Customer();
                     cus.cust_name = name;
@@ -98,7 +119,15 @@ namespace AutobuyDirectApi.Controllers
                     SMSSend smss = new SMSSend();
                     result = smss.sendSMS(mobile,OTP);
 
-                    var custo = context.Customers.AsNoTracking().Where(a=>a.cust_mobile==mobile && a.cust_email==email);
+                    var custo = context.Customers.AsNoTracking().Where(a=>a.cust_mobile==mobile);
+
+                    Customer custom = new Customer();
+                    custom.cust_status = 1;
+                    custom.cust_otp = 0;
+                    custom.Updated_date = DateTime.Now;
+
+                    context.Customers.Add(custom);
+                    context.SaveChanges();
 
                     foreach (Customer cu in custo)
                     {
@@ -112,7 +141,7 @@ namespace AutobuyDirectApi.Controllers
                             new JProperty("cust_type", cu.cust_type),
                             new JProperty("Created_date", cu.Created_date),
                             new JProperty("Updated_date", cu.Updated_date),
-                            new JProperty("status", "1")
+                            new JProperty("status", "Sign in Successfully")
                         );
                         Cust.Add(sg);
                     }

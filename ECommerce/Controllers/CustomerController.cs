@@ -408,5 +408,96 @@ namespace AutobuyDirectApi.Controllers
 
             return status;
         }
+        public int AddNewAddress(JObject parame)
+        {
+            int status = 0;
+            int cust_id = 0;
+            int Login_status = 0;
+            string customer_name = "";
+            string customer_address = "";
+            string customer_area = "";
+            string Landmark = "";
+            string customer_city = "";
+            int customer_pincode = 0;
+            string customer_state = "";
+            string customer_country = "";
+            string customer_mobile = "";
+            int address_count = 0;
+            string defult_address = "";
+
+
+
+            try
+            {
+                InitController Login = new InitController();
+
+                JObject param = Login.Login();
+
+                string json = JsonConvert.SerializeObject(param);
+
+                cust_id = (int)JObject.Parse(json)["User_id"];
+                Login_status = (int)JObject.Parse(json)["Login_status"];
+
+                address_count = context.customer_address.AsNoTracking().Where(a => a.customer_id == cust_id && a.address_status == 1).Count();
+
+                customer_name = (string)parame.GetValue("customer_name");
+                customer_address = (string)parame.GetValue("customer_address");
+                customer_area = (string)parame.GetValue("customer_area");
+                Landmark = (string)parame.GetValue("Landmark");
+                customer_city = (string)parame.GetValue("customer_city");
+                customer_pincode = (int)parame.GetValue("customer_pincode");
+                customer_state = (string)parame.GetValue("customer_state");
+                customer_country = (string)parame.GetValue("customer_country");
+                customer_mobile = (string)parame.GetValue("customer_mobile");
+                defult_address = (string)parame.GetValue("defult_address");
+
+                customer_address CA = new customer_address();
+                CA.customer_id = cust_id;
+                CA.customer_name = customer_name;
+                CA.customer_address1 = customer_address;
+                CA.customer_area = customer_area;
+                CA.Landmark = Landmark;
+                CA.customer_city = customer_city;
+                CA.customer_pincode = customer_pincode;
+                CA.customer_state = customer_state;
+                CA.customer_country = customer_country;
+                CA.customer_mobile = customer_mobile;
+                CA.created_date = DateTime.Now;
+                CA.address_status = 1;
+
+                context.customer_address.Add(CA);
+                context.SaveChanges();
+
+                if (address_count==0)
+                {
+                    var cust = context.Customers.Where(a => a.cust_id == cust_id);
+                    foreach(Customer cu in cust)
+                    {
+                        cu.cust_address_id = (int)context.customer_address.AsNoTracking().Where(a => a.customer_id == cust_id).Select(a => a.id).Single();
+                        cu.cust_pincode = customer_pincode;
+                    }
+                    context.SaveChanges();
+                }
+                if (defult_address == "Yes")
+                {
+                    var cust = context.Customers.Where(a => a.cust_id == cust_id);
+                    foreach (Customer cu in cust)
+                    {
+                        cu.cust_address_id = (int)context.customer_address.AsNoTracking().Where(a => a.customer_id == cust_id).Select(a => a.id).Max();
+                        cu.cust_pincode = customer_pincode;
+                    }
+                    context.SaveChanges();
+                }
+
+                status = 1;
+
+            }
+            catch (Exception e)
+            {
+                Logdetails.LogError("Post Error", "AddNewAddress customercontroller (188)", e.Message);
+            }
+
+            return status;
+        }
     }
 }

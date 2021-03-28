@@ -94,14 +94,16 @@
     <Property Name="customer_id" Type="int" />
     <Property Name="customer_name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="customer_address" Type="varchar" MaxLength="250" Nullable="false" />
-    <Property Name="customer_city" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="customer_area" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="customer_country" Type="varchar" MaxLength="50" />
+    <Property Name="Landmark" Type="varchar" MaxLength="50" />
+    <Property Name="customer_city" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="customer_pincode" Type="int" />
-    <Property Name="customer_mobile" Type="varchar(max)" />
+    <Property Name="customer_state" Type="varchar" MaxLength="50" />
+    <Property Name="customer_country" Type="varchar" MaxLength="50" />
+    <Property Name="customer_mobile" Type="varchar" MaxLength="50" />
     <Property Name="address_status" Type="int" Nullable="false" />
     <Property Name="created_date" Type="datetime" Nullable="false" />
-    <Property Name="updated_at" Type="datetime" />
+    <Property Name="updated_date" Type="datetime" />
   </EntityType>
   <EntityType Name="Customer_Payment">
     <Key>

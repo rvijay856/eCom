@@ -25,6 +25,8 @@ namespace AutobuyDirectApi.Models
         public string customer_mobile { get; set; }
         public int address_status { get; set; }
         public System.DateTime created_date { get; set; }
-        public Nullable<System.DateTime> updated_at { get; set; }
+        public string Landmark { get; set; }
+        public string customer_state { get; set; }
+        public Nullable<System.DateTime> updated_date { get; set; }
     }
 }

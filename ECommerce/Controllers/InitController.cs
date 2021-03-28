@@ -33,7 +33,7 @@ namespace AutobuyDirectApi.Controllers
             JArray s = (JArray)d.GetValue("hai");
             string ab = (string)s[0];
 
-            var login = context.Customers.Where(a => a.cust_email.Trim().ToLower() == ab.Trim().ToLower());
+            var login = context.Customers.Where(a => a.cust_mobile.Trim().ToLower() == ab.Trim().ToLower());
 
             foreach (Customer uf in login)
             {
