@@ -47,7 +47,7 @@ namespace AutobuyDirectApi.Controllers
                 mobile = mobile.Trim();
 
                 string OTP = "";
-                OTP = Ran.Next(0, 1000000).ToString("D6");
+                OTP = Ran.Next(1, 1000000).ToString("D6");
 
                 mobile_count = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile).Count();
                 if(mobile_count!=0)
@@ -73,10 +73,7 @@ namespace AutobuyDirectApi.Controllers
                 {
                     SMSSend smss = new SMSSend();
                     result = smss.sendSMS(mobile, OTP);
-
-
-
-                    var custos = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile);
+                    var custos = context.Customers.Where(a => a.cust_mobile == mobile);
 
                     foreach (Customer cu in custos)
                     {
@@ -90,7 +87,6 @@ namespace AutobuyDirectApi.Controllers
 
                     foreach (Customer cu in custo)
                     {
-
                         JObject sg = new JObject(
                             new JProperty("cust_id", cu.cust_id),
                             new JProperty("cust_name", cu.cust_name),
@@ -163,7 +159,6 @@ namespace AutobuyDirectApi.Controllers
         [System.Web.Http.Route("api/Signup/GetUserClaims")]
         public JObject GetUserClaims()
         {
-
             int cust_id = 0;
             int Login_status = 0;
             InitController Login = new InitController();
@@ -175,13 +170,14 @@ namespace AutobuyDirectApi.Controllers
             cust_id = (int)JObject.Parse(json)["User_id"];
             Login_status = (int)JObject.Parse(json)["Login_status"];
 
-
             var user_deta = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id);
 
             decimal user_id = 0;
             var name = "";
             var email = "";
             var address = "";
+            var area = "";
+            var landmark = "";
             var city = "";
             var state = "";
             var country = "";
@@ -192,7 +188,6 @@ namespace AutobuyDirectApi.Controllers
             int cart_count = 0;
             int wishlist_count = 0;
 
-
             foreach (Customer urd in user_deta)
             {
                 user_id = urd.cust_id;
@@ -202,6 +197,8 @@ namespace AutobuyDirectApi.Controllers
                 if (urd.cust_address_id != null && urd.cust_address_id != 0)
                 {
                     address = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_address1).Single();
+                    area = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_area).Single();
+                    landmark = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.Landmark).Single();
                     city = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_city).Single();
                     state = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_area).Single();
                     country = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_country).Single();
@@ -220,6 +217,8 @@ namespace AutobuyDirectApi.Controllers
                  new JProperty("user_type", user_type),
                  new JProperty("address", address),
                  new JProperty("city", city),
+                 new JProperty("area", area),
+                 new JProperty("landmark", landmark),
                  new JProperty("state", state),
                  new JProperty("country", country),
                  new JProperty("pincode", pincode),
@@ -229,14 +228,11 @@ namespace AutobuyDirectApi.Controllers
                  new JProperty("wishlist_count", wishlist_count)
                 ); 
             DateTime lastlogin = DateTime.Now;
-
-           
             var users = context.Customers.Where(x => x.cust_id== user_id);
 
             foreach (Customer user in users)
             {
                 user.Last_login = lastlogin;
-
             }
             context.SaveChanges();
 
@@ -294,11 +290,8 @@ namespace AutobuyDirectApi.Controllers
             int cust_id = 0;
             int Login_status = 0;
             InitController Login = new InitController();
-
             JObject param = Login.Login();
-
             string json = JsonConvert.SerializeObject(param);
-
             cust_id = (int)JObject.Parse(json)["User_id"];
             Login_status = (int)JObject.Parse(json)["Login_status"];
 
@@ -320,7 +313,6 @@ namespace AutobuyDirectApi.Controllers
                 final = new JObject(
                         new JProperty("Otp_Vlidation", "Failed"));
             }
-              
             return final;
         }
     }
