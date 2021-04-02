@@ -64,7 +64,8 @@ namespace AutobuyDirectApi.Controllers
                             new JProperty("cust_status", ""),
                             new JProperty("Created_date", ""),
                             new JProperty("Updated_date", ""),
-                            new JProperty("status", "You are already registered. Please log in.")
+                            new JProperty("status", "You are already registered. Please log in."),
+                            new JProperty("status_id", 1)
                         );
                     Cust.Add(sg);
                 }
@@ -73,15 +74,19 @@ namespace AutobuyDirectApi.Controllers
                     SMSSend smss = new SMSSend();
                     result = smss.sendSMS(mobile, OTP);
 
+
+
+                    var custos = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile);
+
+                    foreach (Customer cu in custos)
+                    {
+                        //cu.cust_status = 1;
+                        cu.cust_otp = int.Parse(OTP);
+                        cu.Updated_date = DateTime.Now;
+                    }
+                    context.SaveChanges();
+
                     var custo = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile);
-
-                    //Customer custom = new Customer();
-                    //custom.cust_status = 1;
-                    //custom.cust_otp = 0;
-                    //custom.Updated_date = DateTime.Now;
-
-                    //context.Customers.Add(custom);
-                    //context.SaveChanges();
 
                     foreach (Customer cu in custo)
                     {
@@ -95,7 +100,8 @@ namespace AutobuyDirectApi.Controllers
                             new JProperty("cust_type", cu.cust_type),
                             new JProperty("Created_date", cu.Created_date),
                             new JProperty("Updated_date", cu.Updated_date),
-                            new JProperty("status", "You are already registered. Please verify mobile number.")
+                            new JProperty("status", "You are already registered. Please verify mobile number."),
+                            new JProperty("status_id", 2)
                         );
                         Cust.Add(sg);
                     }
@@ -106,7 +112,7 @@ namespace AutobuyDirectApi.Controllers
                     cus.cust_name = name;
                     cus.cust_email = email;
                     cus.cust_mobile = mobile;
-                    cus.cust_status = 0;
+                    cus.cust_status = 1;
                     cus.cust_otp = int.Parse(OTP);
                     cus.cat_password = pword;
                     cus.cust_type = 1;
@@ -119,15 +125,7 @@ namespace AutobuyDirectApi.Controllers
                     SMSSend smss = new SMSSend();
                     result = smss.sendSMS(mobile,OTP);
 
-                    var custo = context.Customers.AsNoTracking().Where(a=>a.cust_mobile==mobile);
-
-                    Customer custom = new Customer();
-                    custom.cust_status = 1;
-                    custom.cust_otp = 0;
-                    custom.Updated_date = DateTime.Now;
-
-                    context.Customers.Add(custom);
-                    context.SaveChanges();
+                    var custo = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile);
 
                     foreach (Customer cu in custo)
                     {
@@ -141,7 +139,8 @@ namespace AutobuyDirectApi.Controllers
                             new JProperty("cust_type", cu.cust_type),
                             new JProperty("Created_date", cu.Created_date),
                             new JProperty("Updated_date", cu.Updated_date),
-                            new JProperty("status", "Sign in Successfully")
+                            new JProperty("status", "Sign in Successfully"),
+                            new JProperty("status_id", 3)
                         );
                         Cust.Add(sg);
                     }
@@ -304,9 +303,15 @@ namespace AutobuyDirectApi.Controllers
             Login_status = (int)JObject.Parse(json)["Login_status"];
 
             JObject final = new JObject();
+            var Otp_Confirm = context.Customers.Where(a => a.cust_id == cust_id);
             int check_otp = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_otp).Single();
             if (check_otp==Otp)
             {
+                foreach(Customer cu in Otp_Confirm)
+                {
+                    cu.cust_otp = 0;
+                }
+                context.SaveChanges();
                 final = new JObject(
                new JProperty("Otp_Vlidation", "Success"));
             }

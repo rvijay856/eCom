@@ -424,9 +424,6 @@ namespace AutobuyDirectApi.Controllers
             string customer_mobile = "";
             int address_count = 0;
             string defult_address = "";
-
-
-
             try
             {
                 InitController Login = new InitController();
@@ -478,7 +475,7 @@ namespace AutobuyDirectApi.Controllers
                     }
                     context.SaveChanges();
                 }
-                if (defult_address == "Yes")
+                else if (defult_address == "Yes")
                 {
                     var cust = context.Customers.Where(a => a.cust_id == cust_id);
                     foreach (Customer cu in cust)
@@ -488,9 +485,7 @@ namespace AutobuyDirectApi.Controllers
                     }
                     context.SaveChanges();
                 }
-
                 status = 1;
-
             }
             catch (Exception e)
             {
@@ -498,6 +493,181 @@ namespace AutobuyDirectApi.Controllers
             }
 
             return status;
+        }
+
+        public int EditAddress(JObject parame)
+        {
+            int status = 0;
+            int cust_id = 0;
+            int Login_status = 0;
+            int address_id = 0;
+            string customer_name = "";
+            string customer_address = "";
+            string customer_area = "";
+            string Landmark = "";
+            string customer_city = "";
+            int customer_pincode = 0;
+            string customer_state = "";
+            string customer_country = "";
+            string customer_mobile = "";
+            string defult_address = "";
+            try
+            {
+                InitController Login = new InitController();
+
+                JObject param = Login.Login();
+
+                string json = JsonConvert.SerializeObject(param);
+
+                cust_id = (int)JObject.Parse(json)["User_id"];
+                Login_status = (int)JObject.Parse(json)["Login_status"];
+
+                address_id = (int)parame.GetValue("address_id");
+                customer_name = (string)parame.GetValue("customer_name");
+                customer_address = (string)parame.GetValue("customer_address");
+                customer_area = (string)parame.GetValue("customer_area");
+                Landmark = (string)parame.GetValue("Landmark");
+                customer_city = (string)parame.GetValue("customer_city");
+                customer_pincode = (int)parame.GetValue("customer_pincode");
+                customer_state = (string)parame.GetValue("customer_state");
+                customer_country = (string)parame.GetValue("customer_country");
+                customer_mobile = (string)parame.GetValue("customer_mobile");
+                defult_address = (string)parame.GetValue("defult_address");
+
+                var address = context.customer_address.Where(a => a.customer_id == cust_id && a.id == address_id);
+
+                foreach (customer_address CA in address)
+                {
+                    CA.customer_id = cust_id;
+                    CA.customer_name = customer_name;
+                    CA.customer_address1 = customer_address;
+                    CA.customer_area = customer_area;
+                    CA.Landmark = Landmark;
+                    CA.customer_city = customer_city;
+                    CA.customer_pincode = customer_pincode;
+                    CA.customer_state = customer_state;
+                    CA.customer_country = customer_country;
+                    CA.customer_mobile = customer_mobile;
+                    CA.created_date = DateTime.Now;
+                    CA.address_status = 1;
+                }
+                context.SaveChanges();
+                if (defult_address == "Yes")
+                {
+                    var cust = context.Customers.Where(a => a.cust_id == cust_id);
+                    foreach (Customer cu in cust)
+                    {
+                        cu.cust_address_id = address_id;
+                        cu.cust_pincode = customer_pincode;
+                    }
+                    context.SaveChanges();
+                }
+                status = 1;
+            }
+            catch (Exception e)
+            {
+                Logdetails.LogError("Post Error", "EditAddress customercontroller (188)", e.Message);
+            }
+
+            return status;
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/customer/Getaddress")]
+        public JObject Getaddress()
+        {
+            int cust_id = 0;
+            int Login_status = 0;
+            string defult_address = "";
+            int defult_address_id = 0;
+
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
+            defult_address_id = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_address_id).Single();
+            var custaddress = context.customer_address.AsNoTracking().Where(a => a.customer_id == cust_id && a.address_status==1);
+            JArray array = new JArray();
+            foreach (customer_address cusadd in custaddress)
+            {
+                if (defult_address_id==cusadd.id)
+                {
+                    defult_address = "Yes";
+                }
+                else
+                {
+                    defult_address = "";
+                }
+                JObject addList = new JObject(
+                new JProperty("id", cusadd.id.ToString()),
+                new JProperty("customer_id", cusadd.customer_id),
+                new JProperty("customer_name", cusadd.customer_name),
+                new JProperty("customer_address1", cusadd.customer_address1),
+                new JProperty("customer_area", cusadd.customer_area),
+                new JProperty("Landmark", cusadd.Landmark),
+                new JProperty("customer_city", cusadd.customer_city),
+                new JProperty("customer_pincode", cusadd.customer_pincode),
+                new JProperty("customer_state", cusadd.customer_state),
+                new JProperty("customer_country", cusadd.customer_country),
+                new JProperty("customer_mobile", cusadd.customer_mobile),
+                new JProperty("created_date", cusadd.created_date),
+                new JProperty("updated_date", cusadd.updated_date),
+                new JProperty("defult_address", defult_address)
+               );
+                array.Add(addList);
+            }
+            JObject final = new JObject(
+                new JProperty("Address", array));
+            return final;
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/customer/DeleteAddress/{ID}")]
+        public JObject DeleteAddress(int ID)
+        {
+            int cust_id = 0;
+            int Login_status = 0;
+            int defult_address = 0;
+            int newdefult_address = 0;
+            int pincode = 0;
+            InitController Login = new InitController();
+
+            JObject param = Login.Login();
+
+            string json = JsonConvert.SerializeObject(param);
+
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
+
+            JObject final = new JObject();
+            var DeleteAd = context.customer_address.Where(a => a.id == ID);
+                foreach (customer_address cu in DeleteAd)
+                {
+                    cu.address_status = 0;
+                }
+                context.SaveChanges();
+            defult_address = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_address_id).Single();
+            if (defult_address==ID)
+            {
+                newdefult_address = (int)context.customer_address.AsNoTracking().Where(a => a.customer_id == cust_id && a.address_status == 1).Select(a => a.id).Max();
+                pincode = (int)context.customer_address.AsNoTracking().Where(a => a.id == newdefult_address).Select(a => a.customer_pincode).Single();
+                var cust = context.Customers.Where(a => a.cust_id == cust_id);
+                foreach(Customer cu in cust)
+                {
+                    cu.cust_address_id = newdefult_address;
+                    cu.cust_pincode = pincode;
+                }
+                context.SaveChanges();
+            }
+
+                final = new JObject(
+               new JProperty("Delete_Address", "Success"));
+            
+            return final;
         }
     }
 }
