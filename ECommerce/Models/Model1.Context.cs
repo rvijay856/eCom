@@ -34,8 +34,6 @@ namespace AutobuyDirectApi.Models
         public virtual DbSet<Product_Category> Product_Category { get; set; }
         public virtual DbSet<Product_items> Product_items { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Products_order> Products_order { get; set; }
-        public virtual DbSet<Products_order_list> Products_order_list { get; set; }
         public virtual DbSet<user_details> user_details { get; set; }
         public virtual DbSet<Wishlist> Wishlists { get; set; }
         public virtual DbSet<Brand_Product> Brand_Product { get; set; }
@@ -43,5 +41,7 @@ namespace AutobuyDirectApi.Models
         public virtual DbSet<Carousel_Product> Carousel_Product { get; set; }
         public virtual DbSet<Trending_Menu> Trending_Menu { get; set; }
         public virtual DbSet<Trending_Product> Trending_Product { get; set; }
+        public virtual DbSet<Order_details> Order_details { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }

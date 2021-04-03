@@ -59,12 +59,12 @@ namespace AutobuyDirectApi.Providers
             {
                 if (db != null)
                 {
-
                     int user_type = 0;
                     string err = "Provided username and password is incorrect";
                     string code = "1";
                     string userid = "";
                     string pushid = "";
+                    int usercount = 0;
                     userid = context.UserName;
                     if (context.UserName.Contains("-pushid"))
                     {
@@ -73,59 +73,55 @@ namespace AutobuyDirectApi.Providers
                     }
                     var user = db.Customers.ToList();
                     //   user_type = (int)user.Where(a => a.cust_email.Trim().ToLower() == userid.Trim().ToLower()).Select(a => a.user_type).Single();
-
-
                     try
                     {
                         //userid = context.UserName;                                                
-
                         if (user != null)
                         {
-
-                            if (!string.IsNullOrEmpty(user.Where(u => (string.Equals(u.cust_mobile.Trim(), userid.Trim(), StringComparison.OrdinalIgnoreCase)) && u.cat_password == context.Password && u.cust_status == 1).FirstOrDefault().cust_mobile))
+                            usercount = db.Customers.AsNoTracking().Where(a => a.cust_mobile == userid).Count();
+                            if (usercount != 0)
                             {
-                                var login1 = db.Customers.Where(a => a.cust_mobile.Trim().ToLower() == userid.Trim().ToLower());
-                                //foreach (User_Info uf in login1)
-                                //{
-                                //    uf.User_status = 1;
-                                //    if (pushid != null && pushid != "")
-                                //        uf.Push_id = pushid;
-                                //}
-                                //db.SaveChanges();
+                                if (!string.IsNullOrEmpty(user.Where(u => (string.Equals(u.cust_mobile.Trim(), userid.Trim(), StringComparison.OrdinalIgnoreCase)) && u.cat_password == context.Password && u.cust_status == 1).FirstOrDefault().cust_mobile))
+                                {
+                                    var login1 = db.Customers.Where(a => a.cust_mobile.Trim().ToLower() == userid.Trim().ToLower());
+                                    //foreach (User_Info uf in login1)
+                                    //{
+                                    //    uf.User_status = 1;
+                                    //    if (pushid != null && pushid != "")
+                                    //        uf.Push_id = pushid;
+                                    //}
+                                    //db.SaveChanges();
 
-
-                                identity.AddClaim(new Claim(ClaimTypes.Role, userid));
-
-                                var props = new AuthenticationProperties(new Dictionary<string, string>
+                                    identity.AddClaim(new Claim(ClaimTypes.Role, userid));
+                                    var props = new AuthenticationProperties(new Dictionary<string, string>
+                                    {
                                         {
-                                            {
-                                                "userdisplayname", userid
-                                            },
-                                            {
-                                                 "role", "customer"
-                                            }
-                                         });
-
-                                var ticket = new AuthenticationTicket(identity, props);
-                                context.Validated(ticket);
-                                context.Validated(identity);
-                            }
-
+                                            "userdisplayname", userid
+                                        },
+                                        {
+                                            "role", "customer"
+                                        }
+                                    });
+                                    var ticket = new AuthenticationTicket(identity, props);
+                                    context.Validated(ticket);
+                                    context.Validated(identity);
+                                }
                             else
                             {
                                 context.SetError("invalid_grant", "Provided username and password is incorrect");
-
                                 context.Rejected();
-
                             }
-
-
+                            }
+                            else
+                            {
+                                context.SetError("invalid_grant", "User is not exists");
+                                context.Rejected();
+                            }
                         }
                     }
                     catch (System.Exception e)
                     {
                         context.SetError(code, err);
-
                         //return e;//Response.status(Response.Status.UNAUTHORIZED).build();
                     }
                 }
@@ -134,11 +130,8 @@ namespace AutobuyDirectApi.Providers
                     context.SetError("invalid_grant", "Provided username and password is incorrect");
                     context.Rejected();
                 }
-
             }
-
         }
-
     }
 
     public class RefreshTokenProvider : IAuthenticationTokenProvider

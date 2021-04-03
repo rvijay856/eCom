@@ -162,16 +162,13 @@ namespace AutobuyDirectApi.Controllers
             int cust_id = 0;
             int Login_status = 0;
             InitController Login = new InitController();
-
             JObject param = Login.Login();
-
             string json = JsonConvert.SerializeObject(param);
-
             cust_id = (int)JObject.Parse(json)["User_id"];
             Login_status = (int)JObject.Parse(json)["Login_status"];
+            String result = "";
 
-            var user_deta = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id);
-
+            int otp = 0;
             decimal user_id = 0;
             var name = "";
             var email = "";
@@ -187,55 +184,87 @@ namespace AutobuyDirectApi.Controllers
             int user_type = 0;
             int cart_count = 0;
             int wishlist_count = 0;
+            JObject ud = new JObject();
 
-            foreach (Customer urd in user_deta)
+            otp = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_otp).Single();
+
+            if (otp == 0)
             {
-                user_id = urd.cust_id;
-                name = urd.cust_name;
-                email = urd.cust_email;
-                user_type = (int)urd.cust_type;
-                if (urd.cust_address_id != null && urd.cust_address_id != 0)
+                var user_deta = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id);
+                foreach (Customer urd in user_deta)
                 {
-                    address = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_address1).Single();
-                    area = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_area).Single();
-                    landmark = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.Landmark).Single();
-                    city = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_city).Single();
-                    state = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_area).Single();
-                    country = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_country).Single();
-                    pincode = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_pincode).Single().ToString();
-                    mobile = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_mobile).Single().ToString();
+                    user_id = urd.cust_id;
+                    name = urd.cust_name;
+                    email = urd.cust_email;
+                    user_type = (int)urd.cust_type;
+                    if (urd.cust_address_id != null && urd.cust_address_id != 0)
+                    {
+                        address = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_address1).Single();
+                        area = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_area).Single();
+                        landmark = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.Landmark).Single();
+                        city = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_city).Single();
+                        state = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_state).Single();
+                        country = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_country).Single();
+                        pincode = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_pincode).Single().ToString();
+                        mobile = context.customer_address.AsNoTracking().Where(a => a.id == urd.cust_address_id).Select(a => a.customer_mobile).Single().ToString();
+                    }
+                    last_Login = urd.Last_login.ToString();
                 }
-                last_Login = urd.Last_login.ToString();
+                cart_count = context.Carts.AsNoTracking().Where(a => a.cust_id == cust_id && a.cart_status == 1).Count();
+                wishlist_count = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1).Count();
+
+                    ud = new JObject(
+                     new JProperty("user_id", user_id),
+                     new JProperty("name", name),
+                     new JProperty("email", email),
+                     new JProperty("user_type", user_type),
+                     new JProperty("address", address),
+                     new JProperty("area", area),
+                     new JProperty("city", city),
+                     new JProperty("landmark", landmark),
+                     new JProperty("state", state),
+                     new JProperty("country", country),
+                     new JProperty("pincode", pincode),
+                     new JProperty("mobile", mobile),
+                     new JProperty("last_Login", last_Login),
+                     new JProperty("cart_count", cart_count),
+                     new JProperty("wishlist_count", wishlist_count),
+                     new JProperty("Status", "Login Successfully."),
+                     new JProperty("Status_id", 1)
+                    );
+                DateTime lastlogin = DateTime.Now;
+                var users = context.Customers.Where(x => x.cust_id == user_id);
+
+                foreach (Customer user in users)
+                {
+                    user.Last_login = lastlogin;
+                }
+                context.SaveChanges();
             }
-            cart_count = context.Carts.AsNoTracking().Where(a => a.cust_id == cust_id && a.cart_status == 1).Count();
-            wishlist_count = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1).Count();
-
-            JObject ud = new JObject(
-                new JProperty("user_id", user_id),
-                 new JProperty("name", name),          
-                 new JProperty("email", email),
-                 new JProperty("user_type", user_type),
-                 new JProperty("address", address),
-                 new JProperty("city", city),
-                 new JProperty("area", area),
-                 new JProperty("landmark", landmark),
-                 new JProperty("state", state),
-                 new JProperty("country", country),
-                 new JProperty("pincode", pincode),
-                 new JProperty("mobile", mobile),
-                 new JProperty("last_Login", last_Login),
-                 new JProperty("cart_count", cart_count),
-                 new JProperty("wishlist_count", wishlist_count)
-                ); 
-            DateTime lastlogin = DateTime.Now;
-            var users = context.Customers.Where(x => x.cust_id== user_id);
-
-            foreach (Customer user in users)
+            else
             {
-                user.Last_login = lastlogin;
-            }
-            context.SaveChanges();
+                mobile = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_mobile).Single();
+                Random Ran = new Random();
+                string OTP = "";
+                OTP = Ran.Next(1, 1000000).ToString("D6");
 
+                SMSSend smss = new SMSSend();
+                result = smss.sendSMS(mobile, OTP);
+                var custos = context.Customers.Where(a => a.cust_mobile == mobile);
+
+                foreach (Customer cu in custos)
+                {
+                    //cu.cust_status = 1;
+                    cu.cust_otp = int.Parse(OTP);
+                    cu.Updated_date = DateTime.Now;
+                }
+                context.SaveChanges();
+
+                ud = new JObject(
+                     new JProperty("Status", "Please verify mobile number."),
+                     new JProperty("Status_id", 2)
+                     );
+            }
             return ud;
         }
 
