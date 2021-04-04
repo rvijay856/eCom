@@ -150,50 +150,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Products_order">
-      <EntityTypeMapping TypeName="EcommModel.Products_order">
-        <MappingFragment StoreEntitySet="Products_order">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="basket_session" ColumnName="basket_session" />
-          <ScalarProperty Name="show_id" ColumnName="show_id" />
-          <ScalarProperty Name="address_id" ColumnName="address_id" />
-          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-          <ScalarProperty Name="total_amount" ColumnName="total_amount" />
-          <ScalarProperty Name="pay_status" ColumnName="pay_status" />
-          <ScalarProperty Name="cancel_reason" ColumnName="cancel_reason" />
-          <ScalarProperty Name="shipping_notes" ColumnName="shipping_notes" />
-          <ScalarProperty Name="delivery_boy_id" ColumnName="delivery_boy_id" />
-          <ScalarProperty Name="order_status" ColumnName="order_status" />
-          <ScalarProperty Name="Confirmed_date" ColumnName="Confirmed_date" />
-          <ScalarProperty Name="packed_date" ColumnName="packed_date" />
-          <ScalarProperty Name="shipped_date" ColumnName="shipped_date" />
-          <ScalarProperty Name="delivered_date" ColumnName="delivered_date" />
-          <ScalarProperty Name="cancelled_date" ColumnName="cancelled_date" />
-          <ScalarProperty Name="Created_date" ColumnName="Created_date" />
-          <ScalarProperty Name="Updated_date" ColumnName="Updated_date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Products_order_list">
-      <EntityTypeMapping TypeName="EcommModel.Products_order_list">
-        <MappingFragment StoreEntitySet="Products_order_list">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="order_id" ColumnName="order_id" />
-          <ScalarProperty Name="product_id" ColumnName="product_id" />
-          <ScalarProperty Name="product_item_id" ColumnName="product_item_id" />
-          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-          <ScalarProperty Name="product_amount_sell" ColumnName="product_amount_sell" />
-          <ScalarProperty Name="product_amount_mrp" ColumnName="product_amount_mrp" />
-          <ScalarProperty Name="order_list_status" ColumnName="order_list_status" />
-          <ScalarProperty Name="product_details" ColumnName="product_details" />
-          <ScalarProperty Name="product_category" ColumnName="product_category" />
-          <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
-          <ScalarProperty Name="product_total_amount" ColumnName="product_total_amount" />
-          <ScalarProperty Name="Created_date" ColumnName="Created_date" />
-          <ScalarProperty Name="Updated_date" ColumnName="Updated_date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="user_details">
       <EntityTypeMapping TypeName="EcommModel.user_details">
         <MappingFragment StoreEntitySet="user_details">
@@ -288,6 +244,39 @@
           <ScalarProperty Name="Prod_id" ColumnName="Prod_id" />
           <ScalarProperty Name="Trending_id" ColumnName="Trending_id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_details">
+      <EntityTypeMapping TypeName="EcommModel.Order_details">
+        <MappingFragment StoreEntitySet="Order_details">
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="selling_price" ColumnName="selling_price" />
+          <ScalarProperty Name="mrp_price" ColumnName="mrp_price" />
+          <ScalarProperty Name="prod_quantity" ColumnName="prod_quantity" />
+          <ScalarProperty Name="item_id" ColumnName="item_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="EcommModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="address_id" ColumnName="address_id" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="ship_date" ColumnName="ship_date" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="shipment_status" ColumnName="shipment_status" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

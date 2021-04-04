@@ -387,19 +387,68 @@ namespace AutobuyDirectApi.Controllers
             int Login_status = 0;
             int item_id = 0;
             int Qty = 0;
+            JArray prod = new JArray();
+            int Address_ID = 0;
+            decimal total_amt = 0;
             try
             {
                 InitController Login = new InitController();
-
                 JObject param = Login.Login();
-
                 string json = JsonConvert.SerializeObject(param);
-
                 cust_id = (int)JObject.Parse(json)["User_id"];
                 Login_status = (int)JObject.Parse(json)["Login_status"];
 
-                item_id = (int)parame.GetValue("itemid");
-                Qty= (int)parame.GetValue("Qty");
+                prod = (JArray)parame.GetValue("products");
+                Address_ID = (int)parame.GetValue("Address_ID");
+
+                Customer_Payment cp = new Customer_Payment();
+                cp.customer_id = cust_id;
+                cp.payment_status = 0;
+                cp.created_date = DateTime.Now;
+                cp.payment_type = "COD";
+
+                context.Customer_Payment.Add(cp);
+                context.SaveChanges();
+
+                Order ord = new Order();
+                ord.customer_id = cust_id;
+                ord.order_no = DateTime.Now.ToString("yyyyMMddhhmmssff");
+                ord.address_id = Address_ID;
+                ord.payment_id = (int?)cp.id;
+                ord.payment_status = 0;
+                ord.shipment_status = 1;//Order Confrim
+                ord.order_date = DateTime.Now;
+                context.Orders.Add(ord);
+                context.SaveChanges();
+
+                foreach (JObject item in prod)
+                {
+                    item_id = (int)item.GetValue("itemid");
+                    Qty = (int)item.GetValue("Qty");
+
+                    Order_details ord_det = new Order_details();
+                    ord_det.order_id = ord.order_id;
+                    ord_det.order_no = ord.order_no;
+                    ord_det.product_id = context.Product_items.AsNoTracking().Where(a => a.id == item_id).Select(a => a.prod_id).Single();
+                    ord_det.item_id = item_id;
+                    ord_det.prod_quantity = Qty;
+                    ord_det.mrp_price= context.Product_items.AsNoTracking().Where(a => a.id == item_id).Select(a => a.item_mrp).Single();
+                    ord_det.selling_price = context.Product_items.AsNoTracking().Where(a => a.id == item_id).Select(a => a.item_selling).Single();
+                    ord_det.created_date = DateTime.Now;
+                    ord_det.updated_date = DateTime.Now;
+
+                    context.Order_details.Add(ord_det);
+                    context.SaveChanges();
+                    total_amt += (decimal)ord_det.selling_price;
+                }
+                var amt = context.Customer_Payment.Where(a => a.id == cp.id);
+                foreach(Customer_Payment cpa in amt)
+                {
+                    cpa.payment_amount = total_amt;
+                }
+                context.SaveChanges();
+
+                status = 1;
             }
             catch(Exception e)
             {

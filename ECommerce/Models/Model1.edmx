@@ -114,19 +114,19 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="customer_id" Type="int" />
-          <Property Name="Card_no" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Card_type" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Expiration_date" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Security_code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="Card_no" Type="varchar" MaxLength="50" />
+          <Property Name="Card_type" Type="varchar" MaxLength="250" />
+          <Property Name="Expiration_date" Type="varchar" MaxLength="50" />
+          <Property Name="Security_code" Type="varchar" MaxLength="50" />
           <Property Name="CardHolderName" Type="varchar" MaxLength="50" />
           <Property Name="payment_status" Type="int" />
-          <Property Name="card_status" Type="int" Nullable="false" />
+          <Property Name="card_status" Type="int" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_at" Type="datetime" />
-          <Property Name="payment_type" Type="varchar" MaxLength="50" />
-          <Property Name="payment_amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="payment_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="payment_amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Order_details">
           <Key>
@@ -150,6 +150,7 @@
           <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customer_id" Type="int" />
           <Property Name="order_no" Type="varchar" MaxLength="50" />
+          <Property Name="address_id" Type="int" />
           <Property Name="payment_id" Type="int" />
           <Property Name="payment_date" Type="datetime" />
           <Property Name="payment_status" Type="int" />
@@ -361,19 +362,19 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="customer_id" Type="Int32" />
-          <Property Name="Card_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Card_type" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Expiration_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Security_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="Card_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Card_type" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Expiration_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Security_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CardHolderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="payment_status" Type="Int32" />
-          <Property Name="card_status" Type="Int32" Nullable="false" />
+          <Property Name="card_status" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
-          <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="payment_amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="payment_amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Postal_Code">
           <Key>
@@ -568,6 +569,7 @@
           <Property Name="order_date" Type="DateTime" Precision="3" />
           <Property Name="ship_date" Type="DateTime" Precision="3" />
           <Property Name="updated_date" Type="DateTime" Precision="3" />
+          <Property Name="address_id" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -840,6 +842,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="EcommModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="ship_date" ColumnName="ship_date" />
                 <ScalarProperty Name="order_date" ColumnName="order_date" />

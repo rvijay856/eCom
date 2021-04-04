@@ -237,8 +237,10 @@ namespace AutobuyDirectApi.Controllers
                 sub_cate= (string)param.GetValue("sub_cate");
                 url_img= (string)param.GetValue("url");
                 brand_type_count = context.Brand_Menu.AsNoTracking().Where(a => a.Barnd_Section == brand_type && a.Brand_Status == 1).Count();
-                if(brand_type_count!=0)
-                    brand_title = context.Brand_Menu.AsNoTracking().Where(a => a.Barnd_Section == brand_type).Select(a => a.Brand_Title).Single();
+                if (brand_type_count != 0)
+                {
+                    brand_title = context.Brand_Menu.AsNoTracking().Where(a => a.Barnd_Section == brand_type).Select(a => a.Brand_Title).Max();
+                }
 
 
                 if (brand_type_count < 4)
