@@ -216,7 +216,6 @@
     <Compile Include="Controllers\InitController.cs" />
     <Compile Include="Controllers\SMS.cs" />
     <Compile Include="Controllers\Logdetails.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Models\Brand_Menu.cs">
       <DependentUpon>Model1.tt</DependentUpon>

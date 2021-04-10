@@ -82,9 +82,9 @@
     <Property Name="payment_status" Type="Int32" />
     <Property Name="card_status" Type="Int32" />
     <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="updated_at" Type="DateTime" Precision="3" />
     <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="payment_amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="payment_date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Postal_Code">
     <Key>
@@ -275,10 +275,10 @@
     <Property Name="payment_id" Type="Int32" />
     <Property Name="payment_date" Type="DateTime" Precision="3" />
     <Property Name="payment_status" Type="Int32" />
-    <Property Name="shipment_status" Type="Int32" />
     <Property Name="order_date" Type="DateTime" Precision="3" />
-    <Property Name="ship_date" Type="DateTime" Precision="3" />
     <Property Name="updated_date" Type="DateTime" Precision="3" />
     <Property Name="address_id" Type="Int32" />
+    <Property Name="delivery_date" Type="DateTime" Precision="3" />
+    <Property Name="delivery_status" Type="Int32" />
   </EntityType>
 </Schema>

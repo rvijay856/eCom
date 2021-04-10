@@ -24,8 +24,8 @@ namespace AutobuyDirectApi.Models
         public Nullable<int> payment_status { get; set; }
         public Nullable<int> card_status { get; set; }
         public System.DateTime created_date { get; set; }
-        public Nullable<System.DateTime> updated_at { get; set; }
         public string payment_type { get; set; }
         public decimal payment_amount { get; set; }
+        public Nullable<System.DateTime> payment_date { get; set; }
     }
 }

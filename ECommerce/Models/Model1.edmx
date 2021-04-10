@@ -124,7 +124,7 @@
           <Property Name="payment_status" Type="int" />
           <Property Name="card_status" Type="int" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
-          <Property Name="updated_at" Type="datetime" />
+          <Property Name="payment_date" Type="datetime" />
           <Property Name="payment_type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="payment_amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
@@ -154,9 +154,9 @@
           <Property Name="payment_id" Type="int" />
           <Property Name="payment_date" Type="datetime" />
           <Property Name="payment_status" Type="int" />
-          <Property Name="shipment_status" Type="int" />
+          <Property Name="delivery_status" Type="int" />
           <Property Name="order_date" Type="datetime" />
-          <Property Name="ship_date" Type="datetime" />
+          <Property Name="delivery_date" Type="datetime" />
           <Property Name="updated_date" Type="datetime" />
         </EntityType>
         <EntityType Name="Postal_Code">
@@ -372,9 +372,9 @@
           <Property Name="payment_status" Type="Int32" />
           <Property Name="card_status" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="updated_at" Type="DateTime" Precision="3" />
           <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="payment_amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="payment_date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Postal_Code">
           <Key>
@@ -565,11 +565,11 @@
           <Property Name="payment_id" Type="Int32" />
           <Property Name="payment_date" Type="DateTime" Precision="3" />
           <Property Name="payment_status" Type="Int32" />
-          <Property Name="shipment_status" Type="Int32" />
           <Property Name="order_date" Type="DateTime" Precision="3" />
-          <Property Name="ship_date" Type="DateTime" Precision="3" />
           <Property Name="updated_date" Type="DateTime" Precision="3" />
           <Property Name="address_id" Type="Int32" />
+          <Property Name="delivery_date" Type="DateTime" Precision="3" />
+          <Property Name="delivery_status" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -652,6 +652,7 @@
           <EntitySetMapping Name="Customer_Payment">
             <EntityTypeMapping TypeName="EcommModel.Customer_Payment">
               <MappingFragment StoreEntitySet="Customer_Payment">
+                <ScalarProperty Name="payment_date" ColumnName="payment_date" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="Card_no" ColumnName="Card_no" />
@@ -662,7 +663,6 @@
                 <ScalarProperty Name="payment_status" ColumnName="payment_status" />
                 <ScalarProperty Name="card_status" ColumnName="card_status" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
                 <ScalarProperty Name="payment_type" ColumnName="payment_type" />
                 <ScalarProperty Name="payment_amount" ColumnName="payment_amount" />
               </MappingFragment>
@@ -842,11 +842,11 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="EcommModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="delivery_status" ColumnName="delivery_status" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
                 <ScalarProperty Name="address_id" ColumnName="address_id" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="ship_date" ColumnName="ship_date" />
                 <ScalarProperty Name="order_date" ColumnName="order_date" />
-                <ScalarProperty Name="shipment_status" ColumnName="shipment_status" />
                 <ScalarProperty Name="payment_status" ColumnName="payment_status" />
                 <ScalarProperty Name="payment_date" ColumnName="payment_date" />
                 <ScalarProperty Name="payment_id" ColumnName="payment_id" />

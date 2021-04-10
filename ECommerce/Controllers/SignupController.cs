@@ -24,7 +24,7 @@ namespace AutobuyDirectApi.Controllers
         public JObject signupsite(JObject param)
         {
 
-            int status = 0;
+            //int status = 0;
             string name = "";
             string email = "";
             string pword = "";

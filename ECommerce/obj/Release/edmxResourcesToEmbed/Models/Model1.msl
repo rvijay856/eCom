@@ -76,6 +76,7 @@
     <EntitySetMapping Name="Customer_Payment">
       <EntityTypeMapping TypeName="EcommModel.Customer_Payment">
         <MappingFragment StoreEntitySet="Customer_Payment">
+          <ScalarProperty Name="payment_date" ColumnName="payment_date" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="customer_id" ColumnName="customer_id" />
           <ScalarProperty Name="Card_no" ColumnName="Card_no" />
@@ -86,7 +87,6 @@
           <ScalarProperty Name="payment_status" ColumnName="payment_status" />
           <ScalarProperty Name="card_status" ColumnName="card_status" />
           <ScalarProperty Name="created_date" ColumnName="created_date" />
-          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
           <ScalarProperty Name="payment_type" ColumnName="payment_type" />
           <ScalarProperty Name="payment_amount" ColumnName="payment_amount" />
         </MappingFragment>
@@ -266,11 +266,11 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="EcommModel.Order">
         <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="delivery_status" ColumnName="delivery_status" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
           <ScalarProperty Name="address_id" ColumnName="address_id" />
           <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-          <ScalarProperty Name="ship_date" ColumnName="ship_date" />
           <ScalarProperty Name="order_date" ColumnName="order_date" />
-          <ScalarProperty Name="shipment_status" ColumnName="shipment_status" />
           <ScalarProperty Name="payment_status" ColumnName="payment_status" />
           <ScalarProperty Name="payment_date" ColumnName="payment_date" />
           <ScalarProperty Name="payment_id" ColumnName="payment_id" />

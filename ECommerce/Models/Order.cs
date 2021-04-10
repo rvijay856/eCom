@@ -20,10 +20,10 @@ namespace AutobuyDirectApi.Models
         public Nullable<int> payment_id { get; set; }
         public Nullable<System.DateTime> payment_date { get; set; }
         public Nullable<int> payment_status { get; set; }
-        public Nullable<int> shipment_status { get; set; }
         public Nullable<System.DateTime> order_date { get; set; }
-        public Nullable<System.DateTime> ship_date { get; set; }
         public Nullable<System.DateTime> updated_date { get; set; }
         public Nullable<int> address_id { get; set; }
+        public Nullable<System.DateTime> delivery_date { get; set; }
+        public Nullable<int> delivery_status { get; set; }
     }
 }

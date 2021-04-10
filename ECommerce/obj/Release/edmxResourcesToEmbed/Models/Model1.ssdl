@@ -119,7 +119,7 @@
     <Property Name="payment_status" Type="int" />
     <Property Name="card_status" Type="int" />
     <Property Name="created_date" Type="datetime" Nullable="false" />
-    <Property Name="updated_at" Type="datetime" />
+    <Property Name="payment_date" Type="datetime" />
     <Property Name="payment_type" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="payment_amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
   </EntityType>
@@ -149,9 +149,9 @@
     <Property Name="payment_id" Type="int" />
     <Property Name="payment_date" Type="datetime" />
     <Property Name="payment_status" Type="int" />
-    <Property Name="shipment_status" Type="int" />
+    <Property Name="delivery_status" Type="int" />
     <Property Name="order_date" Type="datetime" />
-    <Property Name="ship_date" Type="datetime" />
+    <Property Name="delivery_date" Type="datetime" />
     <Property Name="updated_date" Type="datetime" />
   </EntityType>
   <EntityType Name="Postal_Code">

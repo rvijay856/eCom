@@ -680,7 +680,7 @@ namespace AutobuyDirectApi.Controllers
                 ord.address_id = Address_ID;
                 ord.payment_id = (int?)cp.id;
                 ord.payment_status = 0;
-                ord.shipment_status = 1;//Order Confrim
+                ord.delivery_status = 0;//Order Confrim
                 ord.order_date = DateTime.Now;
                 context.Orders.Add(ord);
                 context.SaveChanges();
@@ -811,7 +811,7 @@ namespace AutobuyDirectApi.Controllers
 
             string prod_name = "";
             string item_spec = "";
-            decimal total = 0;
+            //decimal total = 0;
             int payment_status = 100;
             string payment_state = "";
 
@@ -860,33 +860,34 @@ namespace AutobuyDirectApi.Controllers
                 var pay_id = context.Customer_Payment.AsNoTracking().Where(a => a.id == or.payment_id);
                 foreach (Customer_Payment cp in pay_id)
                 {
-                    total = cp.payment_amount;
+                    //total = cp.payment_amount;
                     payment_status = (int)cp.payment_status;
-                }
-                if (payment_status == 0)
-                {
-                    payment_state = "Yet To Received Payment";
-                }
-                else if (payment_status == 1)
-                {
-                    payment_state = "Payment Received Successful";
-                }
-                else if (payment_status == 2)
-                {
-                    payment_state = "Cancelled";
-                }
-                else if (payment_status == 100)
-                {
-                    payment_state = "Not Available";
-                }
-                Order_pay = new JObject(
-                    new JProperty("payment_id", or.payment_id),
-                    new JProperty("payment_status", payment_state),
-                    new JProperty("payment_Type", "COD"),
-                    new JProperty("Total", total)
-                    );
-                Order_pay_array.Add(Order_pay);
 
+                    if (payment_status == 0)
+                    {
+                        payment_state = "Yet To Received Payment";
+                    }
+                    else if (payment_status == 1)
+                    {
+                        payment_state = "Payment Received Successful";
+                    }
+                    else if (payment_status == 2)
+                    {
+                        payment_state = "Cancelled";
+                    }
+                    else if (payment_status == 100)
+                    {
+                        payment_state = "Not Available";
+                    }
+                    Order_pay = new JObject(
+                        new JProperty("payment_id", or.payment_id),
+                        new JProperty("payment_status", payment_state),
+                        new JProperty("payment_Type", cp.payment_type),
+                        new JProperty("Total", cp.payment_amount)
+                        );
+                    Order_pay_array.Add(Order_pay);
+                }
+                
                Order_li = new JObject(
                    new JProperty("order_id", or.order_id),
                    new JProperty("order_no", or.order_no),
