@@ -30,7 +30,7 @@ namespace AutobuyDirectApi.Controllers
             string pword = "";
             string mobile = "";
             int mobile_count = 0;
-            int Custmobile_OTP = 0;
+            string Custmobile_OTP = "";
             String result = "";
             Random Ran = new Random();
             JArray Cust = new JArray();
@@ -52,9 +52,9 @@ namespace AutobuyDirectApi.Controllers
                 mobile_count = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile).Count();
                 if(mobile_count!=0)
                 {
-                    Custmobile_OTP = (int)context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile).Select(a => a.cust_otp).Single();
+                    Custmobile_OTP = context.Customers.AsNoTracking().Where(a => a.cust_mobile == mobile).Select(a => a.cust_otp).Single();
                 }
-                if (mobile_count != 0 && Custmobile_OTP == 0)
+                if (mobile_count != 0 && string.Equals(Custmobile_OTP, "0", StringComparison.OrdinalIgnoreCase))
                 {
                     JObject sg = new JObject(
                             new JProperty("cust_id", ""),
@@ -69,7 +69,7 @@ namespace AutobuyDirectApi.Controllers
                         );
                     Cust.Add(sg);
                 }
-                else if (mobile_count != 0 && Custmobile_OTP != 0)
+                else if (mobile_count != 0 && !string.Equals(Custmobile_OTP, "0", StringComparison.OrdinalIgnoreCase))
                 {
                     SMSSend smss = new SMSSend();
                     result = smss.sendSMS(mobile, OTP);
@@ -78,7 +78,7 @@ namespace AutobuyDirectApi.Controllers
                     foreach (Customer cu in custos)
                     {
                         //cu.cust_status = 1;
-                        cu.cust_otp = int.Parse(OTP);
+                        cu.cust_otp = OTP;
                         cu.Updated_date = DateTime.Now;
                     }
                     context.SaveChanges();
@@ -109,7 +109,7 @@ namespace AutobuyDirectApi.Controllers
                     cus.cust_email = email;
                     cus.cust_mobile = mobile;
                     cus.cust_status = 1;
-                    cus.cust_otp = int.Parse(OTP);
+                    cus.cust_otp = OTP;
                     cus.cat_password = pword;
                     cus.cust_type = 1;
                     cus.Created_date = DateTime.Now;
@@ -168,7 +168,7 @@ namespace AutobuyDirectApi.Controllers
             Login_status = (int)JObject.Parse(json)["Login_status"];
             String result = "";
 
-            int otp = 0;
+            string otp = "";
             decimal user_id = 0;
             var name = "";
             var email = "";
@@ -186,9 +186,9 @@ namespace AutobuyDirectApi.Controllers
             int wishlist_count = 0;
             JObject ud = new JObject();
 
-            otp = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_otp).Single();
+            otp = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_otp).Single();
 
-            if (otp == 0)
+            if (string.Equals(otp, "0",StringComparison.OrdinalIgnoreCase))
             {
                 var user_deta = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id);
                 foreach (Customer urd in user_deta)
@@ -255,7 +255,7 @@ namespace AutobuyDirectApi.Controllers
                 foreach (Customer cu in custos)
                 {
                     //cu.cust_status = 1;
-                    cu.cust_otp = int.Parse(OTP);
+                    cu.cust_otp = OTP;
                     cu.Updated_date = DateTime.Now;
                 }
                 context.SaveChanges();
@@ -314,7 +314,7 @@ namespace AutobuyDirectApi.Controllers
 
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/Sigup/GetOtp/{Otp}")]
-        public JObject GetOtp(int Otp)
+        public JObject GetOtp(string Otp)
         {
             int cust_id = 0;
             int Login_status = 0;
@@ -326,12 +326,12 @@ namespace AutobuyDirectApi.Controllers
 
             JObject final = new JObject();
             var Otp_Confirm = context.Customers.Where(a => a.cust_id == cust_id);
-            int check_otp = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_otp).Single();
-            if (check_otp==Otp)
+            string check_otp = context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_otp).Single();
+            if (string.Equals(check_otp,Otp,StringComparison.OrdinalIgnoreCase))
             {
                 foreach(Customer cu in Otp_Confirm)
                 {
-                    cu.cust_otp = 0;
+                    cu.cust_otp = "0";
                 }
                 context.SaveChanges();
                 final = new JObject(

@@ -85,7 +85,7 @@
           <Property Name="cust_status" Type="int" />
           <Property Name="cust_address_id" Type="int" />
           <Property Name="cust_pincode" Type="int" />
-          <Property Name="cust_otp" Type="int" />
+          <Property Name="cust_otp" Type="varchar" MaxLength="50" />
           <Property Name="cat_password" Type="varchar" MaxLength="50" />
           <Property Name="Created_date" Type="datetime" />
           <Property Name="Updated_date" Type="datetime" />
@@ -333,7 +333,7 @@
           <Property Name="cust_status" Type="Int32" />
           <Property Name="cust_address_id" Type="Int32" />
           <Property Name="cust_pincode" Type="Int32" />
-          <Property Name="cust_otp" Type="Int32" />
+          <Property Name="cust_otp" Type="String" />
           <Property Name="cat_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Created_date" Type="DateTime" Precision="3" />
           <Property Name="Updated_date" Type="DateTime" Precision="3" />
