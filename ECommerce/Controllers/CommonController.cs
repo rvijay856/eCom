@@ -576,12 +576,13 @@ namespace AutobuyDirectApi.Controllers
                 }
 
                 Titleobj = new JObject(
-                    new JProperty("Trending_Title", TM.Trending_Title)
+                    new JProperty("Trending_Title", TM.Trending_Title),
+                    new JProperty("Trending_Deatils", array)
                     );
                 Title.Add(Titleobj);
             }
             final = new JObject(
-               new JProperty("TrendingItemList", array),
+               //new JProperty("TrendingItemList", array),
                new JProperty("Trending_Title", Title)
                );
 

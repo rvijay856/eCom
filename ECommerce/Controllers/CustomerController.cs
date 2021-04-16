@@ -600,6 +600,47 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/customer/Getaddr/{ID}")]
+        public JObject Getaddr(int ID)
+        {
+            int cust_id = 0;
+            int Login_status = 0;
+            string defult_address = "";
+
+            InitController Login = new InitController();
+            JObject param = Login.Login();
+            string json = JsonConvert.SerializeObject(param);
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
+
+            JArray array = new JArray();
+                var custaddress = context.customer_address.AsNoTracking().Where(a => a.customer_id == cust_id && a.address_status == 1 && a.id==ID);
+                foreach (customer_address cusadd in custaddress)
+                {
+                    JObject addList = new JObject(
+                    new JProperty("id", cusadd.id.ToString()),
+                    new JProperty("customer_id", cusadd.customer_id),
+                    new JProperty("customer_name", cusadd.customer_name),
+                    new JProperty("customer_address1", cusadd.customer_address1),
+                    new JProperty("customer_area", cusadd.customer_area),
+                    new JProperty("Landmark", cusadd.Landmark),
+                    new JProperty("customer_city", cusadd.customer_city),
+                    new JProperty("customer_pincode", cusadd.customer_pincode),
+                    new JProperty("customer_state", cusadd.customer_state),
+                    new JProperty("customer_country", cusadd.customer_country),
+                    new JProperty("customer_mobile", cusadd.customer_mobile),
+                    new JProperty("created_date", cusadd.created_date),
+                    new JProperty("updated_date", cusadd.updated_date),
+                    new JProperty("defult_address", defult_address)
+                   );
+                    array.Add(addList);
+                }
+            JObject final = new JObject(
+                new JProperty("Address", array));
+            return final;
+        }
+
+        [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/customer/DeleteAddress/{ID}")]
         public JObject DeleteAddress(int ID)
         {
