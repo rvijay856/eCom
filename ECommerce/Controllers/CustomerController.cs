@@ -414,11 +414,8 @@ namespace AutobuyDirectApi.Controllers
             try
             {
                 InitController Login = new InitController();
-
                 JObject param = Login.Login();
-
                 string json = JsonConvert.SerializeObject(param);
-
                 cust_id = (int)JObject.Parse(json)["User_id"];
                 Login_status = (int)JObject.Parse(json)["Login_status"];
 
@@ -478,7 +475,6 @@ namespace AutobuyDirectApi.Controllers
             {
                 Logdetails.LogError("Post Error", "AddNewAddress customercontroller (188)", e.Message);
             }
-
             return status;
         }
 
@@ -501,11 +497,8 @@ namespace AutobuyDirectApi.Controllers
             try
             {
                 InitController Login = new InitController();
-
                 JObject param = Login.Login();
-
                 string json = JsonConvert.SerializeObject(param);
-
                 cust_id = (int)JObject.Parse(json)["User_id"];
                 Login_status = (int)JObject.Parse(json)["Login_status"];
 
