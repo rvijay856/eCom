@@ -28,18 +28,18 @@ namespace AutobuyDirectApi.Controllers
             int cust_id = 0;
             int Login_status = 0;
             InitController Login = new InitController();
-
             JObject param = Login.Login();
-
             string json = JsonConvert.SerializeObject(param);
-
             cust_id = (int)JObject.Parse(json)["User_id"];
             Login_status = (int)JObject.Parse(json)["Login_status"];
+            decimal total = 0;
 
             var cartlist = context.Carts.AsNoTracking().Where(a => a.cust_id== cust_id && a.cart_status==1);
+            int cartcount = context.Carts.AsNoTracking().Where(a => a.cust_id == cust_id && a.cart_status == 1).Count();
             JArray array = new JArray();
             foreach (Cart car in cartlist)
             {
+                total += (decimal)(car.item_selling * car.quantity);
                 JObject cart_list = new JObject(
                     new JProperty("cart_id", car.id),
                     new JProperty("product_id", car.prod_id),
@@ -60,13 +60,15 @@ namespace AutobuyDirectApi.Controllers
                 array.Add(cart_list);
             }
             JObject final = new JObject(
-               new JProperty("Cartlist", array));
-
+               new JProperty("Cartlist", array),
+               new JProperty("total", total),
+               new JProperty("cartcount", cartcount)
+               );
             return final;
         }
 
         [System.Web.Http.HttpPost]
-        public int addtocart(JObject parame)
+        public JObject addtocart(JObject parame)
         {
             int status = 0;
             //int user_id =0;
@@ -82,13 +84,12 @@ namespace AutobuyDirectApi.Controllers
             int Login_status = 0;
 
             InitController Login = new InitController();
-
             JObject param = Login.Login();
-
             string json = JsonConvert.SerializeObject(param);
-
             cust_id = (int)JObject.Parse(json)["User_id"];
             Login_status = (int)JObject.Parse(json)["Login_status"];
+
+            JObject Cart_details = new JObject();
             try
             {
 
@@ -132,20 +133,25 @@ namespace AutobuyDirectApi.Controllers
                     {
                         car.Updated_date = DateTime.Now;
                         car.quantity = quantity;
+                        car.cart_status = 1;
                     }
                     context.SaveChanges();
                     status = 1;
                 }
-               
+                cartcount = context.Carts.AsNoTracking().Where(a => a.cust_id == cust_id && a.cart_status == 1).Count();
+                Cart_details = new JObject(
+                     new JProperty("Cart_Count", cartcount),
+                     new JProperty("Status", status)
+                     );
             }
             catch (Exception e)
             {
                 Logdetails.LogError("Post Error", "addtocarterror customercontroller (46)", e.Message);
             }
 
-            return status;
+            return Cart_details;
         }
-        public int removefromcart(JObject parame)
+        public JObject removefromcart(JObject parame)
         {
             int status = 0;
             //int user_id = 0;
@@ -155,13 +161,12 @@ namespace AutobuyDirectApi.Controllers
             int Login_status = 0;
 
             InitController Login = new InitController();
-
             JObject param = Login.Login();
-
             string json = JsonConvert.SerializeObject(param);
-
             cust_id = (int)JObject.Parse(json)["User_id"];
             Login_status = (int)JObject.Parse(json)["Login_status"];
+            int cartcount = 0;
+            JObject Cart_details = new JObject();
 
             try
             {
@@ -176,13 +181,18 @@ namespace AutobuyDirectApi.Controllers
                 }
                 context.SaveChanges();
                 status = 1;
+
+                cartcount = context.Carts.AsNoTracking().Where(a => a.cust_id == cust_id && a.cart_status == 1).Count();
+                Cart_details = new JObject(
+                     new JProperty("Cart_Count", cartcount),
+                     new JProperty("Status", status)
+                     );
             }
             catch (Exception e)
             {
                 Logdetails.LogError("Post Error", "removefromcarterror customercontroller (81)", e.Message);
             }
-
-            return status;
+            return Cart_details;
         }
 
         [System.Web.Http.HttpGet]
@@ -227,16 +237,13 @@ namespace AutobuyDirectApi.Controllers
         {
             int cust_id = 0;
             int Login_status = 0;
-
             InitController Login = new InitController();
-
             JObject param = Login.Login();
-
             string json = JsonConvert.SerializeObject(param);
-
             cust_id = (int)JObject.Parse(json)["User_id"];
             Login_status = (int)JObject.Parse(json)["Login_status"];
 
+            int wishcount = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1).Count();
             var custwish = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1);
             JArray array = new JArray();
             foreach(Wishlist cus in custwish)
@@ -258,12 +265,14 @@ namespace AutobuyDirectApi.Controllers
                 array.Add(wish_list);
             }
             JObject final = new JObject(
-                new JProperty("Wish", array));
+                new JProperty("Wish", array),
+                new JProperty("wishcount", wishcount)
+                );
             return final;
         }
 
         [System.Web.Http.HttpPost]
-        public int addtowish(JObject parame)
+        public JObject addtowish(JObject parame)
         {
             int status = 0;
             //int user_id = 0;
@@ -276,20 +285,16 @@ namespace AutobuyDirectApi.Controllers
             int wishcount = 0;
             int cust_id = 0;
             int Login_status = 0;
+            JObject wish_details = new JObject();
 
-            
             try
             {
                 InitController Login = new InitController();
-
                 JObject param = Login.Login();
-
                 string json = JsonConvert.SerializeObject(param);
-
                 cust_id = (int)JObject.Parse(json)["User_id"];
                 Login_status = (int)JObject.Parse(json)["Login_status"];
 
-                //user_id = cust_id;// (int)parame.GetValue("userid");
                 item_id = (int)parame.GetValue("itemid");
 
                 var wish_item = context.Product_items.AsNoTracking().Where(a => a.id == item_id);
@@ -331,23 +336,28 @@ namespace AutobuyDirectApi.Controllers
                     context.SaveChanges();
                     status = 1;
                 }
+                wishcount = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1).Count();
+                wish_details = new JObject(
+                     new JProperty("Wish_Count", wishcount),
+                     new JProperty("Status", status)
+                     );
             }
             catch (Exception e)
             {
                 Logdetails.LogError("Post Error", "addtowishlisterror customercontroller (154)", e.Message);
             }
-
-            return status;
+            return wish_details;
         }
 
-        public int removefromwish(JObject parame)
+        public JObject removefromwish(JObject parame)
         {
             int status = 0;
             int prod_id = 0;
             int item_id = 0;
             int cust_id = 0;
             int Login_status = 0;
-
+            int wishcount = 0;
+            JObject wish_details = new JObject();
             try
             {
                 InitController Login = new InitController();
@@ -371,13 +381,19 @@ namespace AutobuyDirectApi.Controllers
                 }
                 context.SaveChanges();
                 status = 1;
+
+                wishcount = context.Wishlists.AsNoTracking().Where(a => a.cust_id == cust_id && a.wish_status == 1).Count();
+                wish_details = new JObject(
+                     new JProperty("Wish_Count", wishcount),
+                     new JProperty("Status", status)
+                     );
             }
             catch (Exception e)
             {
                 Logdetails.LogError("Post Error", "removefromwisherror customercontroller (188)", e.Message);
             }
 
-            return status;
+            return wish_details;
         }
         public int AddNewAddress(JObject parame)
         {
@@ -730,6 +746,7 @@ namespace AutobuyDirectApi.Controllers
                 {
                     item_id = (int)item.GetValue("itemid");
                     Qty = (int)item.GetValue("Qty");
+                    var cart_item = context.Carts.Where(a=>a.item_id==item_id);
 
                     Order_details ord_det = new Order_details();
                     ord_det.order_id = ord.order_id;
@@ -745,6 +762,13 @@ namespace AutobuyDirectApi.Controllers
                     context.Order_details.Add(ord_det);
                     context.SaveChanges();
                     total_amt += (decimal)ord_det.selling_price;
+
+                    foreach(Cart car in cart_item)
+                    {
+                        car.cart_status = 0;
+                        car.Updated_date = DateTime.Now;
+                    }
+                    context.SaveChanges();
                 }
                 var amt = context.Customer_Payment.Where(a => a.id == cp.id);
                 foreach (Customer_Payment cpa in amt)
@@ -852,6 +876,7 @@ namespace AutobuyDirectApi.Controllers
 
             string prod_name = "";
             string item_spec = "";
+            string item_img = "";
             //decimal total = 0;
             int payment_status = 100;
             string payment_state = "";
@@ -865,11 +890,12 @@ namespace AutobuyDirectApi.Controllers
                     prod_name = context.Products.AsNoTracking().Where(a => a.prod_id == od.product_id).Select(a => a.prod_name).Single();
                     item_spec = context.Product_items.AsNoTracking().Where(a => a.id == od.item_id).Select(a=>a.item_spec).Single();
                     item_spec += context.Product_items.AsNoTracking().Where(a => a.id == od.item_id).Select(a => a.item_unit).Single();
+                    item_img = context.Product_items.AsNoTracking().Where(a => a.id == od.item_id).Select(a => a.item_image).Single();
 
                     Order_de = new JObject(
                        new JProperty("product_id", od.product_id),
                        new JProperty("prod_name", prod_name),
-                       new JProperty("prod_img", "prod_img"),
+                       new JProperty("prod_img", item_img),
                        new JProperty("item_id", od.item_id),
                        new JProperty("item_spec", item_spec),
                        new JProperty("prod_quantity", od.prod_quantity),
