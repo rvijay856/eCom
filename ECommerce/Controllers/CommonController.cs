@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
@@ -587,6 +588,30 @@ namespace AutobuyDirectApi.Controllers
                );
 
             return final;
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Common/GetProduct")]
+        public JObject GetProduct(string pro)
+        {
+            
+            var ProductList = context.Products.AsNoTracking().Where(a => a.prod_name.Contains(pro) && a.prod_status==1);
+            JArray ProductList_arr = new JArray();
+            ArrayList arr = new ArrayList();
+            foreach (Product pr in ProductList)
+            {
+                if (!arr.Contains(pr.prod_id))
+                {
+                    JObject Pur = new JObject(new JProperty("id", pr.prod_id), 
+                                  new JProperty("text", pr.prod_name)
+                                  );
+                    ProductList_arr.Add(Pur);
+                    arr.Add(pr.prod_id);
+                }
+            }
+            JObject rs = new JObject(
+                new JProperty("Product_List", ProductList_arr));
+            return rs;
         }
 
     }
