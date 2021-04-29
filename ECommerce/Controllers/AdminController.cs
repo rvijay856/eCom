@@ -86,6 +86,69 @@ namespace AutobuyDirectApi.Controllers
         }
 
         [System.Web.Http.HttpPost]
+        public int UpdateCategory(JObject param)
+        {
+            int status = 0;
+            int cust_id = 0;
+            int Login_status = 0;
+            InitController Login = new InitController();
+            JObject parame = Login.Login();
+            string json = JsonConvert.SerializeObject(parame);
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
+            int cust_type = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_type).Single();
+            if (cust_type == 2000 && Login_status == 1)
+            {
+                string category_name = "";
+                int category_type = 0;
+                string category_parent = "";
+                string category_slug = "";
+                int category_Id = 0;
+                string[] replaceables = new[] { "+", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "\\", "\"", " ", "-", ";", "&", "|", "/", "_", "@", "#", "$", "%", "<", ">", "=" };
+                string category_img = "";
+                Random random = new Random();
+                try
+                {
+                    category_Id = (int)param.GetValue("catid");
+                    category_name = (string)param.GetValue("catname");
+                    category_type = (int)param.GetValue("cattype");
+                    category_parent = (string)param.GetValue("parent_id");
+                    category_img = (string)param.GetValue("url");
+
+                    for (int i = 0; i < replaceables.Length; i++)
+                    {
+                        category_slug = category_name.Replace(replaceables[i], String.Empty);
+                    }
+
+                    var catupdate = context.Product_Category.Where(a=>a.id==category_Id);
+                    foreach (Product_Category cat in catupdate)
+                    {
+                        cat.cat_name = category_name;
+                        if (category_type == 1)
+                        {
+                            cat.cat_parent = 0;
+                        }
+                        else if (category_type == 2)
+                        {
+                            cat.cat_parent = int.Parse(category_parent);
+                        }
+                        cat.cat_slug = category_slug;
+                        cat.cat_img = category_img;
+                        cat.cat_status = 1;
+                        cat.Updated_date = DateTime.Now;
+                    }
+                    context.SaveChanges();
+                    status = 1;
+                }
+                catch (Exception e)
+                {
+                    Logdetails.LogError("Post Error", "UpdateCategoryerror admincontroller (134)", e.Message);
+                }
+            }
+            return status;
+        }
+
+        [System.Web.Http.HttpPost]
         public string CreateProduct(JObject param)
         {
             string status = "Already Exist";
@@ -217,6 +280,108 @@ namespace AutobuyDirectApi.Controllers
                         context.SaveChanges();
                         status = "Success";
                     }
+                }
+                catch (Exception e)
+                {
+                    Logdetails.LogError("Post Error", "CreateProducterror admincontroller (100)", e.Message);
+                }
+            }
+            return status;
+        }
+
+        [System.Web.Http.HttpPost]
+        public string UpdateProduct(JObject param)
+        {
+            string status = "Updated Failed";
+            string BrandName = "";
+            string category = "";
+            string code = "";
+            string item_status = "";
+            string item_stock = "";
+            string price = "";
+            string product_description = "";
+            string product_name = "";
+            string sale_price = "";
+            string spec = "";
+            string subcategory = "";
+            string unit = "";
+            string url = "";
+            string[] replaceables = new[] { "+", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "\\", "\"", " ", "-", ";", "&", "|", "/", "_", "@", "#", "$", "%", "<", ">", "=" };
+            string product_slug = "";
+            int prod_id = 0;
+            Random random = new Random();
+            int cust_id = 0;
+            int Login_status = 0;
+            InitController Login = new InitController();
+            JObject parame = Login.Login();
+            string json = JsonConvert.SerializeObject(parame);
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
+            int cust_type = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_type).Single();
+            if (cust_type == 2000 && Login_status == 1)
+            {
+                try
+                {
+                    prod_id = (int)param.GetValue("proid");
+                    BrandName = (string)param.GetValue("BrandName");
+                    category = (string)param.GetValue("category");
+                    code = (string)param.GetValue("code");
+                    item_status = (string)param.GetValue("item_status");
+                    item_stock = (string)param.GetValue("item_stock");
+                    price = (string)param.GetValue("price");
+                    product_description = (string)param.GetValue("product_description");
+                    product_name = (string)param.GetValue("product_name");
+                    sale_price = (string)param.GetValue("sale_price");
+                    spec = (string)param.GetValue("spec");
+                    subcategory = (string)param.GetValue("subcategory");
+                    unit = (string)param.GetValue("unit");
+                    url = (string)param.GetValue("url");
+
+                    BrandName = BrandName.Trim();
+                    category = category.Trim();
+                    code = code.Trim();
+                    item_status = item_status.Trim();
+                    item_stock = item_stock.Trim();
+                    price = price.Trim();
+                    product_description = product_description.Trim();
+                    product_name = product_name.Trim();
+                    sale_price = sale_price.Trim();
+                    spec = spec.Trim();
+                    subcategory = subcategory.Trim();
+                    unit = unit.Trim();
+
+                    for (int i = 0; i < replaceables.Length; i++)
+                    {
+                        product_slug = product_name.Replace(replaceables[i], String.Empty);
+                    }
+                    var proupdate = context.Products.Where(a => a.prod_id == prod_id);
+                    foreach (Product pro in proupdate)
+                    {
+                        pro.prod_name = product_name;
+                        pro.prod_slug = product_slug;
+                        pro.prod_category = int.Parse(category);
+                        pro.prod_subcategory = int.Parse(subcategory);
+                        pro.prod_brand = BrandName;
+                        pro.prod_desc = product_description;
+                        pro.Updated_date = DateTime.Now;
+
+                        var itemupdate = context.Product_items.Where(a => a.prod_id == prod_id);
+                        foreach (Product_items proItem in itemupdate)
+                        {
+                            proItem.item_code = int.Parse(code);
+                            proItem.item_spec = spec;
+                            proItem.item_unit = unit;
+                            proItem.item_mrp = decimal.Parse(price);
+                            proItem.item_selling = decimal.Parse(sale_price);
+                            proItem.item_stock = int.Parse(item_stock);
+                            proItem.item_image = url;
+                            proItem.item_status = int.Parse(item_status);
+                            proItem.Updated_date = DateTime.Now;
+                        }
+
+                    }
+                        context.SaveChanges();
+                        status = "Updated Success";
                 }
                 catch (Exception e)
                 {
@@ -474,8 +639,8 @@ namespace AutobuyDirectApi.Controllers
             return status;
         }
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/customer/GetAdminOrderDetails")]
-        public JObject GetOrderDetails()
+        [System.Web.Http.Route("api/Admin/GetAdminOrderDetails")]
+        public JObject GetAdminOrderDetails()
         {
             JObject final = new JObject();
             JObject Order_li = new JObject();
