@@ -762,6 +762,110 @@ namespace AutobuyDirectApi.Controllers
             }
             return final;
         }
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Admin/GetAdminEditProducts")]
+        public JObject GetAdminEditProducts()
+        {
+            JArray ParentCatarray = new JArray();
+            JArray SubCatarray = new JArray();
+            JArray Productarray = new JArray();
+            JArray Productitemarray = new JArray();
+
+            int cust_id = 0;
+            int Login_status = 0;
+            InitController Login = new InitController();
+            JObject parame = Login.Login();
+            string json = JsonConvert.SerializeObject(parame);
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
+            int cust_type = (int)context.Customers.AsNoTracking().Where(a => a.cust_id == cust_id).Select(a => a.cust_type).Single();
+            if (cust_type == 2000 && Login_status == 1)
+            {
+                try
+                {
+                    
+                    var Category = context.Product_Category.AsNoTracking().Where(a => a.cat_parent == 0);
+                    foreach (Product_Category cat in Category)
+                    {
+                        SubCatarray = new JArray();
+                        var SubCategory = context.Product_Category.AsNoTracking().Where(a => a.cat_parent == cat.id);
+                        foreach (Product_Category sub in SubCategory)
+                        {
+                            Productarray = new JArray();
+                            var Productsub = context.Products.AsNoTracking().Where(a => a.prod_subcategory == sub.id);
+                            foreach (Product pro in Productsub)
+                            {
+                                Productitemarray = new JArray();
+                                var item = context.Product_items.AsNoTracking().Where(a => a.prod_id == pro.prod_id);
+                                foreach (Product_items pi in item)
+                                {
+                                    JObject it = new JObject(
+                                         new JProperty("id", pi.id),
+                                         new JProperty("item_image", pi.item_image),
+                                         new JProperty("item_mrp", pi.item_mrp),
+                                         new JProperty("item_selling", pi.item_selling),
+                                         new JProperty("item_spec", pi.item_spec),
+                                         new JProperty("item_status", pi.item_status),
+                                         new JProperty("item_stock", pi.item_stock),
+                                         new JProperty("item_unit", pi.item_unit),
+                                         new JProperty("prod_id", pi.prod_id)
+                                         );
+                                    Productitemarray.Add(it);
+                                }
+                                JObject po = new JObject(
+                                    new JProperty("prod_id", pro.prod_id),
+                                    new JProperty("prod_name", pro.prod_name),
+                                    new JProperty("prod_slug", pro.prod_slug),
+                                    new JProperty("prod_category", pro.prod_category),
+                                    new JProperty("prod_subcategory", pro.prod_subcategory),
+                                    new JProperty("prod_brand", pro.prod_brand),
+                                    new JProperty("prod_desc", pro.prod_desc),
+                                    new JProperty("prod_status", pro.prod_status),
+                                    new JProperty("Created_date", pro.Created_date),
+                                    new JProperty("Updated_date", pro.Updated_date),
+                                    new JProperty("Productitemarray", Productitemarray)
+                                    );
+                                Productarray.Add(po);
+                            }
+
+                            JObject su = new JObject(
+                                new JProperty("category_id", sub.id),
+                                new JProperty("category_name", sub.cat_name),
+                                new JProperty("category_parent", sub.cat_parent),
+                                new JProperty("category_slug", sub.cat_slug),
+                                new JProperty("category_img", sub.cat_img),
+                                new JProperty("Created_Date", sub.Created_date),
+                                new JProperty("updated_Date", sub.Updated_date),
+                                new JProperty("Status", sub.cat_status),
+                                new JProperty("Productarray", Productarray)
+                                );
+                            SubCatarray.Add(su);
+                        }
+
+                        JObject bo = new JObject(
+                            new JProperty("category_id", cat.id),
+                            new JProperty("category_name", cat.cat_name),
+                            new JProperty("category_parent", cat.cat_parent),
+                            new JProperty("category_slug", cat.cat_slug),
+                            new JProperty("category_img", cat.cat_img),
+                            new JProperty("Created_Date", cat.Created_date),
+                            new JProperty("updated_Date", cat.Updated_date),
+                            new JProperty("Status", cat.cat_status),
+                            new JProperty("SubCategory", SubCatarray)
+                            );
+                        ParentCatarray.Add(bo);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logdetails.LogError("Post Error", "GetAdminEditProducts admincontroller (362)", e.Message);
+                }
+            }
+            JObject final = new JObject(
+            new JProperty("CompleteProduct_Details", ParentCatarray)
+            );
+            return final;
+        }
 
 
     }
