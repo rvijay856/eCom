@@ -312,6 +312,7 @@ namespace AutobuyDirectApi.Controllers
             return encryptpwd;
         }
 
+        [System.Web.Http.Authorize]
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/Sigup/GetOtp/{Otp}")]
         public JObject GetOtp(string Otp)
