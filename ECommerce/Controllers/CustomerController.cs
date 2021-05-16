@@ -459,7 +459,7 @@ namespace AutobuyDirectApi.Controllers
                     }
                     context.SaveChanges();
                 }
-                else if (defult_address == "Yes")
+                else if (defult_address.ToLower() == "yes")
                 {
                     var cust = context.Customers.Where(a => a.cust_id == cust_id);
                     foreach (Customer cu in cust)
