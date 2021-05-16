@@ -266,6 +266,7 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="EcommModel.Order">
         <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="Order_status" ColumnName="Order_status" />
           <ScalarProperty Name="delivery_status" ColumnName="delivery_status" />
           <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
           <ScalarProperty Name="address_id" ColumnName="address_id" />

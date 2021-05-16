@@ -155,6 +155,7 @@
           <Property Name="payment_date" Type="datetime" />
           <Property Name="payment_status" Type="int" />
           <Property Name="delivery_status" Type="int" />
+          <Property Name="Order_status" Type="int" />
           <Property Name="order_date" Type="datetime" />
           <Property Name="delivery_date" Type="datetime" />
           <Property Name="updated_date" Type="datetime" />
@@ -333,7 +334,7 @@
           <Property Name="cust_status" Type="Int32" />
           <Property Name="cust_address_id" Type="Int32" />
           <Property Name="cust_pincode" Type="Int32" />
-          <Property Name="cust_otp" Type="String" />
+          <Property Name="cust_otp" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="cat_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Created_date" Type="DateTime" Precision="3" />
           <Property Name="Updated_date" Type="DateTime" Precision="3" />
@@ -570,6 +571,7 @@
           <Property Name="address_id" Type="Int32" />
           <Property Name="delivery_date" Type="DateTime" Precision="3" />
           <Property Name="delivery_status" Type="Int32" />
+          <Property Name="Order_status" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -842,6 +844,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="EcommModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Order_status" ColumnName="Order_status" />
                 <ScalarProperty Name="delivery_status" ColumnName="delivery_status" />
                 <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
                 <ScalarProperty Name="address_id" ColumnName="address_id" />

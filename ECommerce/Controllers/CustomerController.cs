@@ -731,6 +731,7 @@ namespace AutobuyDirectApi.Controllers
                 ord.payment_id = (int?)cp.id;
                 ord.payment_status = 0;
                 ord.delivery_status = 0;//Order Confrim
+                ord.Order_status = 1;
                 ord.order_date = DateTime.Now;
                 context.Orders.Add(ord);
                 context.SaveChanges();
@@ -837,7 +838,8 @@ namespace AutobuyDirectApi.Controllers
                new JProperty("order_date", or.order_date),
                new JProperty("Total", total),
                new JProperty("payment_status", payment_state),
-               new JProperty("SHIP_TO", Cust_Name)
+               new JProperty("SHIP_TO", Cust_Name),
+               new JProperty("Order_Status", or.Order_status)
                );
                 order_list_details.Add(Order_li);
             }
@@ -952,6 +954,7 @@ namespace AutobuyDirectApi.Controllers
                    new JProperty("order_id", or.order_id),
                    new JProperty("order_no", or.order_no),
                    new JProperty("order_date", or.order_date),
+                   new JProperty("order_status", or.Order_status),
                    new JProperty("Product_details", Order_de_array),
                    new JProperty("Address_details", Order_addr_array),
                    new JProperty("Payment_details", Order_pay_array)
@@ -961,6 +964,44 @@ namespace AutobuyDirectApi.Controllers
 
             final = new JObject(
                new JProperty("order_list_details", order_list_details));
+
+            return final;
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/customer/GetOrderCancel/{ID}")]
+        public JObject GetOrderCancel(int ID)
+        {
+            int cust_id = 0;
+            int Login_status = 0;
+            InitController Login = new InitController();
+            JObject param = Login.Login();
+            string json = JsonConvert.SerializeObject(param);
+            cust_id = (int)JObject.Parse(json)["User_id"];
+            Login_status = (int)JObject.Parse(json)["Login_status"];
+            JObject final = new JObject();
+            string status = "";
+
+            try
+            {
+                var Orde = context.Orders.Where(a => a.order_id == ID);
+                foreach (Order item in Orde)
+                {
+                    item.Order_status = 0;
+                    item.updated_date = DateTime.Now;
+                }
+                context.SaveChanges();
+                status = "successful";
+            }
+            catch(Exception e)
+            {
+                Logdetails.LogError("Post Error", "OrderCancel customercontroller (188)", e.Message);
+                status = "Failed";
+            }
+
+            final = new JObject(
+               new JProperty("Order_Cancel", status)
+               );
 
             return final;
         }

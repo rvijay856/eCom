@@ -43,7 +43,7 @@
     <Property Name="cust_status" Type="Int32" />
     <Property Name="cust_address_id" Type="Int32" />
     <Property Name="cust_pincode" Type="Int32" />
-    <Property Name="cust_otp" Type="String" />
+    <Property Name="cust_otp" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="cat_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Created_date" Type="DateTime" Precision="3" />
     <Property Name="Updated_date" Type="DateTime" Precision="3" />
@@ -280,5 +280,6 @@
     <Property Name="address_id" Type="Int32" />
     <Property Name="delivery_date" Type="DateTime" Precision="3" />
     <Property Name="delivery_status" Type="Int32" />
+    <Property Name="Order_status" Type="Int32" />
   </EntityType>
 </Schema>

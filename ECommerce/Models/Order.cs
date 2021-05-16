@@ -25,5 +25,6 @@ namespace AutobuyDirectApi.Models
         public Nullable<int> address_id { get; set; }
         public Nullable<System.DateTime> delivery_date { get; set; }
         public Nullable<int> delivery_status { get; set; }
+        public Nullable<int> Order_status { get; set; }
     }
 }

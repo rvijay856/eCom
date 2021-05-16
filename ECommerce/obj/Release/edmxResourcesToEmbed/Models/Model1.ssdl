@@ -150,6 +150,7 @@
     <Property Name="payment_date" Type="datetime" />
     <Property Name="payment_status" Type="int" />
     <Property Name="delivery_status" Type="int" />
+    <Property Name="Order_status" Type="int" />
     <Property Name="order_date" Type="datetime" />
     <Property Name="delivery_date" Type="datetime" />
     <Property Name="updated_date" Type="datetime" />
